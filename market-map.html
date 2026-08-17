@@ -80,6 +80,16 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
   font-size:12.5px;color:var(--text);background:none;border:none;border-radius:5px;cursor:pointer;
   text-align:left;transition:background .15s}
 .gitem:hover{background:var(--raised)}
+.steps{display:flex;flex-direction:column;gap:1px}
+.step{display:grid;grid-template-columns:8px 1fr;gap:9px;align-items:center;padding:5px 6px;
+  border-radius:5px;font-size:11.5px;color:var(--faint);cursor:pointer;background:none;
+  border:none;font-family:inherit;text-align:left;width:100%;
+  transition:background .15s,color .15s}
+.step:hover{background:var(--raised);color:var(--muted)}
+.step .pip{width:8px;height:8px;border-radius:50%;background:var(--border);transition:background .15s}
+.step.on{color:var(--text);background:var(--primary-dim)}
+.step.on .pip{background:var(--primary)}
+.step .d{display:block;font-size:10.5px;opacity:.8;font-weight:400}
 .gitem.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
 .gitem .c{font-family:var(--mono);font-size:10px;color:var(--faint);flex:0 0 20px}
 .gitem .w{font-family:var(--mono);font-size:9.5px;color:var(--accent);margin-left:auto;white-space:nowrap}
@@ -219,6 +229,10 @@ footer code{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 <div class="shell">
 
   <aside class="panel rail" aria-label="篩選器">
+    <div class="sec">
+      <div class="sec-h"><h2>縮放層級</h2><span class="hint">點著跳</span></div>
+      <div class="steps" id="steps"></div>
+    </div>
     <div class="sec">
       <div class="sec-h"><h2>搜尋</h2></div>
       <label for="q" class="sr-only" style="position:absolute;left:-9999px">搜尋節點</label>
@@ -566,7 +580,32 @@ function draw(){
   const z=view.s;
   $("hud").innerHTML=`縮放 <b>${(z*100).toFixed(0)}%</b>　·　${z<.45?"只標樞紐":z<.8?"標主要":z<1.3?"標多數":"全部標名"}　·　${z>=.62?"箭頭已顯示":"放大看箭頭"}<br>`+
     `<span style="opacity:.7">滾輪縮放　拖曳平移　雙擊全覽</span>`;
+  const k=lodOf(z);
+  $("steps").querySelectorAll("[data-lod]").forEach(b=>
+    b.classList.toggle("on",+b.dataset.lod===k));
 }
+// ── 縮放層級 ──
+// 門檻與 draw() 的標名邏輯同源，改一邊要改兩邊
+const LOD=[
+ {lo:0,   hi:.45, to:.35,  t:"只標樞紐", d:"只標連線最多的"},
+ {lo:.45, hi:.8,  to:.62,  t:"標主要",   d:"主要節點浮現，箭頭在此顯示"},
+ {lo:.8,  hi:1.3, to:1.05, t:"標多數",   d:"動詞上色，看得出關係種類"},
+ {lo:1.3, hi:99,  to:1.8,  t:"全部標名", d:"每個節點都標名"}
+];
+const lodOf=z=>LOD.findIndex(s=>z>=s.lo&&z<s.hi);
+function zoomTo(t){
+  const wx=(W/2-view.x)/view.s, wy=(H/2-view.y)/view.s;
+  view.s=Math.max(.25,Math.min(6,t));
+  view.x=W/2-wx*view.s; view.y=H/2-wy*view.s;
+  userMoved=true;          // 同滾輪：使用者指定了視野，別讓 fit() 蓋回去
+  draw();
+}
+$("steps").innerHTML=LOD.map((s,i)=>
+ `<button class="step" type="button" data-lod="${i}"><span class="pip"></span>`+
+ `<span><b>${s.t}</b><span class="d">${s.d}</span></span></button>`).join("");
+$("steps").querySelectorAll("[data-lod]").forEach(b=>
+  b.addEventListener("click",()=>zoomTo(LOD[+b.dataset.lod].to)));
+
 function sync(){const el=$("kpi-shown");if(el)el.textContent=nodes.filter(vis).length;}
 
 // ── 選取 ──
