@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="三條可能的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成">
+<title>產品定位</title>
+<style>
+:root{
+  --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
+  --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
+  --primary:#60A5FA; --accent:#FB923C;
+  --a:#94A3B8; --b:#F87171; --c:#34D399;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  --r:10px; --sh:0 1px 3px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:5px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--primary);color:#fff;
+  padding:10px 16px;border-radius:var(--r);z-index:90}
+.skip:focus{left:12px;top:12px}
+
+.deck{max-width:1240px;margin:0 auto;padding:44px 32px 40px}
+header{margin-bottom:26px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--primary);margin-bottom:10px}
+h1{font-size:44px;font-weight:700;margin:0 0 12px;letter-spacing:-.035em;line-height:1.12}
+.lede{margin:0;font-size:16px;color:var(--muted);max-width:66ch}
+.lede b{color:var(--text);font-weight:640}
+
+.roads{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.road{display:flex;flex-direction:column;background:var(--surface);
+  border:1px solid var(--border);border-top:4px solid var(--ln);
+  border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.road.A{--ln:var(--a)} .road.B{--ln:var(--b)} .road.C{--ln:var(--c)}
+/* 並列比較要能橫向對讀：六個區塊在三欄之間對齊同一條基線 */
+@supports (grid-template-rows:subgrid){@media (min-width:1001px){
+  .roads{grid-template-rows:repeat(6,auto)}
+  .road{display:grid;grid-row:span 6;grid-template-rows:subgrid}
+  .road .state{margin-top:0}   /* 蓋掉 flex 版的 margin-top:auto，否則會被推到列軌底部 */
+}}
+.rd-top{padding:20px 21px 17px}
+.rd-top .id{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;
+  color:var(--ln)}
+.rd-top h2{font-size:19px;font-weight:680;margin:3px 0 8px;letter-spacing:-.015em;line-height:1.3}
+.rd-top .one{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
+
+.blk{padding:15px 21px;border-top:1px solid var(--border)}
+.blk .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
+  margin-bottom:6px}
+.blk p{margin:0;font-size:13.5px;line-height:1.62;color:var(--muted)}
+.blk p+p{margin-top:7px}
+.blk p b{color:var(--text);font-weight:620}
+
+.fee .m{font-size:14px;font-weight:660;color:var(--ln);line-height:1.35;margin-bottom:8px}
+.fee .note{margin:9px 0 0;font-size:12px;color:var(--faint);line-height:1.55}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tags span{font-size:12px;padding:4px 9px;background:var(--raised);border-radius:5px;
+  color:var(--muted);line-height:1.4}
+
+.state{margin-top:auto;padding:15px 21px;border-top:1px solid var(--border);
+  background:var(--raised)}
+.state .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
+  margin-bottom:6px}
+.state .st{font-size:14.5px;font-weight:660;color:var(--ln);line-height:1.35;margin-bottom:6px}
+.state p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.55}
+.state p b{color:var(--text);font-weight:620}
+
+.note{font-size:11.5px;color:var(--faint);line-height:1.55;margin:8px 0 0}
+
+
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;color:var(--faint);
+  line-height:1.7}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border)}
+footer a:hover{color:var(--primary);border-bottom-color:var(--primary)}
+footer code{font-family:var(--mono);font-size:11.5px}
+
+@media (max-width:1000px){.roads{grid-template-columns:1fr}.state{margin-top:0}}
+@media (max-width:820px){.deck{padding:24px 16px 24px}h1{font-size:29px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<div class="deck" id="main">
+<header>
+  <div class="eyebrow">第 3 章</div>
+  <h1>產品定位</h1>
+  <p class="lede">三個假定的選擇。<b>解決的問題層級不同</b>，後續的市場規模估算與目標市場選定也會不同。</p>
+</header>
+
+<div class="roads">
+
+  <div class="road A">
+    <div class="rd-top">
+      <div class="id">定位 A</div>
+      <h2>車隊管理系統供應商</h2>
+      <p class="one">讓車隊<b>看得見、管得住</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">痛什麼</div>
+      <p>車現在在哪，講不出來。貨主打電話問「到哪了」，只能回「我問一下」。</p>
+      <p>司機有沒有繞路、油有沒有少，全靠猜。車被開走了，找不回來。</p>
+    </div>
+    <div class="blk">
+      <div class="k">他現在怎麼忍</div>
+      <p><b>打電話問司機。</b>現場的習慣是「有事自己看一眼」，平常不看。</p>
+      <p>而且<b>不管哪一種車隊，都把「看得到車在哪」當成本來就該有的</b> ——
+        痛是真的，但不會為它多付錢。</p>
+    </div>
+    <div class="blk">
+      <div class="k">具體長什麼樣</div>
+      <div class="tags">
+        <span>即時位置與軌跡回放</span><span>電子圍籬</span><span>貨況即時查詢</span>
+        <span>電子簽收 POD</span><span>車輛竊盜與尋回</span><span>駕駛績效與獎懲</span>
+      </div>
+    </div>
+    <div class="blk fee">
+      <div class="k">怎麼收錢</div>
+      <div class="m">訂閱為主</div>
+      <p class="note">結構最單純，也最容易被逐項比價。</p>
+    </div>
+    <div class="state">
+      <div class="k">這條路現在有沒有人走成</div>
+      <div class="st">擠滿了人</div>
+      <p>位置與軌跡類功能<b>已經商品化</b>，是價格戰區。走這條路要處理的不是能不能做到，
+        是怎麼跟一堆做得到的人區隔。</p>
+    </div>
+  </div>
+
+  <div class="road B">
+    <div class="rd-top">
+      <div class="id">定位 B</div>
+      <h2>合規解決方案供應商</h2>
+      <p class="one">讓車隊<b>通過稽查、拿得出證據</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">痛什麼</div>
+      <p>審驗過不過，直接決定車能不能出去。</p>
+      <p>土石方新制上路時，<b>4,076 輛申請、只有 2,742 輛通過審驗</b>，
+        沒過的車不能載，<b>工地跟著停工</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">他現在怎麼忍</div>
+      <p><b>能紙本就紙本。</b>冷鏈的 GHP 只要求每日抽測四次並作成紀錄，
+        <b>紙本電子並行皆可</b> —— 法規本身沒有逼他數位化。</p>
+      <p>非忍不可的時候就轉嫁。遊覽車那條的做法是把月租算在駕駛頭上，
+        結果是<b>工會抬棺抗議、200 輛包圍交通部</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">具體長什麼樣</div>
+      <div class="tags">
+        <span>工時合規記錄</span><span>危險品合規申報</span><span>冷鏈溫度履歷</span>
+        <span>溫度校正與確效</span><span>造假偵測與稽核</span><span>離線暫存與資料補傳</span>
+      </div>
+    </div>
+    <div class="blk fee">
+      <div class="k">怎麼收錢</div>
+      <div class="m">硬體 ＋ 裝機 ＋ 訂閱 ＋ 代辦</div>
+      <p class="note">四段收入，但要先<b>通過審驗</b>才賣得出去。</p>
+    </div>
+    <div class="state">
+      <div class="k">這條路現在有沒有人走成</div>
+      <div class="st">有人走成，但政府可能佔位</div>
+      <p>毒化物與土石方都是<b>政府自己建中央資料庫、車機直接回傳政府</b>。
+        在這種格局裡，系統商會被壓縮成一條合規的資料管道。</p>
+    </div>
+  </div>
+
+  <div class="road C">
+    <div class="rd-top">
+      <div class="id">定位 C</div>
+      <h2>車隊營運成本的優化者</h2>
+      <p class="one">讓車隊的<b>營運成本真的降下來</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">痛什麼</div>
+      <p>錢花到哪去了，說不出精確的。最大的幾塊成本是<b>人、燃料、車輛持有</b>，
+        而現有系統對這幾塊多半只做到記錄。</p>
+      <p>閒置與空駛<b>看得到，卻改不了</b>。</p>
+    </div>
+    <div class="blk">
+      <div class="k">他現在怎麼忍</div>
+      <p><b>憑經驗抓，看月報表。</b></p>
+      <p>而且他沒有基準 —— 「一台車一年到底花多少」這個數字我們<b>查不到</b>，
+        客戶自己多半也沒量過。<b>沒有基準，就沒有人能證明省了多少。</b></p>
+    </div>
+    <div class="blk">
+      <div class="k">具體長什麼樣</div>
+      <div class="tags">
+        <span>預測性維護</span><span>殘值模型</span><span>輪胎管理</span>
+        <span>充電排程</span><span>續航預測</span><span>車隊數位分身</span>
+      </div>
+    </div>
+    <div class="blk fee">
+      <div class="k">怎麼收錢</div>
+      <div class="m">分潤（gain-share）</div>
+      <p class="note">⚠️ <b>材料裡沒有觀察到任何一家真的這樣賣。</b>
+        這是「可以怎麼收」的假說，不是市場現況。</p>
+    </div>
+    <div class="state">
+      <div class="k">這條路現在有沒有人走成</div>
+      <div class="st">幾乎沒人走成</div>
+      <p>要講「省了多少」，得先做到<b>歸因</b>；而目前多數感測還停在呈現與告警。
+        再加上沒有基準，這條路目前<b>斷在第一步</b>。</p>
+      <p class="note">⚠️ 成本結構的排序來自未查證的結構性估計，僅供排序參考，不可引用為數據。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  三條路各自的規模估算見 <a href="slide-04-sizing.html">下一頁</a>　·　痛點與能力的出處 <code>觀察筆記.md §2 §3 §5 §11 §13</code><br>
+  市場地形見 <a href="slide-01-map.html">第 1 章</a>　·　FMS 與 TMS 的邊界見 <a href="slide-02-fms-tms.html">第 2 章</a>
+</footer>
+
+<nav id="deck-nav" aria-label="簡報導覽">
+  <a class="dn-btn" href="slide-02-fms-tms.html" aria-label="上一頁：一個管車，一個管單" data-nav="prev">←</a>
+  <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
+    <span class="dn-ch">產品定位</span>
+    <span class="dn-pg">3 <i>/</i> 5</span>
+  </button>
+  <a class="dn-btn" href="slide-04-sizing.html" aria-label="下一頁：定位 A 的市場規模" data-nav="next">→</a>
+</nav>
+<div id="dn-menu" hidden>
+  <div class="dn-panel" role="dialog" aria-label="頁面目錄">
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item on" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
+    <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
+    <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點，可搜尋、可篩族群，附鄰接表</em></span></a><a class="dn-item dn-tool" href="slide-01-landscape.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>產業全景圖</b><em>206 節點的族群輪廓與縮放階梯，會後自行探索用</em></span></a>
+    <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
+  </div>
+</div>
+<style>
+:root{--deck-nav-h:52px}
+#deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
+  display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
+  box-shadow:var(--sh-lg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#deck-nav a,#deck-nav button{font-family:var(--sans);color:var(--muted);
+  background:none;border:none;cursor:pointer;text-decoration:none;border-radius:8px;
+  transition:background .15s,color .15s}
+.dn-btn{width:42px;display:grid;place-items:center;font-size:16px;line-height:1}
+.dn-btn:hover{background:var(--primary-dim);color:var(--primary)}
+.dn-off{width:42px;display:grid;place-items:center;font-size:16px;color:var(--border);
+  cursor:default}
+#dn-toggle{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px}
+#dn-toggle:hover{background:var(--raised);color:var(--text)}
+.dn-ch{font-size:12.5px;font-weight:620;color:var(--text);line-height:1.25}
+.dn-pg{font-family:var(--mono);font-size:9.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dn-pg i{font-style:normal;opacity:.5}
+#dn-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px}
+#dn-menu[hidden]{display:none}
+.dn-panel{width:min(480px,100%);max-height:80vh;overflow:auto;padding:18px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-lg)}
+.dn-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 8px}
+.dn-h:not(:first-child){margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.dn-item{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--text);
+  transition:background .15s}
+.dn-item:hover{background:var(--raised)}
+.dn-item.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
+.dn-num{font-family:var(--mono);font-size:11px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.dn-item b{display:block;font-size:14px;font-weight:620;line-height:1.35}
+.dn-item em{display:block;font-style:normal;font-size:12px;color:var(--faint);
+  margin-top:2px;line-height:1.5}
+.dn-tool b{color:var(--muted)}
+.dn-k{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--faint)}
+.dn-k code{font-family:var(--mono);font-size:11px;background:var(--raised);
+  padding:1px 5px;border-radius:4px;color:var(--muted)}
+@media (max-width:820px){#deck-nav{left:12px;right:12px;bottom:12px;width:auto}}
+@media print{#deck-nav,#dn-menu{display:none!important}}
+</style>
+<script>
+(()=>{
+  const menu=document.getElementById("dn-menu"),tog=document.getElementById("dn-toggle");
+  const go=d=>{const a=document.querySelector(`#deck-nav [data-nav="${d}"]`);if(a)location.href=a.getAttribute("href");};
+  const open=v=>{menu.hidden=!v;tog.setAttribute("aria-expanded",String(v));};
+  tog.addEventListener("click",()=>open(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target===menu)open(false);});
+  addEventListener("keydown",e=>{
+    if(e.target.matches("input,textarea,select"))return;
+    if(e.key==="ArrowRight")go("next");
+    else if(e.key==="ArrowLeft")go("prev");
+    else if(e.key==="Escape"&&!menu.hidden)open(false);
+  });
+})();
+</script>
+</body>
+</html>

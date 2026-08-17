@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="定位 B 的 TAM / SAM / SOM —— 法規畫的分母，以及唯一有出處的漏斗收縮率">
+<title>定位 B 的市場規模</title>
+<style>
+:root{
+  --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
+  --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
+  --primary:#60A5FA; --accent:#FB923C;
+  --t1:#60A5FA; --t2:#818CF8;
+  --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  --r:10px; --sh:0 1px 3px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:5px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--primary);color:#fff;
+  padding:10px 16px;border-radius:var(--r);z-index:90}
+.skip:focus{left:12px;top:12px}
+
+.deck{max-width:1240px;margin:0 auto;padding:40px 32px 36px}
+header{margin-bottom:20px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--primary);margin-bottom:9px}
+h1{font-size:38px;font-weight:700;margin:0 0 14px;letter-spacing:-.035em;line-height:1.15;
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.08em;
+  color:var(--primary);padding:4px 10px;border:1px solid var(--primary);border-radius:6px}
+.which{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.which a,.which span{font-size:12.5px;padding:6px 13px;border-radius:7px;
+  border:1px solid var(--border);color:var(--faint);line-height:1.4;
+  display:flex;align-items:center;gap:8px;text-decoration:none}
+.which a:hover{border-color:var(--primary);color:var(--muted)}
+.which .on{border-color:var(--primary);color:var(--text);font-weight:620;
+  background:color-mix(in srgb,var(--primary) 12%,transparent)}
+.which i{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  color:var(--faint);border:1px dashed currentColor;border-radius:3px;padding:1px 5px}
+
+.lv{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;
+  border:1px solid currentColor;white-space:nowrap;letter-spacing:.02em;display:inline-block;
+  vertical-align:1px}
+.lv.v{color:var(--ok)} .lv.e{color:var(--warn)}
+.lv.n{color:var(--bad)}
+
+
+/* 漏斗 */
+.funnel{padding:26px 30px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px;
+  display:grid;grid-template-columns:262px 1fr;gap:34px;align-items:center}
+.rings{position:relative}
+.rings svg{display:block;width:100%;height:auto}
+.rings .cap{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
+  font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.08em}
+.stage{display:grid;grid-template-columns:92px 1fr 296px;gap:16px 20px;align-items:start;
+  padding:15px 0;border-top:1px solid var(--border)}
+.stage:first-of-type{border-top:none;padding-top:0}
+.st-k{font-family:var(--mono);font-size:18px;font-weight:700;letter-spacing:.04em;color:var(--cl)}
+.st-k small{display:block;font-family:var(--sans);font-size:11.5px;font-weight:500;
+  color:var(--faint);letter-spacing:0;margin-top:2px;line-height:1.4}
+.st-r .big{font-family:var(--mono);font-variant-numeric:tabular-nums;line-height:1.25;
+  letter-spacing:-.015em}
+.st-r .big .veh{font-size:21px;font-weight:600;color:var(--cl)}
+.st-r .big .sep{color:var(--faint);margin:0 9px;font-weight:400}
+.st-r .big .m{font-size:19px;font-weight:600;color:var(--text)}
+.st-r .big small{font-size:11.5px;font-weight:500;color:var(--muted);margin-left:3px}
+.st-r .s{font-size:12px;color:var(--faint);margin-top:6px;line-height:1.7}
+.st-r .s b{color:var(--muted);font-weight:620}
+.st-r .s .warn{color:var(--warn)}
+.st-r .s .px{display:block;margin-bottom:7px;padding-bottom:7px;
+  border-bottom:1px solid var(--border)}
+.st-r .s .px>span{display:block;font-size:11.5px;line-height:1.85}
+.st-r .s .px i{display:inline-block;width:30px;font-style:normal;color:var(--faint)}
+.st-r .s .px em{display:block;font-style:normal;padding-left:30px;font-size:11px;
+  color:var(--faint);line-height:1.5;margin-bottom:3px}
+.st-r .s .px .cav{margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);
+  font-size:11px;line-height:1.7}
+.ins{padding:13px 15px;background:var(--raised);border-radius:8px;
+  border-left:3px solid var(--primary)}
+.ins .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--primary);
+  margin-bottom:6px}
+.ins p{margin:0;font-size:12px;color:var(--muted);line-height:1.65}
+.ins p b{color:var(--text);font-weight:620}
+.ins .from{font-size:11px;color:var(--faint);white-space:nowrap}
+.ins.risk{border-left-color:var(--bad)}
+.ins.risk .k{color:var(--bad)}
+
+/* 滑桿 */
+/* 合規＝哪些規 */
+.regs{padding:20px 24px 18px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
+.regs h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
+.regs .sub{font-size:12px;color:var(--faint);margin:0 0 14px;line-height:1.5}
+.regs table{width:100%;border-collapse:collapse;font-size:12.5px}
+.regs th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--faint);font-weight:600;padding:0 14px 7px 0;border-bottom:1px solid var(--border)}
+.regs th.qty{text-align:right}
+.regs td{padding:9px 14px 9px 0;border-bottom:1px solid var(--border);
+  color:var(--muted);vertical-align:top;line-height:1.45}
+.regs .seg{color:var(--text);font-weight:640;white-space:nowrap}
+.regs .qty{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--text);
+  text-align:right;white-space:nowrap;padding-right:22px}
+.regs .law b{color:var(--text);font-weight:600}
+.regs .law em{font-style:normal;display:block;font-size:11.5px;color:var(--faint);margin-top:2px}
+.regs .org,.regs .eff{white-space:nowrap;font-size:12px}
+.regs .eff{font-family:var(--mono);font-size:11px}
+.regs .qty i{display:block;font-style:normal;font-family:var(--sans);font-size:11px;
+  color:var(--faint);margin-top:1px}
+.regs .sum td{padding-top:11px;padding-bottom:13px;font-size:12px;
+  color:var(--faint);line-height:1.55}
+.regs .sum .qty{color:var(--t2);font-weight:600;font-size:12.5px}
+.regs .rest td{border-bottom:none;padding-top:13px}
+.regs .rest .seg{color:var(--muted)}
+.regs .rest .note{display:block;font-size:11.5px;color:var(--faint);margin-top:4px;
+  line-height:1.5}
+.regs .cav{margin:14px 0 0;padding-top:13px;border-top:1px dashed var(--border);
+  font-size:11.5px;color:var(--faint);line-height:1.6}
+.regs .cav b{color:var(--muted);font-weight:620}
+
+.dials{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-bottom:13px}
+.dial{padding:16px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r)}
+.dial label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+  font-size:13px;color:var(--muted);margin-bottom:6px}
+.dial label b{font-family:var(--mono);font-size:16px;font-weight:600;color:var(--text);
+  font-variant-numeric:tabular-nums}
+.tw{position:relative;height:22px}
+.zones{position:absolute;left:0;right:0;top:8px;height:6px;border-radius:3px;
+  background:var(--border)}
+.zones::after{content:"";position:absolute;inset:0;border-radius:3px;background:var(--zg)}
+.dial input{position:absolute;left:0;top:0;width:100%;height:22px;margin:0;
+  background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+.dial input::-webkit-slider-runnable-track{height:6px;margin-top:8px;background:transparent}
+.dial input::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;
+  border-radius:50%;background:var(--primary);border:2px solid var(--surface);
+  box-shadow:0 1px 3px rgba(0,0,0,.45);margin-top:-4.5px}
+.dial input::-moz-range-track{height:6px;background:transparent}
+.dial input::-moz-range-thumb{width:13px;height:13px;border-radius:50%;
+  background:var(--primary);border:2px solid var(--surface)}
+.tk{position:relative;height:32px;margin-top:1px}
+.tk span{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:10px;
+  color:var(--muted);white-space:nowrap;text-align:center;line-height:1.35}
+.tk span::before{content:"";display:block;width:1px;height:5px;background:var(--border);
+  margin:0 auto 3px}
+.tk i{display:block;font-style:normal;font-size:9px;color:var(--faint);letter-spacing:.02em}
+.why{margin:11px 0 0;display:grid;grid-template-columns:max-content 1fr;gap:7px 16px;
+  font-size:12px;color:var(--faint);line-height:1.65}
+.why dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;white-space:nowrap;
+  padding-top:2px;color:var(--muted)}
+.why dt.g{color:var(--ok)}
+.why dd{margin:0}
+.why b{color:var(--muted);font-weight:640}
+
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;color:var(--faint);
+  line-height:1.7}
+footer a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--border)}
+footer a:hover{color:var(--primary);border-bottom-color:var(--primary)}
+footer code{font-family:var(--mono);font-size:11.5px}
+
+@media (max-width:1000px){
+  .dials,  .funnel{grid-template-columns:1fr;gap:22px}.rings{max-width:230px;margin:0 auto}
+  .stage{grid-template-columns:1fr;gap:12px}
+}
+@media (max-width:820px){.deck{padding:24px 16px 24px}h1{font-size:27px}.funnel{padding:18px 16px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<div class="deck" id="main">
+<header>
+  <div class="eyebrow">第 5 章 · 規模估算</div>
+  <h1><span class="pos">定位 B</span>合規解決方案供應商</h1>
+  <div class="which">
+    <a href="slide-04-sizing.html">A　車隊管理系統供應商</a>
+    <span class="on">B　合規解決方案供應商</span>
+    <span>C　車隊營運成本的優化者<i>未估算</i></span>
+  </div>
+</header>
+
+
+<div class="funnel">
+  <div class="rings">
+    <svg viewBox="0 0 260 260" role="img" aria-label="定位 B 的 TAM、SAM、SOM 同心圓">
+      <circle cx="130" cy="130" r="118" fill="var(--t1)" fill-opacity=".22"
+              stroke="var(--t1)" stroke-width="1.5"/>
+      <circle id="c-samhi" cx="130" cy="130" r="118" fill="none"
+              stroke="var(--t2)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8"/>
+      <circle id="c-sam" cx="130" cy="130" r="64.1" fill="var(--t2)" fill-opacity=".38"
+              stroke="var(--t2)" stroke-width="1.5"/>
+      <circle id="c-som" cx="130" cy="130" r="21.5" fill="var(--accent)"
+              fill-opacity=".9" stroke="var(--accent)" stroke-width="1.5"/>
+    </svg>
+    <div class="cap">面積成正比　·　虛線＝上界</div>
+  </div>
+
+  <div>
+    <div class="stage" style="--cl:var(--t1)">
+      <div class="st-k">TAM<small>總潛在</small></div>
+      <div class="st-r">
+        <div class="big"><span class="veh">27,976 – 94,781</span><small>輛</small><span class="sep">·</span><span class="m">1.93 – 15.70</span><small>億／年</small></div>
+        <div class="s">下界＝現在法令鎖住的　·　上界＝合規的理論上限　<span class="lv v">查證</span><span class="lv e">外推</span><br>
+          兩端的組成見下表</div>
+      </div>
+      <div class="ins">
+        <div class="k">洞察</div>
+        <p><b>B 比 A 多出來的，全部是勞務。</b>軟體收一樣的錢（競爭壓著）、硬體買進賣出不賺錢
+          —— 每車年收入是 A 的 <b>1.2 – 3.5 倍</b>，溢價 100% 來自<b>裝機與代辦</b>。
+          <span class="from">（觀察筆記 §14.2）</span></p>
+      </div>
+    </div>
+
+    <div class="stage" style="--cl:var(--t2)">
+      <div class="st-k">SAM<small>可服務</small></div>
+      <div class="st-r">
+        <div class="big"><span class="veh" id="v-sam">18,820 – 63,761</span><small>輛</small><span class="sep">·</span><span class="m" id="m-sam">1.30 – 10.56</span><small>億／年</small></div>
+        <div class="s">TAM × <b>審驗完成進度</b>　<span class="lv v">查證</span><br>
+          預設終局 100%；土石方當期 4,076 申請 → <b>2,742 通過</b></div>
+      </div>
+      <div class="ins">
+        <div class="k">洞察</div>
+        <p><b>理論上 SAM ＝ TAM，實際上卡在審驗量能。</b>
+          量能只<b>延後</b>市場，不縮小它。
+          <span class="from">（國土署 2026-01-06）</span></p>
+      </div>
+    </div>
+
+    <div class="stage" style="--cl:var(--accent)">
+      <div class="st-k">SOM<small>可獲得</small></div>
+      <div class="st-r">
+        <div class="big"><span class="veh" id="v-som">1,255 – 4,251</span><small>輛</small><span class="sep">·</span><span class="m" id="m-som">0.09 – 0.71</span><small>億／年</small></div>
+        <div class="s">我們在 SAM 裡吃到幾成　<span class="lv n">查無</span><br>
+          參考點：環境部核可車機商約 <b>15 家</b>，均分 6.7%</div>
+      </div>
+      <div class="ins-none"></div>
+    </div>
+  </div>
+</div>
+
+<div class="dials">
+  <div class="dial">
+    <label><span>審驗完成進度</span><b id="p-pass">100.0%</b></label>
+    <div class="tw" style="--zg:color-mix(in srgb,var(--ok) 55%,transparent)">
+      <div class="zones"></div>
+      <input type="range" id="s-pass" min="20" max="100" step="0.1" value="100" aria-label="審驗通過率">
+    </div>
+    <div class="tk"><span style="left:59.1%">67.3%<i>2026-01 當期進度</i></span><span style="left:100%">100%<i>終局</i></span></div>
+    <dl class="why">
+      <dt class="g">終局　100%</dt>
+      <dd>2,742 通過 ＋ 1,334 測試中 ＝ 4,076 申請，<b>沒有人被否決</b> ——
+        強制段最終都會裝完，所以預設就放在這裡</dd>
+      <dt>當期　67.3%</dt>
+      <dd>土石方新制 2026-01-01 生效、統計截至 <b>01-06</b> —— 那是<b>第 5 天的排隊快照</b>。
+        往下撥＝看當期收得到多少</dd>
+    </dl>
+  </div>
+
+  <div class="dial">
+    <label><span>SOM　我們在 SAM 裡吃到幾成</span>
+      <span><b id="p-som">6.7%</b><span class="lv n" style="margin-left:8px">查無</span></span></label>
+    <div class="tw" style="--zg:linear-gradient(to right,
+        color-mix(in srgb,var(--ok) 55%,transparent) 0 22.3%,
+        transparent 22.3% 100%)">
+      <div class="zones"></div>
+      <input type="range" id="s-som" min="0.5" max="30" step="0.1" value="6.7" aria-label="SOM 比例">
+    </div>
+    <div class="tk"><span style="left:22.3%">6.7%<i>15 家均分</i></span></div>
+    <dl class="why">
+      <dt class="g">綠段　≤ 6.7%</dt>
+      <dd>合規這一段的競爭者是<b>可列舉的</b> —— 環境部核可車機商約 <b>15 家</b>，均分就是 6.7%。
+        <b>比 A 那條路集中</b>（A 已知 ≥20 家）</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="regs">
+  <h2>這頁的「合規」是哪些規</h2>
+  <p class="sub">四條<b>已強制裝機</b>的法規撐起下界；其餘商業規範需求撐開上界。</p>
+  <table>
+    <thead><tr>
+      <th>段</th><th class="qty">輛</th><th>法源</th><th>主管機關</th><th>狀態</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="seg">毒化物</td><td class="qty">~1,400</td>
+        <td class="law"><b>毒性及關注化學物質運送管理辦法</b>
+          <em>一～三類毒化物運送車輛裝即時追蹤系統</em></td>
+        <td class="org">環境部<br>化學物質管理署</td>
+        <td class="eff">已全面納管</td>
+      </tr>
+      <tr>
+        <td class="seg">土石方</td><td class="qty">4,076</td>
+        <td class="law"><b>營建剩餘土石方處理方案</b>（2024 修正）＋ 即時流向追蹤系統規範（2025-07）
+          <em>清運車裝 GPS、廢紙本聯單改電子申報</em></td>
+        <td class="org">內政部<br>國土管理署</td>
+        <td class="eff">2026-01-01 生效</td>
+      </tr>
+      <tr>
+        <td class="seg">事廢</td><td class="qty">~9,000</td>
+        <td class="law"><b>廢棄物清理法 §31 I(3)</b>
+          <em>取得許可的清運車輛須全數裝 GPS，每 30 秒回傳</em></td>
+        <td class="org">環境部<br>資源循環署</td>
+        <td class="eff">108–111 分四階段<br>納管完成</td>
+      </tr>
+      <tr>
+        <td class="seg">遊覽車</td><td class="qty">~13,500</td>
+        <td class="law"><b>汽車運輸業管理規則 §19-4</b>
+          <em>裝駕駛識別設備（GPS ＋ 刷卡機）、介接主管機關平台</em></td>
+        <td class="org">交通部<br>公路局</td>
+        <td class="eff">2026-01-01 生效</td>
+      </tr>
+      <tr class="sum">
+        <td></td><td class="qty">27,976</td>
+        <td colspan="3"><b>＝ TAM 下界</b>。四條相加、<b>未扣重疊</b> <span class="lv n">查無</span>；
+          型式審驗也各自獨立 —— 過了土石方不等於能做事廢。</td>
+      </tr>
+      <tr class="rest">
+        <td class="seg">其餘商業<br>規範需求</td><td class="qty"><i>不另計</i></td>
+        <td class="law"><b>冷鏈</b> GHP 2025-06-04（強制紀錄、不強制設備）　·　
+          <b>碳排／ESG</b> CSRD 2026、金管會 2029　·　<b>貨車側工時</b>
+          <span class="note">都<b>還沒強制裝機</b>，而且從「車」的角度<b>幾乎是同一群</b> ——
+            工時管駕駛、碳排跟貨主，都不挑車種，冷鏈 9,680 只是其中子集。
+            所以不相加，取<b>聯集</b>：上界 94,781 ＝ 營業貨車 81,281 ＋ 遊覽車 13,500</span></td>
+        <td class="org">衛福部 · 金管會<br>交通部</td>
+        <td class="eff">有規範<br>未強制裝機</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="cav"><span>⚠️</span> 兩端是<b>不同的登記體系</b> —— 下界是環保與土石方法規的<b>納管</b>口徑，
+    上界是交通部貨運業的<b>登記</b>口徑。廢棄物清運業者不一定領貨運業執照，砂石車也可能掛自用牌。
+    <b>下界有多少落在上界之外</b> <span class="lv n">查無</span></p>
+</div>
+</div>
+
+<footer>
+  定位 A 的規模見 <a href="slide-04-sizing.html">第 4 章</a>　·
+  三個定位是什麼見 <a href="slide-03-positioning.html">第 3 章</a>　·
+  分母口徑見 <a href="appendix-vehicle-base.html">附錄 · 車輛基準</a><br>
+  冷鏈為何不計入強制 <code>觀察筆記.md §14.2</code>　·　方法與來源 <a href="appendix-method.html">附錄</a>
+</footer>
+<script>
+(()=>{
+"use strict";
+const $=id=>document.getElementById(id);
+const LO=27976, HI=94781;      // TAM 下界＝現在法令鎖住的；上界＝合規的理論上限
+// 計價四段：硬體視為買進賣出（0）；訂閱沿用 A；裝機與代辦以人力成本拆
+const SUB=[4800,5760], ADM=[2100,10800];   // 裝機工錢 600–2,400／車為一次性，市場層級是流量，不入表
+const REC=[SUB[0]+ADM[0], SUB[1]+ADM[1]];
+const R=118, 億=n=>n/1e8;
+
+function render(){
+  const pass=+$("s-pass").value/100, som=+$("s-som").value/100;
+  $("p-pass").textContent=(pass*100).toFixed(1)+"%";
+  $("p-som").textContent=(som*100).toFixed(1)+"%";
+  const n=(a,b)=>`${Math.round(a).toLocaleString()} – ${Math.round(b).toLocaleString()}`;
+  const sl=LO*pass, sh=HI*pass, ol=sl*som, oh=sh*som;
+  $("v-sam").textContent=n(sl,sh);
+  $("v-som").textContent=n(ol,oh);
+  const money=(a,b,r)=>`${億(a*r[0]).toFixed(2)} – ${億(b*r[1]).toFixed(2)}`;  // 單位由 HTML 的 <small> 提供
+  $("m-sam").textContent=money(sl,sh,REC);
+  $("m-som").textContent=money(ol,oh,REC);
+  // 面積正比：實線＝下界、虛線＝上界
+  $("c-sam").setAttribute("r",(R*Math.sqrt(sl/HI)).toFixed(1));
+  $("c-samhi").setAttribute("r",(R*Math.sqrt(sh/HI)).toFixed(1));
+  $("c-som").setAttribute("r",Math.max(R*Math.sqrt(oh/HI),3).toFixed(1));
+}
+["s-pass","s-som"].forEach(id=>$(id).addEventListener("input",render));
+render();
+})();
+</script>
+
+<nav id="deck-nav" aria-label="簡報導覽">
+  <a class="dn-btn" href="slide-04-sizing.html" aria-label="上一頁：定位 A 的市場規模" data-nav="prev">←</a>
+  <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
+    <span class="dn-ch">定位 B · 規模</span>
+    <span class="dn-pg">5 <i>/</i> 5</span>
+  </button>
+  <a class="dn-btn" href="appendix-vehicle-base.html" aria-label="下一頁：附錄 · 車輛基準" data-nav="next">→</a>
+</nav>
+<div id="dn-menu" hidden>
+  <div class="dn-panel" role="dialog" aria-label="頁面目錄">
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item on" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
+    <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
+    <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點，可搜尋、可篩族群，附鄰接表</em></span></a><a class="dn-item dn-tool" href="slide-01-landscape.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>產業全景圖</b><em>206 節點的族群輪廓與縮放階梯，會後自行探索用</em></span></a>
+    <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
+  </div>
+</div>
+<style>
+:root{--deck-nav-h:52px}
+#deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
+  display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
+  box-shadow:var(--sh-lg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#deck-nav a,#deck-nav button{font-family:var(--sans);color:var(--muted);
+  background:none;border:none;cursor:pointer;text-decoration:none;border-radius:8px;
+  transition:background .15s,color .15s}
+.dn-btn{width:42px;display:grid;place-items:center;font-size:16px;line-height:1}
+.dn-btn:hover{background:var(--primary-dim);color:var(--primary)}
+.dn-off{width:42px;display:grid;place-items:center;font-size:16px;color:var(--border);
+  cursor:default}
+#dn-toggle{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px}
+#dn-toggle:hover{background:var(--raised);color:var(--text)}
+.dn-ch{font-size:12.5px;font-weight:620;color:var(--text);line-height:1.25}
+.dn-pg{font-family:var(--mono);font-size:9.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dn-pg i{font-style:normal;opacity:.5}
+#dn-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px}
+#dn-menu[hidden]{display:none}
+.dn-panel{width:min(480px,100%);max-height:80vh;overflow:auto;padding:18px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-lg)}
+.dn-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 8px}
+.dn-h:not(:first-child){margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.dn-item{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--text);
+  transition:background .15s}
+.dn-item:hover{background:var(--raised)}
+.dn-item.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
+.dn-num{font-family:var(--mono);font-size:11px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.dn-item b{display:block;font-size:14px;font-weight:620;line-height:1.35}
+.dn-item em{display:block;font-style:normal;font-size:12px;color:var(--faint);
+  margin-top:2px;line-height:1.5}
+.dn-tool b{color:var(--muted)}
+.dn-k{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--faint)}
+.dn-k code{font-family:var(--mono);font-size:11px;background:var(--raised);
+  padding:1px 5px;border-radius:4px;color:var(--muted)}
+@media (max-width:820px){#deck-nav{left:12px;right:12px;bottom:12px;width:auto}}
+@media print{#deck-nav,#dn-menu{display:none!important}}
+</style>
+<script>
+(()=>{
+  const menu=document.getElementById("dn-menu"),tog=document.getElementById("dn-toggle");
+  const go=d=>{const a=document.querySelector(`#deck-nav [data-nav="${d}"]`);if(a)location.href=a.getAttribute("href");};
+  const open=v=>{menu.hidden=!v;tog.setAttribute("aria-expanded",String(v));};
+  tog.addEventListener("click",()=>open(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target===menu)open(false);});
+  addEventListener("keydown",e=>{
+    if(e.target.matches("input,textarea,select"))return;
+    if(e.key==="ArrowRight")go("next");
+    else if(e.key==="ArrowLeft")go("prev");
+    else if(e.key==="Escape"&&!menu.hidden)open(false);
+  });
+})();
+</script>
+</body>
+</html>
