@@ -176,12 +176,16 @@ footer code{font-family:var(--mono);font-size:11.5px}
           且企業自用車隊<b>在兩者之外</b>（恐無法從公開統計分離）</td></tr>
 
       <tr class="grp"><td colspan="3">受法規強制的車輛</td></tr>
-      <tr><td class="n">1,400 輛</td><td class="lvc"><span class="lv v">查證</span></td>
-        <td>環境部化學物質管理署：毒化物運送全國約 1,400 輛裝設 GPS，約 200 家業者納管。
-          <span class="warn">⚠️ 官方頁面未標年份</span></td></tr>
-      <tr><td class="n">4,076 申請<br>2,742 通過</td><td class="lvc"><span class="lv v">查證</span></td>
-        <td>內政部國土管理署，截至 2026-01-06 官方合規統計。另有裝機測試中 1,334 輛。
-          通過率 <b>67%</b> —— 目前唯一有出處的漏斗收縮率</td></tr>
+      <tr><td class="n">1,780 輛<br>222 家</td><td class="lvc"><span class="lv v">查證</span></td>
+        <td>環境部化學物質管理署毒化物 GPS 專區，頁面標示更新日 <b>2026-08-18</b>：
+          正式核可車輛 1,780 輛、列管運送業者 222 家、車機型號 16 款。
+          <span class="warn">⚠️ 取代舊值「約 1,400 輛／200 家」</span><br>
+          <code>toxicgps.moenv.gov.tw/GpsZone/</code></td></tr>
+      <tr><td class="n">&gt;16,000 輛</td><td class="lvc"><span class="lv v">查證</span></td>
+        <td>內政部新聞稿 <b>2026-07-28</b>：土石方雙軌 GPS 車機超過 1.6 萬輛，「滿足市場需求」。
+          <span class="warn">⚠️ 取代舊值「4,076 申請／2,742 通過」</span> —— 那是新制上路<b>第 5 天</b>
+          （2026-01-06）的排隊快照，七個月後已成長逾 4 倍。當初「量能只延後市場、不縮小它」的判斷成立。<br>
+          雙軌＝中央（內政部＋環境部）與地方自建系統並行；其中 <b>1,649 輛為環保機</b>，與事廢那格重複</td></tr>
       <tr><td class="n">~9,000 輛</td><td class="lvc"><span class="lv e">外推</span></td>
         <td>事業廢棄物清運。《廢棄物清理法》§31 自 2002 起指定車輛須裝 GPS。
           <b>2026 現況查無</b> —— 需 <code>data.moenv.gov.tw</code> API 金鑰（可得但未取）</td></tr>
@@ -210,11 +214,21 @@ footer code{font-family:var(--mono);font-size:11.5px}
           <b>極度分散，無主導者</b><br>
           <span class="warn">⚠️ 這描述的是歐洲的市場結構，不可當作台灣的市佔天花板</span> ——
           兩個市場的規模與玩家數差一個量級，市場越小、玩家越少，龍頭的市佔通常越高</td></tr>
-      <tr><td class="n">約 15 家<br>≥ 20 家</td><td class="lvc"><span class="lv v">查證</span><span class="lv e">外推</span></td>
-        <td>台灣合規車機商：環境部「清運機具即時追蹤系統」GPS 專區的核可名單約 <b>15 家</b>（查證）；
-          另有電信商（遠傳運輸雲）與後裝品牌（瞰車大、衛星犬、車管家、X-GUARDER 等），
-          合計<b>已知 ≥20 家</b>（外推）。<b>這是第 4 章 SOM 綠段「均分 5%」的唯一依據</b><br>
+      <tr><td class="n">12 家<br>（曾登記 23）</td><td class="lvc"><span class="lv v">查證</span></td>
+        <td>環境部資源循環署「妥善率月報」（115 年 6 月，更新 2026-07-07）：現行第八次公告下
+          <b>實際有車在跑者 12 家</b>，曾登記 23 家。官方每月依
+          回傳品質 75%＋維修效能 20%＋週邊良率 5% 評為 A+／A／B+／B／C／D 六級，並標連續達標月數。<br>
+          A+ 前段班：冠祺鴻 90 個月、長輝 89、康訊 88、易通 88、航釱 84、中興保全 82。
+          <b>這 12 家與毒化物的核可廠商完全相同</b> —— 審驗擋新進者，不擋現有競爭。
+          <span class="warn">⚠️ 取代舊值「約 15 家」</span><br>
           <code>gps.moenv.gov.tw/gpszone/dealer.aspx</code></td></tr>
+      <tr><td class="n">土石方名單</td><td class="lvc"><span class="lv n">查無</span></td>
+        <td>國土署未公開「合格車機名單」。廠商網頁皆稱「請至國土署官網查詢」但無人給得出連結。
+          流傳的「8 家」<b>未追到官方來源，不予採用</b></td></tr>
+      <tr><td class="n">≥ 20 家</td><td class="lvc"><span class="lv e">外推</span></td>
+        <td>非合規段（一般車隊管理）無官方名單。已知：遠傳運輸雲、鑫豪美、上德益 X-GUARDER、
+          CaraVision、MiniBond 等。<b>這是第 4 章 SOM 綠段「均分 5%」的依據</b>，
+          必然不完整</td></tr>
       <tr><td class="n">各家市佔</td><td class="lvc"><span class="lv n">查無</span></td>
         <td>台灣各家 FMS 業者的市佔比例 —— <b>無官方統計、無公會調查</b></td></tr>
       <tr class="grp"><td colspan="3">單價與金額</td></tr>
@@ -290,7 +304,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模估算</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模估算</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
     <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item on" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>

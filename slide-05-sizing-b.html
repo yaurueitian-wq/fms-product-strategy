@@ -124,7 +124,7 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
   font-size:11.5px;color:var(--faint);line-height:1.6}
 .regs .cav b{color:var(--muted);font-weight:620}
 
-.dials{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-bottom:13px}
+.dials{margin-bottom:13px}   /* 量能滑桿移除後只剩 SOM 一支，佔滿寬 */
 .dial{padding:16px 20px;background:var(--surface);border:1px solid var(--border);
   border-radius:var(--r)}
 .dial label{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -206,7 +206,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
     <div class="stage" style="--cl:var(--t1)">
       <div class="st-k">TAM<small>總潛在</small></div>
       <div class="st-r">
-        <div class="big"><span class="veh">27,976 – 94,781</span><small>輛</small><span class="sep">·</span><span class="m">1.93 – 15.70</span><small>億／年</small></div>
+        <div class="big"><span class="veh">40,280 – 94,781</span><small>輛</small><span class="sep">·</span><span class="m">2.78 – 15.70</span><small>億／年</small></div>
         <div class="s">下界＝現在法令鎖住的　·　上界＝合規的理論上限　<span class="lv v">查證</span><span class="lv e">外推</span><br>
           兩端的組成見下表</div>
       </div>
@@ -222,14 +222,15 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <div class="st-k">SAM<small>可服務</small></div>
       <div class="st-r">
         <div class="big"><span class="veh" id="v-sam">18,820 – 63,761</span><small>輛</small><span class="sep">·</span><span class="m" id="m-sam">1.30 – 10.56</span><small>億／年</small></div>
-        <div class="s">TAM × <b>審驗完成進度</b>　<span class="lv v">查證</span><br>
-          預設終局 100%；土石方當期 4,076 申請 → <b>2,742 通過</b></div>
+        <div class="s">＝ <b>TAM</b>　<span class="lv v">查證</span><br>
+          原本卡住的審驗量能已解除，兩者相等</div>
       </div>
       <div class="ins">
         <div class="k">洞察</div>
-        <p><b>理論上 SAM ＝ TAM，實際上卡在審驗量能。</b>
-          量能只<b>延後</b>市場，不縮小它。
-          <span class="from">（國土署 2026-01-06）</span></p>
+        <p><b>審驗量能的瓶頸已經解除。</b>2026-01 通過 2,742 輛，
+          2026-07 內政部宣布雙軌車機<b>超過 1.6 萬輛、「滿足市場需求」</b> ——
+          當初「量能只<b>延後</b>市場、不縮小它」的判斷成立。
+          <span class="from">（內政部 2026-07-28）</span></p>
       </div>
     </div>
 
@@ -238,7 +239,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <div class="st-r">
         <div class="big"><span class="veh" id="v-som">1,255 – 4,251</span><small>輛</small><span class="sep">·</span><span class="m" id="m-som">0.09 – 0.71</span><small>億／年</small></div>
         <div class="s">我們在 SAM 裡吃到幾成　<span class="lv n">查無</span><br>
-          參考點：環境部核可車機商約 <b>15 家</b>，均分 6.7%</div>
+          參考點：現行有車在跑的 <b>12 家</b>，均分 8.3%</div>
       </div>
       <div class="ins-none"></div>
     </div>
@@ -247,36 +248,22 @@ footer code{font-family:var(--mono);font-size:11.5px}
 
 <div class="dials">
   <div class="dial">
-    <label><span>審驗完成進度</span><b id="p-pass">100.0%</b></label>
-    <div class="tw" style="--zg:color-mix(in srgb,var(--ok) 55%,transparent)">
-      <div class="zones"></div>
-      <input type="range" id="s-pass" min="20" max="100" step="0.1" value="100" aria-label="審驗通過率">
-    </div>
-    <div class="tk"><span style="left:59.1%">67.3%<i>2026-01 當期進度</i></span><span style="left:100%">100%<i>終局</i></span></div>
-    <dl class="why">
-      <dt class="g">終局　100%</dt>
-      <dd>2,742 通過 ＋ 1,334 測試中 ＝ 4,076 申請，<b>沒有人被否決</b> ——
-        強制段最終都會裝完，所以預設就放在這裡</dd>
-      <dt>當期　67.3%</dt>
-      <dd>土石方新制 2026-01-01 生效、統計截至 <b>01-06</b> —— 那是<b>第 5 天的排隊快照</b>。
-        往下撥＝看當期收得到多少</dd>
-    </dl>
-  </div>
-
-  <div class="dial">
     <label><span>SOM　我們在 SAM 裡吃到幾成</span>
-      <span><b id="p-som">6.7%</b><span class="lv n" style="margin-left:8px">查無</span></span></label>
+      <span><b id="p-som">8.3%</b><span class="lv n" style="margin-left:8px">查無</span></span></label>
     <div class="tw" style="--zg:linear-gradient(to right,
-        color-mix(in srgb,var(--ok) 55%,transparent) 0 22.3%,
-        transparent 22.3% 100%)">
+        color-mix(in srgb,var(--ok) 55%,transparent) 0 26.5%,
+        transparent 26.5% 100%)">
       <div class="zones"></div>
-      <input type="range" id="s-som" min="0.5" max="30" step="0.1" value="6.7" aria-label="SOM 比例">
+      <input type="range" id="s-som" min="0.5" max="30" step="0.1" value="8.3" aria-label="SOM 比例">
     </div>
-    <div class="tk"><span style="left:22.3%">6.7%<i>15 家均分</i></span></div>
+    <div class="tk"><span style="left:26.5%">8.3%<i>12 家均分</i></span></div>
     <dl class="why">
-      <dt class="g">綠段　≤ 6.7%</dt>
-      <dd>合規這一段的競爭者是<b>可列舉的</b> —— 環境部核可車機商約 <b>15 家</b>，均分就是 6.7%。
-        <b>比 A 那條路集中</b>（A 已知 ≥20 家）</dd>
+      <dt class="g">綠段　≤ 8.3%</dt>
+      <dd>合規這一段的競爭者是<b>可列舉的</b> —— 現行有車在跑的 <b>12 家</b>，均分 8.3%。
+        但<b>不會是均分</b>：前段班是 6 家連續 A+ <b>超過 80 個月</b>的老廠</dd>
+      <dt>審驗不是門檻</dt>
+      <dd>這 12 家<b>毒化物與事廢兩段全過</b>，且環保機可介接土石方、遊覽車不限型式 ——
+        審驗擋的是新進者，<b>不是現有競爭</b></dd>
     </dl>
   </div>
 </div>
@@ -290,21 +277,21 @@ footer code{font-family:var(--mono);font-size:11.5px}
     </tr></thead>
     <tbody>
       <tr>
-        <td class="seg">毒化物</td><td class="qty">~1,400</td>
+        <td class="seg">毒化物</td><td class="qty">1,780<i>2026-08 官方</i></td>
         <td class="law"><b>毒性及關注化學物質運送管理辦法</b>
           <em>一～三類毒化物運送車輛裝即時追蹤系統</em></td>
         <td class="org">環境部<br>化學物質管理署</td>
         <td class="eff">已全面納管</td>
       </tr>
       <tr>
-        <td class="seg">土石方</td><td class="qty">4,076</td>
+        <td class="seg">土石方</td><td class="qty">&gt;16,000<i>2026-07 官方</i></td>
         <td class="law"><b>營建剩餘土石方處理方案</b>（2024 修正）＋ 即時流向追蹤系統規範（2025-07）
           <em>清運車裝 GPS、廢紙本聯單改電子申報</em></td>
         <td class="org">內政部<br>國土管理署</td>
-        <td class="eff">2026-01-01 生效</td>
+        <td class="eff">2026-01-01 生效<br>7 月已滿足需求</td>
       </tr>
       <tr>
-        <td class="seg">事廢</td><td class="qty">~9,000</td>
+        <td class="seg">事廢</td><td class="qty">~9,000<i>2022 統計</i></td>
         <td class="law"><b>廢棄物清理法 §31 I(3)</b>
           <em>取得許可的清運車輛須全數裝 GPS，每 30 秒回傳</em></td>
         <td class="org">環境部<br>資源循環署</td>
@@ -318,9 +305,10 @@ footer code{font-family:var(--mono);font-size:11.5px}
         <td class="eff">2026-01-01 生效</td>
       </tr>
       <tr class="sum">
-        <td></td><td class="qty">27,976</td>
-        <td colspan="3"><b>＝ TAM 下界</b>。四條相加、<b>未扣重疊</b> <span class="lv n">查無</span>；
-          型式審驗也各自獨立 —— 過了土石方不等於能做事廢。</td>
+        <td></td><td class="qty">40,280</td>
+        <td colspan="3"><b>＝ TAM 下界</b>。四條相加、<b>未扣重疊</b> ——
+          而且已知<b>確實有重複</b>：土石方的雙軌數含 <b>1,649 輛環保機</b>，與事廢那格是同一批車。
+          重疊總量 <span class="lv n">查無</span>，故此數為<b>強制群的上限</b>，非淨值。</td>
       </tr>
       <tr class="rest">
         <td class="seg">其餘商業<br>規範需求</td><td class="qty"><i>不另計</i></td>
@@ -336,7 +324,9 @@ footer code{font-family:var(--mono);font-size:11.5px}
   </table>
   <p class="cav"><span>⚠️</span> 兩端是<b>不同的登記體系</b> —— 下界是環保與土石方法規的<b>納管</b>口徑，
     上界是交通部貨運業的<b>登記</b>口徑。廢棄物清運業者不一定領貨運業執照，砂石車也可能掛自用牌。
-    <b>下界有多少落在上界之外</b> <span class="lv n">查無</span></p>
+    <b>下界有多少落在上界之外</b> <span class="lv n">查無</span><br>
+    <span>⚠️</span> 土石方的 GPS 規定<b>落實在縣市層級</b> —— 22 縣市中<b>已訂定僅 6 個</b>（新北、桃園、臺中、高雄、宜蘭、雲林），
+    臺北市與臺南市<b>未訂定</b>。<span class="lv e">國土署頁面未標更新日</span></p>
 </div>
 </div>
 
@@ -350,18 +340,17 @@ footer code{font-family:var(--mono);font-size:11.5px}
 (()=>{
 "use strict";
 const $=id=>document.getElementById(id);
-const LO=27976, HI=94781;      // TAM 下界＝現在法令鎖住的；上界＝合規的理論上限
+const LO=40280, HI=94781;   // 下界＝1,780 毒化物 ＋>16,000 土石方 ＋~9,000 事廢 ＋13,500 遊覽車（未扣重疊）
 // 計價四段：硬體視為買進賣出（0）；訂閱沿用 A；裝機與代辦以人力成本拆
 const SUB=[4800,5760], ADM=[2100,10800];   // 裝機工錢 600–2,400／車為一次性，市場層級是流量，不入表
 const REC=[SUB[0]+ADM[0], SUB[1]+ADM[1]];
 const R=118, 億=n=>n/1e8;
 
 function render(){
-  const pass=+$("s-pass").value/100, som=+$("s-som").value/100;
-  $("p-pass").textContent=(pass*100).toFixed(1)+"%";
+  const som=+$("s-som").value/100;
   $("p-som").textContent=(som*100).toFixed(1)+"%";
   const n=(a,b)=>`${Math.round(a).toLocaleString()} – ${Math.round(b).toLocaleString()}`;
-  const sl=LO*pass, sh=HI*pass, ol=sl*som, oh=sh*som;
+  const sl=LO, sh=HI, ol=sl*som, oh=sh*som;   // 量能解除後 SAM ＝ TAM
   $("v-sam").textContent=n(sl,sh);
   $("v-som").textContent=n(ol,oh);
   const money=(a,b,r)=>`${億(a*r[0]).toFixed(2)} – ${億(b*r[1]).toFixed(2)}`;  // 單位由 HTML 的 <small> 提供
@@ -372,13 +361,13 @@ function render(){
   $("c-samhi").setAttribute("r",(R*Math.sqrt(sh/HI)).toFixed(1));
   $("c-som").setAttribute("r",Math.max(R*Math.sqrt(oh/HI),3).toFixed(1));
 }
-["s-pass","s-som"].forEach(id=>$(id).addEventListener("input",render));
+$("s-som").addEventListener("input",render);
 render();
 })();
 </script>
 
 <nav id="deck-nav" aria-label="簡報導覽">
-  <a class="dn-btn" href="slide-04-sizing.html" aria-label="上一頁：定位 A 的市場規模估算" data-nav="prev">←</a>
+  <a class="dn-btn" href="slide-04-sizing.html" aria-label="上一頁：定位 A 的市場規模" data-nav="prev">←</a>
   <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
     <span class="dn-ch">定位 B · 規模</span>
     <span class="dn-pg">5 <i>/</i> 5</span>
@@ -387,7 +376,7 @@ render();
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模估算</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item on" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模估算</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item on" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a>
     <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
