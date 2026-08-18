@@ -54,6 +54,10 @@ h1{font-size:38px;font-weight:700;margin:0 0 12px;letter-spacing:-.03em;line-hei
 .callout p{margin:0;font-size:13.5px}
 .callout.bad{border-left-color:var(--bad)}
 .callout.ok{border-left-color:var(--ok)}
+.warn-lead{font-size:13px;color:var(--warn);line-height:1.7;margin:0 0 14px;
+  padding:10px 14px;background:color-mix(in srgb,var(--warn) 9%,transparent);
+  border-radius:7px}
+.warn-lead b{color:var(--text)}
 
 table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
 th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
@@ -200,14 +204,14 @@ footer code{font-family:var(--mono);font-size:11.5px}
     <thead><tr><th>來源</th><th style="width:1%">級</th><th style="width:90px">輛</th>
       <th style="width:1%">算強制？</th></tr></thead>
     <tbody>
-      <tr><td>毒化物運送（化學署，已裝 GPS）</td><td class="lvc"><span class="lv v">查證</span></td>
-        <td class="n">1,400</td><td class="lvc">✅</td></tr>
-      <tr><td>土石方（2026-01-01 新制）</td><td class="lvc"><span class="lv v">查證</span></td>
-        <td class="n">4,076</td><td class="lvc">✅</td></tr>
-      <tr><td>事業廢棄物（廢清法 §31，2002 起）</td><td class="lvc"><span class="lv e">外推</span></td>
+      <tr><td>毒化物運送（化學署，2026-08-18）</td><td class="lvc"><span class="lv v">查證</span></td>
+        <td class="n">1,780</td><td class="lvc">✅</td></tr>
+      <tr><td>土石方（雙軌車機，內政部 2026-07-28）</td><td class="lvc"><span class="lv v">查證</span></td>
+        <td class="n">~16,000</td><td class="lvc">✅</td></tr>
+      <tr><td>事業廢棄物（廢清法 §31；<b>2022 舊值</b>）</td><td class="lvc"><span class="lv e">外推</span></td>
         <td class="n">~9,000</td><td class="lvc">✅</td></tr>
-      <tr class="sum"><td><b>強制群小計</b></td><td></td><td class="n">14,476</td>
-        <td class="lvc">17.8%</td></tr>
+      <tr class="sum"><td><b>強制群小計</b>（未扣重疊）</td><td></td><td class="n">~26,800</td>
+        <td class="lvc">≤32.9%</td></tr>
       <tr class="no"><td><b>冷鏈</b>（GHP 2025-06-04）</td><td class="lvc"><span class="lv e">外推</span></td>
         <td class="n">9,680</td><td class="lvc">❌</td></tr>
       <tr class="no"><td><b>遊覽車</b></td><td class="lvc"><span class="lv e">外推</span></td>
@@ -221,18 +225,27 @@ footer code{font-family:var(--mono);font-size:11.5px}
       遊覽車則屬<b>營業客車</b>，是另一個車籍池，不在 81,281 這個分母裡。</p>
   </div>
 
+  <div class="callout bad">
+    <p><b>⚠️ 強制群小計是上限，不是淨值</b>（2026-08-18 更正）。三項<b>相加未扣重疊</b>，
+      而且<b>已知確實有重複</b>：土石方的「雙軌車機」數含 <b>1,649 輛環保機</b>，
+      與事業廢棄物那一列是同一批車。重疊總量 <span class="lv n">查無</span>。<br>
+      另有兩個未解的口徑問題：<b>砂石車是否全數登記為營業貨車</b>、
+      <b>毒化物運送車輛是否全在 81,281 內</b>（可能含自用）—— 皆<span class="lv n">查無</span>。
+      故強制群寫成 <b>≤</b>，自願群寫成 <b>≥</b>。</p>
+  </div>
+
   <div class="split">
     <div class="grp" style="--cl:var(--ok)">
       <div class="k">意願不是變數</div>
       <div class="t">強制群</div>
-      <div class="n">14,476<small>輛　17.8%</small></div>
+      <div class="n">~26,800<small>輛　≤32.9%</small></div>
       <p>不裝不能上路，滲透率必然趨近 <b>100%</b>。
         這一塊<b>不需要說服任何人</b>，只需要通過審驗。</p>
     </div>
     <div class="grp" style="--cl:var(--warn)">
       <div class="k">意願就是變數</div>
       <div class="t">自願群</div>
-      <div class="n">66,805<small>輛　82.2%</small></div>
+      <div class="n">≥54,500<small>輛　≥67.1%</small></div>
       <p>採用意願 <span class="lv n">查無</span>。
         <b>整條估算真正的不確定性全部集中在這裡</b> —— 撥滑桿時該動的是這一格。</p>
     </div>
@@ -240,24 +253,35 @@ footer code{font-family:var(--mono);font-size:11.5px}
 </div>
 
 <div class="sec">
-  <h2>五 · 強制群裡還有一塊沒裝完</h2>
-  <p>土石方新制的官方合規統計（國土管理署，截至 2026-01-06）：</p>
+  <h2>五 · ⛔ 那個「短期窗口」已經關了</h2>
+  <p class="warn-lead">⚠️ <b>本節原本主張「1,334 輛還沒裝好，是最硬的短期市場」。
+    該窗口已於 2026 年上半年關閉。</b>原內容保留於下，作為推論歷程紀錄。</p>
+
   <table>
-    <thead><tr><th>狀態</th><th style="width:110px">輛</th><th style="width:1%">佔比</th></tr></thead>
+    <thead><tr><th>時點</th><th style="width:150px">土石方裝機</th><th>出處</th></tr></thead>
     <tbody>
-      <tr><td>總申請</td><td class="n">4,076</td><td class="lvc">100%</td></tr>
-      <tr><td>已審驗通過</td><td class="n">2,742</td><td class="lvc">67%</td></tr>
-      <tr><td><b>裝機測試中，尚未通過</b></td><td class="n">1,334</td><td class="lvc">33%</td></tr>
+      <tr><td>2026-01-06<small>新制第 5 天</small></td><td class="n">2,742<small>／申請 4,076</small></td>
+        <td>國土管理署</td></tr>
+      <tr><td>2026-01-14</td><td class="n">4,260</td><td>中央社／國土署副署長</td></tr>
+      <tr><td>2026-01-27</td><td class="n">7,872<small>含環保機 1,649</small></td><td>中央社／內政部</td></tr>
+      <tr class="sum"><td><b>2026-07-28</b></td><td class="n">&gt;16,000</td>
+        <td><b>內政部：「滿足市場需求」</b></td></tr>
     </tbody>
   </table>
+
   <div class="callout ok">
-    <p>那 <b>1,334 輛</b>是「法律上必須裝、但還沒裝好」——
-      <b>確定存在、時程確定、不需要說服任何人。</b>
-      這是整份材料裡最硬的一塊短期市場。<br>
-      新制初期業界反映多數砂石車尚未裝機、無法上路載運，<b>導致工地停工</b>。</p>
+    <p><b>✅ 當初的判斷成立。</b>本專案曾據此推論：
+      <b>「量能只<u>延後</u>市場，不縮小它。」</b>
+      半年後 2,742 → 逾 16,000，<b>延後而未縮小 —— 預測被後續資料驗證</b>。
+      這是本份材料目前唯一一條被時間驗證過的推論。</p>
   </div>
-  <p>同一份統計裡的 <b>67% 審驗通過率</b>，也是目前唯一一個<b>有出處的漏斗收縮率</b> ——
-    強制不等於裝得起來。</p>
+
+  <div class="callout bad">
+    <p><b>⛔ 兩項已失效，不可再引用：</b><br>
+      ① 「1,334 輛是確定存在、時程確定的短期市場」——<b>那批車早已裝完</b>。<br>
+      ② 「67% 審驗通過率是唯一有出處的漏斗收縮率」——
+      那是<b>新制第 5 天的排隊快照</b>，不是穩態的收縮率。<b>不可當作滲透漏斗的參數使用。</b></p>
+  </div>
 </div>
 
 <div class="sec">
