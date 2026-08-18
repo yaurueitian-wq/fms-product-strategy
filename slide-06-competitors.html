@@ -31,7 +31,7 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
 .lv{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;
   border:1px solid currentColor;white-space:nowrap;letter-spacing:.02em;display:inline-block;
   vertical-align:1px}
-.lv.v{color:var(--ok)} .lv.e{color:var(--warn)} .lv.n{color:var(--bad)}
+.lv.v{color:var(--ok)} .lv.e{color:var(--warn)} .lv.n{color:var(--bad)} .lv.a{color:var(--accent)}
 
 /* 市佔推估 */
 .share{display:grid;grid-template-columns:268px 1fr;gap:32px;align-items:center;
@@ -194,38 +194,41 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:
       環境部手上有（妥善率算式要用「該月車機車輛總數」），<b>但不揭露</b>。</p>
 
     <div class="chain">
-      <div class="ch-k">站得住 ①<span>家數</span></div>
+      <div class="ch-k">站得住<span>家數</span></div>
       <div class="ch-b">
-        <p>妥善率月報標出<b>天眼 &lt;10 輛、紘鈦 0 輛</b> —— 尾端趨近於零。</p>
-        <p class="r">實質競爭者 <b>10 家</b>（12 家扣掉那兩家）　<span class="lv v">查證</span></p>
+        <p>妥善率月報標出<b>天眼 &lt;10 輛、紘鈦 0 輛</b> —— 尾端趨近於零。
+          均分 ＝ 10%，但那只是<b>家數的倒數</b>，不含資訊。</p>
+        <p class="r">實質競爭者 <b>10 家</b>　<span class="lv v">查證</span></p>
       </div>
     </div>
 
     <div class="chain">
-      <div class="ch-k">站得住 ②<span>平均值</span></div>
+      <div class="ch-k">估一個<span>量能</span></div>
       <div class="ch-b">
-        <p>10 家均分 ＝ 10%。但那只是<b>家數的倒數</b> ——
-          不看任何資料都算得出來，<b>不含資訊</b>。</p>
-        <p class="r">平均 <b>10.0%</b>，<b>不是</b>任何一家的市佔</p>
+        <p>iThome 2003 報導：瞰車大單一平台<b>最高管理量 6 萬輛</b>。
+          <b>假設四家宣稱第一者同級</b> → 合計約 <b>24 萬輛</b>量能。</p>
+        <p class="r">量能 ÷ 合規段 SAM（40,280 – 94,781）＝ <b>2.5 – 6 倍</b>
+          <span class="lv a">假設</span></p>
       </div>
     </div>
 
     <div class="chain">
       <div class="ch-k">不知道<span>實際份額</span></div>
       <div class="ch-b">
-        <p>沒有分子就<b>沒有區間</b>。任一家可能接近 0，也可能吃掉大半。</p>
+        <p>量能是「<b>做得動多少</b>」，不是「做了多少」。沒有分子就沒有區間。</p>
         <p class="r"><b>0 – 100%</b>　<span class="lv n">查無</span></p>
       </div>
     </div>
 
     <div class="ins">
       <div class="k">洞察</div>
-      <p><b>四家各自宣稱第一，但講的是不同的事。</b>
-        弋揚稱「台灣<b>市佔率第一</b>的車隊管理系統服務商」、易通稱「環保署廢棄物管理系統
-        <b>最大量車隊</b>」、銳俤稱「<b>第一品牌</b>／台灣<b>第一個推出</b>」、康訊稱「<b>領導品牌</b>」。<br>
-        弋揚與易通<b>不必然矛盾</b> —— 一個講整體、一個講事廢那一段。
-        若都為真，代表<b>分段的領先者不同</b>，那比「誰是總龍頭」有用。
-        <span class="from">（各家官網 · 廠商自述，無第三方驗證）</span></p>
+      <p><b>量能從來不是稀缺的東西。</b>
+        一家 <b>23 年前</b>的平台，量能就吃得下今天整個合規段的 <b>63%</b>；
+        四家同級就是市場的<b>數倍</b>。<br>
+        這解釋了為什麼<b>價格 23 年掉了一半</b> ——
+        2003 年每車每月不到 1,000 元（含通訊費），2026 年是 400／480 元。
+        <b>不是誰在削價，是供給端從來沒有稀缺過。</b>
+        <span class="from">（iThome 2003-01-23 · 參考資料來源 §4A.8）</span></p>
     </div>
 
     <div class="apply">⛔ 本頁曾以「年資加權 × 均分」推得 <b>4.3–11.7%</b> 並宣稱兩鏈收斂 ——
