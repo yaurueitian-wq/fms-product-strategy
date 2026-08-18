@@ -12,6 +12,7 @@
   --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
   --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
   --primary:#60A5FA; --accent:#FB923C;
+  --t1:#60A5FA; --t2:#818CF8;   /* 定位 A／B 的色，與第 4、5 頁同源 */
   --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
   --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
   --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
@@ -31,6 +32,36 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
   border:1px solid currentColor;white-space:nowrap;letter-spacing:.02em;display:inline-block;
   vertical-align:1px}
 .lv.v{color:var(--ok)} .lv.e{color:var(--warn)} .lv.n{color:var(--bad)}
+
+/* 定位 × FMS/TMS 軸 */
+.axis{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
+.axis h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
+.axis .sub{font-size:12px;color:var(--faint);margin:0 0 18px;line-height:1.5}
+.axis .grid{display:grid;grid-template-columns:126px repeat(3,1fr);gap:0 2px}
+.zh{padding:0 12px 9px;border-bottom:1px solid var(--border)}
+.zh b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  color:var(--muted);margin-bottom:4px}
+.zh span{display:block;font-size:10.5px;color:var(--faint);line-height:1.55}
+.zh.mid{background:color-mix(in srgb,var(--raised) 55%,transparent)}
+.row-k{padding:14px 12px 14px 0;border-bottom:1px solid
+  color-mix(in srgb,var(--border) 45%,transparent)}
+.row-k b{display:block;font-size:13px;color:var(--cl);font-weight:660}
+.row-k span{display:block;font-size:10.5px;color:var(--faint);margin-top:2px;line-height:1.4}
+.lane{border-bottom:1px solid color-mix(in srgb,var(--border) 45%,transparent);
+  padding:14px 0;display:flex;align-items:center}
+.lane.mid{background:color-mix(in srgb,var(--raised) 55%,transparent)}
+.seg{height:30px;border-radius:5px;background:color-mix(in srgb,var(--cl) 26%,transparent);
+  border:1px solid color-mix(in srgb,var(--cl) 60%,transparent);
+  display:flex;align-items:center;padding:0 12px;font-size:11.5px;color:var(--text);
+  width:100%;margin:0 2px;line-height:1.3}
+.seg.ghost{background:none;border:1px dashed var(--border);color:var(--faint)}
+.axis .foot{display:grid;grid-template-columns:126px repeat(3,1fr);gap:0 2px;margin-top:2px}
+.who{padding:12px 12px 0 0;font-size:11px;color:var(--faint);line-height:1.55}
+.who.c{padding:12px 12px 0}
+.who b{color:var(--muted);font-weight:620;display:block;margin-bottom:2px}
+@media (max-width:900px){.axis .grid,.axis .foot{grid-template-columns:1fr}
+  .zh,.row-k,.lane{border-bottom:none}}
 
 .two{display:grid;grid-template-columns:1fr 372px;gap:13px;margin-bottom:13px;align-items:start}
 .card{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
@@ -100,12 +131,61 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;colo
   <h1>競爭者分析</h1>
 </header>
 
+
+<div class="axis">
+  <h2>三個定位落在 FMS／TMS 的哪一側</h2>
+  <p class="sub">兩條不同的軸：<b>FMS／TMS</b> 分的是管什麼<b>物件</b>（車 vs 單，第 2 章）；
+    <b>A／B／C</b> 分的是買方從哪個<b>預算</b>掏錢（§14.0）。所以 FMS／TMS 切不開 A 和 B ——
+    它切開的是<b>誰有可能走到 C</b>。</p>
+
+  <div class="grid">
+    <div></div>
+    <div class="zh"><b>FMS 側</b><span>車機硬體 · 資料採集<br>駕駛行為 · 車輛健康</span></div>
+    <div class="zh mid"><b>重疊區</b><span>派遣 · 路線規劃<br>執行面可視化</span></div>
+    <div class="zh"><b>TMS 側</b><span>訂單 · 運價<br>承運商管理 · 結算對帳</span></div>
+
+    <div class="row-k" style="--cl:var(--t1)"><b>定位 A</b><span>車管／總務簽字</span></div>
+    <div class="lane" style="--cl:var(--t1)"><div class="seg">看得見車</div></div>
+    <div class="lane mid"></div>
+    <div class="lane"></div>
+
+    <div class="row-k" style="--cl:var(--t2)"><b>定位 B</b><span>法遵／安全簽字</span></div>
+    <div class="lane" style="--cl:var(--t2)"><div class="seg">法規要的資料回傳</div></div>
+    <div class="lane mid"></div>
+    <div class="lane"></div>
+
+    <div class="row-k" style="--cl:var(--accent)"><b>定位 C</b><span>老闆／營運長簽字</span></div>
+    <div class="lane" style="--cl:var(--accent)"><div class="seg">里程 · 燃料</div></div>
+    <div class="lane mid" style="--cl:var(--accent)"><div class="seg">派車決策</div></div>
+    <div class="lane" style="--cl:var(--accent)"><div class="seg">哪一單 · 載了什麼　<span class="lv e" style="margin-left:6px">外推</span></div></div>
+  </div>
+
+  <div class="foot">
+    <div class="who"><b>誰在這裡</b></div>
+    <div class="who c"><b>現行 12 家車機商　全部</b>＋電信商與後裝品牌，合計 ≥20 家
+      <span class="lv e">外推</span></div>
+    <div class="who c"><b>—</b>FMS 側做派遣但不做訂單與運價</div>
+    <div class="who c"><b>ERP／TMS · 租賃車隊 · 保險 · 油卡</b>不在 FMS 名單上，但握著單與成本
+      <span class="lv n">推定</span></div>
+  </div>
+
+  <div class="ins">
+    <div class="k">洞察</div>
+    <p><b>往 C 走的時候，對手會換一批人。</b>C 要算「每趟成本 ＝ 里程 × 載重 × 燃料」
+      （ISO 14083），里程與燃料在 FMS 側，但<b>「跑了哪一單、載了什麼」在 TMS 側</b>。
+      第 2 章已查證：FMS 側做派遣<b>但不做訂單與運價</b> ——
+      Samsara 與 Motive 都設 TMS marketplace，那是「這塊我不做」的宣告。
+      <b>現有 12 家，一個都沒跨過去。</b>
+      <span class="from">（觀察筆記 §13.2 · 第 2 章邊界形狀）</span></p>
+  </div>
+</div>
+
 <div class="two">
 
   <div class="card">
     <h2>現行有車在跑的 12 家</h2>
     <p class="sub">依連續達 A+（妥善率 ≥95%）的月數排。
-      這 12 家<b>毒化物與事廢兩段全過</b> —— 兩份官方名單交叉比對，完全重疊。</p>
+      這 12 家<b>毒化物與事廢兩段全過</b>（兩份官方名單交叉比對，完全重疊），而且<b>全部是車機硬體＋定位平台 —— 沒有一家做單那側</b>。</p>
 
     <div class="rkh"><span></span><span>廠商</span><span>連續 A+</span><span>月</span><span>毒化物<br>型號</span></div>
 
@@ -181,7 +261,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;colo
 <div class="gap">
   <h2>這一頁查不到的</h2>
   <ul>
-    <li><b>各家市佔、裝機數、營收</b> <span class="lv n">查無</span> —— 無第三方調研；妥善率月報只給等級不給輛數</li>
+    <li><b>各家市佔、裝機數、營收</b> <span class="lv n">查無</span> —— 已查五條官方路徑（妥善率月報、車機商資訊、檔案下載、清運機具查詢、毒化物核可車輛）<b>皆無廠商別輛數</b>。環境部手上有（妥善率算式要用「該月車機車輛總數」），<b>但不揭露</b></li>
     <li><b>國土署土石方合格車機名單</b> <span class="lv n">查無</span> —— 未公開；流傳的「8 家」追不到官方來源，不採用</li>
     <li><b>非合規段的完整業者名單</b> <span class="lv e">外推</span> —— 無官方名單，已知遠傳運輸雲等，合計 ≥20 家</li>
     <li><b>「中華」是否為中華電信</b> <span class="lv n">待確認</span> —— 曾在事廢名單、現已無車。若是，代表電信商進過又退出</li>
