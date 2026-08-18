@@ -71,7 +71,7 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
 .card table{width:100%;border-collapse:collapse;font-size:12.5px}
 .card th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
   color:var(--faint);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--border)}
-.card th.mo{text-align:right}
+.card th.lvc{text-align:right}
 .card td{padding:10px 12px 10px 0;border-bottom:1px solid
   color-mix(in srgb,var(--border) 50%,transparent);color:var(--muted);
   vertical-align:top;line-height:1.5}
@@ -84,10 +84,14 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
 .card .mo i{display:block;font-style:normal;font-size:9.5px;color:var(--faint);
   font-family:var(--sans);margin-top:1px}
 .ab b{color:var(--text);font-weight:620}
-.d{white-space:nowrap;font-size:11.5px;font-weight:620}
-.d.near{color:var(--ok)} .d.mid{color:var(--warn)} .d.far{color:var(--faint)}
+.dim{color:var(--text);font-weight:640;white-space:nowrap;font-size:12.5px}
+.card .co{white-space:normal}
+.co i{display:inline-block;font-style:normal;font-size:10px;color:var(--faint);
+  margin-left:5px;font-weight:400}
+.card .lvc{text-align:right;white-space:nowrap}
 .hot td{background:color-mix(in srgb,var(--ok) 7%,transparent)}
-.rest td{color:var(--faint)} .rest .co{color:var(--faint);font-weight:400;white-space:normal}
+.none td{background:color-mix(in srgb,var(--bad) 6%,transparent)}
+.none .co{color:var(--bad)}
 
 .ins{padding:13px 15px;background:var(--raised);border-radius:8px;
   border-left:3px solid var(--primary);margin-top:15px}
@@ -118,9 +122,9 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:
 </header>
 
 <div class="claim">
-  <p><b>沒有人走到定位 C。</b>合規這一段的 12 家全在同一個層次 —— 功能或多或少，
-    但都停在「看得見車」。用兩條獨立的推論算市佔，結果<b>收斂在 4–12%</b>，
-    而且<b>分不出誰大誰小</b>。真正有訊號的不是規模，是<b>誰已經開始往單那側走</b>。</p>
+  <p><b>這一段沒有「領導廠商」。</b>用兩條獨立的推論算市佔，收斂在 <b>4–12%</b>，
+    但分不出誰大誰小。改看<b>維度</b>就清楚了 —— 資本最大的、年資最久的、
+    跨到單那側的，<b>是三家不同的公司</b>。而且<b>沒有任何一個維度是「功能」</b>。</p>
 </div>
 
 <div class="share">
@@ -172,56 +176,80 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:
 </div>
 
 <div class="card">
-  <h2>誰比較可能走到 C</h2>
-  <p class="sub">判準：有沒有跨到<b>單那側</b>（訂單、派車、結算）—— 因為 C 要算
-    「每趟成本 ＝ 里程 × 載重 × 燃料」，里程與燃料在車那側，<b>哪一單、載了什麼在單那側</b>。
-    能力欄位取自各家官網公開頁面，<b>是廠商自述，不是查證</b>。</p>
+  <h2>領先在什麼地方</h2>
+  <p class="sub">既然分不出大小，就逐個維度看誰在前面。
+    <b>官方欄位是查證，官網欄位是廠商自述</b>。</p>
 
   <table>
-    <thead><tr><th>廠商</th><th class="mo">年資</th><th class="mo">加權<br>市佔</th>
-      <th>對外可見的能力</th><th>到 C 的距離</th></tr></thead>
+    <thead><tr><th>維度</th><th>領先者</th><th>依據</th><th class="lvc">等級</th></tr></thead>
     <tbody>
+      <tr>
+        <td class="dim">制度年資</td>
+        <td class="co">冠祺鴻 <b>90</b><i>滿格</i>　長輝 89　康訊 88　易通 88</td>
+        <td class="ab">第八次公告 107/12/01 實施至 115/06 恰為 90 個月 ——
+          <b>滿格代表「從制度開始就在」</b></td>
+        <td class="lvc"><span class="lv v">查證</span></td></tr>
+      <tr>
+        <td class="dim">型號廣度</td>
+        <td class="co">康訊 · 中興保全 · 弋揚<i>各 3 款</i></td>
+        <td class="ab">其餘多為 1 款。多型號＝能對應不同車種與規格世代</td>
+        <td class="lvc"><span class="lv v">查證</span></td></tr>
+      <tr>
+        <td class="dim">跨法規</td>
+        <td class="co">12 家<i>全部</i></td>
+        <td class="ab">毒化物與事廢兩份官方名單<b>完全重疊</b> ——
+          這個維度上<b>沒有人領先</b></td>
+        <td class="lvc"><span class="lv v">查證</span></td></tr>
       <tr class="hot">
-        <td class="co">弋揚<em>衛星犬</em></td><td class="mo">69</td><td class="mo">9.0%</td>
-        <td class="ab"><b>獨立 TMS 產品</b>：派車、訂單、電子簽收、API／ERP 串接。
+        <td class="dim">資本規模</td>
+        <td class="co">中興保全<em>中保科 9917</em></td>
+        <td class="ab">市值 <b>485 億</b>、資本額 45 億、<b>台灣規模最大的保全公司</b>（1977 年成立）。
+          其餘多為「科技行／有限公司」量級 —— <b>差了幾個數量級</b></td>
+        <td class="lvc"><span class="lv v">查證</span></td></tr>
+      <tr>
+        <td class="dim">通路</td>
+        <td class="co">中興保全　銳俤<em>瞰車大</em></td>
+        <td class="ab">中保有保全本業的企業客戶；銳俤<b>與中華汽車電動商用車合作</b>。
+          保全業是一整群 —— 新光、華信也做 GPS 車隊</td>
+        <td class="lvc"><span class="lv e">中</span></td></tr>
+      <tr class="hot">
+        <td class="dim">往單那側</td>
+        <td class="co">弋揚<em>衛星犬</em></td>
+        <td class="ab"><b>唯一有獨立 TMS 產品</b>：派車、訂單、電子簽收、API／ERP 串接。
           另有 ESG 方案（碳排、油耗、成本）</td>
-        <td class="d near">已跨到單那側</td></tr>
+        <td class="lvc"><span class="lv e">中</span></td></tr>
       <tr>
-        <td class="co">天眼</td><td class="mo">—</td><td class="mo">&lt;10 輛</td>
-        <td class="ab">產品頁含 TMS／ERP；<b>獨立碳盤查系統</b></td>
-        <td class="d mid">有意圖，規模極小</td></tr>
-      <tr>
-        <td class="co">銳俤<em>瞰車大</em></td><td class="mo">69</td><td class="mo">9.0%</td>
-        <td class="ab">油耗、保養、成本；週邊硬體（酒測、胎壓、擷影）。
-          <b>與中華汽車電動商用車合作</b></td>
-        <td class="d mid">有通路，無單側</td></tr>
-      <tr>
-        <td class="co">中興保全<em>中保</em></td><td class="mo">82</td><td class="mo">10.7%</td>
-        <td class="ab">保全本業 ＋ 衛星車隊管理。<b>保全業是一整群</b> ——
-          新光、華信也都做 GPS 車隊</td>
-        <td class="d mid">通路強，單側未見</td></tr>
-      <tr>
-        <td class="co">康訊</td><td class="mo">88</td><td class="mo">11.5%</td>
-        <td class="ab">冷鏈、資產追蹤；有國際展會佈局</td>
-        <td class="d far">公開資訊少</td></tr>
-      <tr>
-        <td class="co">冠祺鴻</td><td class="mo">90<i>滿格</i></td><td class="mo">11.7%</td>
-        <td class="ab"><b>查無官網</b> —— 年資第一，卻沒有對外產品行銷</td>
-        <td class="d far">推測為純硬體</td></tr>
-      <tr class="rest">
-        <td class="co">長輝 89 · 易通 88 · 航釱 84 · 富德爾 74 · 捷世林 33 · 宇暘</td>
-        <td class="mo">—</td><td class="mo">—</td>
-        <td class="ab">網站資訊過薄或查無產品頁</td>
-        <td class="d far">資訊不足</td></tr>
+        <td class="dim">碳排／ESG</td>
+        <td class="co">弋揚　天眼</td>
+        <td class="ab">弋揚有 ESG 管理方案；天眼有<b>獨立碳盤查系統</b>
+          （但事廢裝機 &lt;10 輛）</td>
+        <td class="lvc"><span class="lv e">中</span></td></tr>
+      <tr class="none">
+        <td class="dim">功能</td>
+        <td class="co">沒有人</td>
+        <td class="ab">官方每月評的是<b>回傳品質 75% ＋ 維修效能 20% ＋ 週邊良率 5%</b> ——
+          <b>整套指標裡沒有一項是功能</b>。連主管機關都只比得出誰的機器比較少故障</td>
+        <td class="lvc"><span class="lv v">查證</span></td></tr>
     </tbody>
   </table>
 
   <div class="ins">
     <div class="k">洞察</div>
-    <p><b>年資排第一的沒有官網，跨到單那側的排第八。</b>
-      規模與往 C 走的意願<b>不相關</b> —— 十家都在 69–90 個月的同一個年資帶裡，
-      但只有弋揚做出了 TMS 產品。
-      <b>該追的是誰在動，不是誰比較大。</b></p>
+    <p><b>「領導廠商」這個概念在這一段不成立。</b>
+      資本最大的是中保（485 億），年資最久的是冠祺鴻（<b>連官網都沒有</b>），
+      跨到單那側的是弋揚（市佔推估只排第八）—— <b>三家不同的公司，沒有一家全面領先</b>。
+      更關鍵的是：<b>沒有人靠功能領先，因為功能已經不是變數。</b>
+      這正是「這一段已經商品化」最直接的證據。</p>
+  </div>
+
+  <div class="ins" style="border-left-color:var(--accent);margin-top:11px">
+    <div class="k" style="color:var(--accent)">對 C 的意義</div>
+    <p>要判斷誰走得到 C，該追的<b>不是誰比較大，是誰在動</b> ——
+      目前只有<b>弋揚</b>把產品做到了單那側。
+      至於「<b>有長期深度客戶關係的比較容易走到 C</b>」這個假設，
+      公開資料<b>查不到客戶名單與合約年限</b>，無法驗證。
+      年資是裝機穩定度，<b>不能拿來頂替關係深度</b>。
+      <span class="from">（觀察筆記 §16.6a）</span></p>
   </div>
 </div>
 
@@ -254,7 +282,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item on" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>沒有人走到 C —— 市佔推估 4–12%，但真正的訊號是誰在往單那側走</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item on" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>這一段沒有領導廠商 —— 市佔推估 4–12%，而領先是分散在不同維度的</em></span></a>
     <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
