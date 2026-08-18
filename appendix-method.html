@@ -39,6 +39,7 @@ h1{font-size:38px;font-weight:700;margin:0 0 12px;letter-spacing:-.03em;line-hei
 .lv.v{color:var(--ok)} .lv.e{color:var(--warn)}
 .lv.a{color:var(--accent)} .lv.n{color:var(--bad)}
 .lv.lo{color:var(--faint);border-style:dashed}
+.ok-note{color:var(--ok)}
 .lv.g{color:#fff;background:var(--bad);border-color:var(--bad);font-weight:700}
 
 .sec{padding:24px 26px;background:var(--surface);border:1px solid var(--border);
@@ -250,6 +251,31 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <tr><td class="n">3%　20%</td><td class="lvc"><span class="lv g">瞎估</span></td>
         <td>FMS 可影響的成本比例、gain-share 分潤比例。定位 C 用。<b>兩者都沒有依據</b></td></tr>
 
+      <tr class="grp"><td colspan="3">⭐ 定價的時間序列（2026-08-18 補查）</td></tr>
+      <tr><td class="n">2003<br>&lt;1,000／月</td><td class="lvc"><span class="lv e">中</span></td>
+        <td>iThome 2003-01-23 報導銳科技（瞰車大）：<b>「每一輛車每個月的費用不到 1000 元
+          （管理費加付給電信廠商的通訊費）」</b><br>
+          <code>ithome.com.tw/news/19597</code>　·　<code>參考資料來源.md §4A.8(1)</code></td></tr>
+      <tr><td class="n">2026<br>400／480 元</td><td class="lvc"><span class="lv e">中</span></td>
+        <td>遠傳運輸雲公告價 400 元；遊覽車合規車機月租 480 元。<br>
+          <b>→ 23 年名目價格掉逾一半（未計通膨則實質跌幅更大）</b>。
+          <span class="warn">⚠️ 2003 那筆含通訊費，2026 兩筆是否含未明；若不含則跌幅更大，方向不變</span></td></tr>
+
+      <tr class="grp"><td colspan="3">廠商自述（<b>無第三方驗證，不可相除</b>）</td></tr>
+      <tr><td class="n">四家<br>各稱第一</td><td class="lvc"><span class="lv e">中</span></td>
+        <td>弋揚稱「台灣<b>市佔率第一</b>的車隊管理系統服務商」；易通稱「環保署廢棄物管理系統
+          <b>最大量車隊</b>」；銳俤稱「<b>第一品牌</b>／台灣<b>第一個推出</b>」；康訊稱「<b>領導品牌</b>」。<br>
+          <b>四家宣稱的是不同維度</b> —— 弋揚與易通不必然矛盾（整體 vs 事廢段）；
+          銳俤的「第一」是時間先後，且有 iThome 2003 旁證</td></tr>
+      <tr><td class="n">弋揚<br>20 萬台</td><td class="lvc"><span class="lv n">不可用</span></td>
+        <td>官網：「至今，我們已成功輔助<b>全球</b>超過兩萬家企業、二十萬台車輛數位轉型。」<br>
+          <span class="warn">🔴 全球、累計。本專案分母是台灣現況（合規段 40,280 輛）——
+          20 萬台若相當比例為台灣現行有效將遠超過整個合規段。<b>不可相除</b></span></td></tr>
+      <tr><td class="n">tcloud<br>8,000 家</td><td class="lvc"><span class="lv lo">低</span></td>
+        <td>數位產業署 tcloud.gov.tw 曾載弋揚「客戶總數 8000 家以上，遊覽業市占率全台第一」。<br>
+          <span class="warn">⚠️ 該站已結束服務、原頁不可存取，僅存搜尋索引；且與官網「兩萬家」口徑不一致。
+          <b>不建議引用</b></span></td></tr>
+
       <tr class="grp"><td colspan="3">判斷類（非數據，來自推論筆記）</td></tr>
       <tr><td class="n">成本結構排序</td><td class="lvc"><span class="lv a">假設</span></td>
         <td><code>觀察筆記.md §5</code>。<span class="warn">⚠️ 比例為結構性估計，未經查證，
@@ -268,7 +294,43 @@ footer code{font-family:var(--mono);font-size:11.5px}
 </div>
 
 <div class="sec">
-  <h2>四 · 還缺什麼</h2>
+  <h2>四 · ⛔ 撤回紀錄</h2>
+  <p>依 <code>設計原則.md §六</code>，被推翻的推論<b>不刪除</b>，連同原因一起留著 ——
+    避免同一個錯誤被重新寫回去。</p>
+  <table>
+    <thead><tr><th>原主張</th><th style="width:1%">曾標</th><th>為什麼撤回</th></tr></thead>
+    <tbody>
+      <tr><td class="n">年資加權推得市佔<br><b>4.3–11.7%</b>，兩鏈收斂故可信</td>
+        <td class="lvc"><span class="lv e">外推</span></td>
+        <td><b>四個錯誤</b>：①市佔率的分子（各家裝機數）<b>查無</b>，改用「在市場的時間」當代理 ——
+          那不是推算，是<b>把猜測包裝成算式</b>；②年資量的是<b>品質維持的時間</b>，不是量；
+          ③「4.3–11.7%」是<b>年資的分布</b>，不是市佔的分布 —— 假精確，無分子則無區間；
+          ④兩條鏈<b>同源</b>（都出自妥善率月報，違反 §8.3），且權重差距僅 1.30 倍 ——
+          <b>權重幾乎相等時加權平均必然逼近算術平均，收斂是算術必然，不是佐證</b>。<br>
+          <span class="warn">⚠️ 等級也標錯：該標<b>瞎估</b>，卻標成外推。</span>
+          <code>觀察筆記.md §16.6c</code></td></tr>
+      <tr><td class="n">型式審驗各自獨立，<br>每一段都要重跑</td>
+        <td class="lvc"><span class="lv v">查證</span></td>
+        <td>毒化物與事廢由<b>完全相同的 12 家</b>服務；環保機可訊號拋接介接土石方系統；
+          遊覽車<b>不限型式</b>。審驗擋的是新進者，不是現有競爭。
+          <code>競爭者分析.md §0①</code></td></tr>
+      <tr><td class="n">現有 12 家<br>一個都沒跨到單那側</td>
+        <td class="lvc"><span class="lv e">外推</span></td>
+        <td><b>弋揚（衛星犬）有獨立「貨運業 TMS 運輸管理系統」</b>：派車、訂單、電子簽收、
+          API／ERP 串接。<code>競爭者分析.md §1.7</code></td></tr>
+      <tr><td class="n">1,334 輛是確定存在的<br>短期市場；67% 是唯一<br>有出處的漏斗收縮率</td>
+        <td class="lvc"><span class="lv v">查證</span></td>
+        <td>那是新制<b>第 5 天</b>（2026-01-06）的排隊快照。2026-07-28 內政部宣布雙軌車機
+          <b>逾 1.6 萬輛、「滿足市場需求」</b> —— 窗口已關。
+          <b>67% 不是穩態收縮率，不可當漏斗參數。</b><br>
+          <span class="ok-note">✅ 但當初「量能只<b>延後</b>市場、不縮小它」的判斷<b>成立</b> ——
+          這是本材料唯一一條被時間驗證過的推論。</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <h2>五 · 還缺什麼</h2>
   <table>
     <thead><tr><th style="width:34%">缺口</th><th style="width:1%">狀態</th><th>卡住什麼</th></tr></thead>
     <tbody>
