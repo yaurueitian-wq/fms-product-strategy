@@ -50,7 +50,7 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
 .mid-a{text-anchor:middle;font-family:var(--mono);font-size:17px;font-weight:600;
   fill:var(--text);letter-spacing:-.02em}
 .mid-b{text-anchor:middle;font-size:9.5px;fill:var(--faint)}
-.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:12px;justify-content:center}
+.legend{display:flex;flex-wrap:wrap;gap:4px 11px;margin-top:12px;justify-content:center}
 .lg{font-size:10px;color:var(--faint);display:flex;align-items:center;gap:4px;white-space:nowrap}
 .lg i{width:7px;height:7px;border-radius:2px;display:inline-block}
 .lg.a i{background:var(--ok)} .lg.b i{background:var(--t2)}
@@ -59,6 +59,19 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
 
 .calc h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
 .calc .sub{font-size:12px;color:var(--faint);margin:0 0 14px;line-height:1.5}
+.rank{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:2px}
+.rank td{padding:7px 0;border-bottom:1px solid color-mix(in srgb,var(--border) 45%,transparent);
+  vertical-align:middle}
+.rank tr:last-child td{border-bottom:none}
+.rank .rk{width:22px;font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.rank .nm{width:112px;color:var(--text);font-weight:640;white-space:nowrap}
+.rank .nm em{font-style:normal;font-weight:400;font-size:10.5px;color:var(--accent);
+  display:block;margin-top:1px}
+.rank .pc{width:56px;font-family:var(--mono);font-size:13.5px;color:var(--text);
+  text-align:right;padding-right:16px;font-variant-numeric:tabular-nums}
+.rank .rs{font-size:11.5px;color:var(--faint);line-height:1.5}
+.rank .rs b{color:var(--muted);font-weight:620}
+.rank .oth td{color:var(--faint)} .rank .oth .nm,.rank .oth .pc{color:var(--faint)}
 .chain{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:11px 0;
   border-top:1px solid var(--border)}
 .ch-k{font-family:var(--mono);font-size:11px;color:var(--primary);font-weight:600}
@@ -160,77 +173,68 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:
 
 <div class="share">
   <div class="rings">
-    <svg viewBox="0 0 220 220" role="img"
-         aria-label="份額推估：弋揚約 15%，中段七家各約 10%，其他四家合計約 13%">
-      <circle class="sl a" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="68.47 383.92" stroke-dashoffset="0.00"><title>弋揚　15.4%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-69.67"><title>銳俤　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-116.26"><title>中興保全　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-162.86"><title>易通　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-209.46"><title>康訊　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-256.05"><title>富德爾　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-302.65"><title>長輝　10.3%</title></circle>
-      <circle class="sl b" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="45.40 406.99" stroke-dashoffset="-349.24"><title>冠祺鴻　10.3%</title></circle>
-      <circle class="sl c" cx="110" cy="110" r="72" fill="none" stroke-width="34"
-              stroke-dasharray="55.35 397.04" stroke-dashoffset="-395.84"><title>其他 4 家　12.5%</title></circle>
-      <text x="110" y="104" class="mid-a">10 家</text>
-      <text x="110" y="123" class="mid-b">份額為推估</text>
+    <svg viewBox="0 0 220 220" role="img" aria-label="十二家車機商的份額推估圓餅圖">
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#34D399" stroke-dasharray="70.28 382.11" stroke-dashoffset="0.00"><title>弋揚　15.8%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#60A5FA" stroke-dasharray="63.49 388.90" stroke-dashoffset="-71.48"><title>銳俤　14.3%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#818CF8" stroke-dasharray="59.42 392.97" stroke-dashoffset="-136.17"><title>中興保全　13.4%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#FB923C" stroke-dasharray="52.63 399.76" stroke-dashoffset="-196.79"><title>易通　11.9%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#FBBF24" stroke-dasharray="47.66 404.73" stroke-dashoffset="-250.62"><title>康訊　10.8%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#2DD4BF" stroke-dasharray="34.99 417.40" stroke-dashoffset="-299.48"><title>富德爾　8.0%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#F472B6" stroke-dasharray="31.37 421.02" stroke-dashoffset="-335.67"><title>長輝　7.2%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#A78BFA" stroke-dasharray="25.04 427.35" stroke-dashoffset="-368.24"><title>冠祺鴻　5.8%</title></circle>
+      <circle class="sl" cx="110" cy="110" r="72" fill="none" stroke-width="34"
+              stroke="#64748B" stroke-dasharray="55.80 396.59" stroke-dashoffset="-394.48"><title>其他 4 家　12.6%</title></circle>
+      <text x="110" y="106" class="mid-a">推估</text>
+      <text x="110" y="124" class="mid-b">非查證</text>
     </svg>
-    <div class="legend"><span class="lg a"><i></i>弋揚<b>~15%</b></span><span class="lg b"><i></i>中段 7 家<b>各約 10%</b></span><span class="lg c"><i></i>其他 4 家<b>合計 ~13%</b></span></div>
-    <div class="cap">中段七家<b>排不出先後</b>，故等分</div>
+    <div class="legend"><span class="lg"><i style="background:#34D399"></i>弋揚<b>15.8%</b></span><span class="lg"><i style="background:#60A5FA"></i>銳俤<b>14.3%</b></span><span class="lg"><i style="background:#818CF8"></i>中興保全<b>13.4%</b></span><span class="lg"><i style="background:#FB923C"></i>易通<b>11.9%</b></span><span class="lg"><i style="background:#FBBF24"></i>康訊<b>10.8%</b></span><span class="lg"><i style="background:#2DD4BF"></i>富德爾<b>8.0%</b></span><span class="lg"><i style="background:#F472B6"></i>長輝<b>7.2%</b></span><span class="lg"><i style="background:#A78BFA"></i>冠祺鴻<b>5.8%</b></span><span class="lg"><i style="background:#64748B"></i>其他 4 家<b>12.6%</b></span></div>
+    <div class="cap">其他 4 家＝航釱 · 宇暘 · 捷世林 · 天眼</div>
   </div>
 
   <div class="calc">
-    <h2>份額推估：一家在前，中段排不出來</h2>
-    <p class="sub">官方不揭露廠商別輛數，所以用<b>功能覆蓋 ＋ 年資 ＋ 型號廣度 ＋ 曝光度</b>
-      倒推，再以查證資料校正。<b>掃過 81 組權重</b>看排序穩不穩。</p>
+    <h2>份額推估</h2>
+    <p class="sub">官方不揭露廠商別輛數，所以用五個查證欄位倒推：
+      <b>功能覆蓋 ＋ 連續 A+ 月數 ＋ 型號廣度 ＋ 官網深度（曝光）＋ 是否自稱第一</b>。</p>
 
-    <div class="chain">
-      <div class="ch-k">穩健<span>前段</span></div>
-      <div class="ch-b">
-        <p><b>弋揚</b>在 81 組權重下<b>全部落在前三名</b>，多數為第一 ——
-          功能覆蓋 12/12（唯一）、自稱市佔第一、且是唯一有 TMS 產品的。</p>
-        <p class="r">推估 <b>10.9 – 21.8%</b>（中位 15.4%）　<span class="lv a">推估</span></p>
-      </div>
-    </div>
-
-    <div class="chain">
-      <div class="ch-k">排不出<span>中段 7 家</span></div>
-      <div class="ch-b">
-        <p>銳俤、中興保全、易通、康訊、富德爾、長輝、冠祺鴻 ——
-          <b>彼此順序在 81 組權重下全部會翻</b>（名次範圍最大到 1–6）。
-          換個權重就換一個第二名，<b>所以不排</b>。</p>
-        <p class="r">合計 <b>68.8 – 75.3%</b>，等分約各 10%　<span class="lv a">推估</span></p>
-      </div>
-    </div>
-
-    <div class="chain">
-      <div class="ch-k">穩健<span>尾段</span></div>
-      <div class="ch-b">
-        <p>航釱、宇暘、捷世林、天眼在 81 組權重下<b>全部墊底</b>。
-          其中<b>天眼由妥善率月報查證為「服務車輛 &lt;10 輛」</b>，直接壓到底。</p>
-        <p class="r">合計 <b>6.4 – 18.1%</b>　<span class="lv a">推估</span>＋<span class="lv v">部分查證</span></p>
-      </div>
-    </div>
+    <table class="rank">
+      <tbody>
+        <tr><td class="rk">1</td><td class="nm">弋揚<em>衛星犬</em></td><td class="pc">15.8%</td>
+          <td class="rs">功能覆蓋 12/12（唯一）· 唯一有 TMS 產品 · 自稱市佔第一</td></tr>
+        <tr><td class="rk">2</td><td class="nm">銳俤<em>瞰車大</em></td><td class="pc">14.3%</td>
+          <td class="rs">覆蓋 9/12 · 台灣第一個推出（2003）· 與中華汽車合作</td></tr>
+        <tr><td class="rk">3</td><td class="nm">中興保全<em>中保科</em></td><td class="pc">13.4%</td>
+          <td class="rs">市值 485 億 · 82 個月 A+ · 型號 3 款</td></tr>
+        <tr><td class="rk">4</td><td class="nm">易通</td><td class="pc">11.9%</td>
+          <td class="rs">88 個月 A+ · 自稱事廢段最大量車隊</td></tr>
+        <tr><td class="rk">5</td><td class="nm">康訊</td><td class="pc">10.8%</td>
+          <td class="rs">88 個月 A+ · 型號 3 款 · 1987 年成立</td></tr>
+        <tr><td class="rk">6</td><td class="nm">富德爾</td><td class="pc">8.0%</td><td class="rs">74 個月 A+</td></tr>
+        <tr><td class="rk">7</td><td class="nm">長輝</td><td class="pc">7.2%</td><td class="rs">89 個月 A+ · 型號 2 款</td></tr>
+        <tr><td class="rk">8</td><td class="nm">冠祺鴻</td><td class="pc">5.8%</td>
+          <td class="rs">90 個月 A+（滿格）· 但查無官網</td></tr>
+        <tr class="oth"><td class="rk">—</td><td class="nm">其他 4 家</td><td class="pc">12.6%</td>
+          <td class="rs">航釱 · 宇暘 · 捷世林 · <b>天眼（查證 &lt;10 輛）</b></td></tr>
+      </tbody>
+    </table>
 
     <div class="ins">
       <div class="k">洞察</div>
-      <p><b>連推估都排不出第二名，這本身就是結論。</b>
-        中段七家在功能、年資、型號、曝光四個維度上<b>互有高低但沒有一家全面領先</b> ——
-        換個權重就換一個排序。<br>
-        <b>而且倒推有一個已知的反例</b>：天眼功能覆蓋 9/12 卻只有不到 10 輛車在跑
-        —— <b>做得多不等於賣得多</b>。這一段的勝負不在產品。</p>
+      <p><b>最前面那家也只有 15.8%，而且第 2 到第 8 名幾乎黏在一起。</b>
+        掃過 81 組不同權重，只有<b>弋揚穩居前三</b>與<b>尾段四家穩定墊底</b>不變，
+        中段的順序<b>換個權重就換一個</b> —— 沒有一家全面領先。<br>
+        <b>而且倒推有一個已知反例</b>：天眼功能覆蓋 9/12，卻查證只有不到 10 輛車在跑 ——
+        <b>做得多不等於賣得多</b>。這一段的勝負不在產品。</p>
     </div>
 
-    <div class="apply">⚠️ 份額為<b>推估，非查證</b> —— 官方不揭露廠商別輛數。
-      權重由本專案自訂，已掃 81 組確認頭尾穩健、中段不穩。<br>
+    <div class="apply">⚠️ <b>份額為推估，非查證</b> —— 官方不揭露廠商別輛數，權重由本專案自訂。<br>
       ⛔ 本頁曾以「年資加權」推得 4.3–11.7% 並宣稱兩鏈收斂，<b>已於 2026-08-18 撤回</b>，
       詳見<a href="appendix-method.html">附錄 · 撤回紀錄</a></div>
   </div>
