@@ -33,94 +33,80 @@ h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.
   vertical-align:1px}
 .lv.v{color:var(--ok)} .lv.e{color:var(--warn)} .lv.n{color:var(--bad)}
 
-/* 定位 × FMS/TMS 軸 */
-.axis{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
+/* 主張 */
+.claim{padding:18px 24px;background:var(--raised);border:1px solid var(--border);
+  border-left:3px solid var(--primary);border-radius:var(--r);margin-bottom:13px}
+.claim p{margin:0;font-size:14px;color:var(--muted);line-height:1.75}
+.claim b{color:var(--text);font-weight:640}
+
+/* 市佔推估 */
+.share{display:grid;grid-template-columns:236px 1fr;gap:32px;align-items:center;
+  padding:24px 28px;background:var(--surface);border:1px solid var(--border);
   border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
-.axis h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
-.axis .sub{font-size:12px;color:var(--faint);margin:0 0 18px;line-height:1.5}
-.axis .grid{display:grid;grid-template-columns:126px repeat(3,1fr);gap:0 2px}
-.zh{padding:0 12px 9px;border-bottom:1px solid var(--border)}
-.zh b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
-  color:var(--muted);margin-bottom:4px}
-.zh span{display:block;font-size:10.5px;color:var(--faint);line-height:1.55}
-.zh.mid{background:color-mix(in srgb,var(--raised) 55%,transparent)}
-.row-k{padding:14px 12px 14px 0;border-bottom:1px solid
-  color-mix(in srgb,var(--border) 45%,transparent)}
-.row-k b{display:block;font-size:13px;color:var(--cl);font-weight:660}
-.row-k span{display:block;font-size:10.5px;color:var(--faint);margin-top:2px;line-height:1.4}
-.lane{border-bottom:1px solid color-mix(in srgb,var(--border) 45%,transparent);
-  padding:14px 0;display:flex;align-items:center}
-.lane.mid{background:color-mix(in srgb,var(--raised) 55%,transparent)}
-.seg{height:30px;border-radius:5px;background:color-mix(in srgb,var(--cl) 26%,transparent);
-  border:1px solid color-mix(in srgb,var(--cl) 60%,transparent);
-  display:flex;align-items:center;padding:0 12px;font-size:11.5px;color:var(--text);
-  width:100%;margin:0 2px;line-height:1.3}
-.seg.ghost{background:none;border:1px dashed var(--border);color:var(--faint)}
-.axis .foot{display:grid;grid-template-columns:126px repeat(3,1fr);gap:0 2px;margin-top:2px}
-.who{padding:12px 12px 0 0;font-size:11px;color:var(--faint);line-height:1.55}
-.who.c{padding:12px 12px 0}
-.who b{color:var(--muted);font-weight:620;display:block;margin-bottom:2px}
-@media (max-width:900px){.axis .grid,.axis .foot{grid-template-columns:1fr}
-  .zh,.row-k,.lane{border-bottom:none}}
+.rings{position:relative}
+.rings svg{display:block;width:100%;height:auto}
+.rings .cap{position:absolute;left:0;right:0;bottom:-4px;text-align:center;
+  font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.08em}
+.calc h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
+.calc .sub{font-size:12px;color:var(--faint);margin:0 0 14px;line-height:1.5}
+.chain{display:grid;grid-template-columns:104px 1fr;gap:14px;padding:11px 0;
+  border-top:1px solid var(--border)}
+.ch-k{font-family:var(--mono);font-size:11px;color:var(--primary);font-weight:600}
+.ch-k span{display:block;font-family:var(--sans);font-size:11px;color:var(--faint);
+  font-weight:400;margin-top:2px;line-height:1.4}
+.ch-b p{margin:0;font-size:12px;color:var(--faint);line-height:1.65}
+.ch-b p b{color:var(--muted);font-weight:620}
+.ch-b .r{margin-top:5px;font-size:12px;color:var(--muted)}
+.ch-b .r b{color:var(--accent);font-family:var(--mono);font-weight:600}
+.apply{margin-top:12px;padding-top:11px;border-top:1px dashed var(--border);
+  font-size:12px;color:var(--faint);line-height:1.6}
+.apply b{color:var(--text);font-family:var(--mono);font-weight:600}
 
-.two{display:grid;grid-template-columns:1fr 372px;gap:13px;margin-bottom:13px;align-items:start}
+/* 誰走得到 C */
 .card{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r);box-shadow:var(--sh)}
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
 .card h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
-.card .sub{font-size:12px;color:var(--faint);margin:0 0 16px;line-height:1.5}
+.card .sub{font-size:12px;color:var(--faint);margin:0 0 15px;line-height:1.55}
+.card .sub b{color:var(--muted);font-weight:620}
+.card table{width:100%;border-collapse:collapse;font-size:12.5px}
+.card th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  color:var(--faint);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--border)}
+.card th.mo{text-align:right}
+.card td{padding:10px 12px 10px 0;border-bottom:1px solid
+  color-mix(in srgb,var(--border) 50%,transparent);color:var(--muted);
+  vertical-align:top;line-height:1.5}
+.card tr:last-child td{border-bottom:none}
+.co{color:var(--text);font-weight:640;white-space:nowrap}
+.co em{font-style:normal;font-weight:400;font-size:11px;color:var(--accent);
+  display:block;margin-top:1px}
+.card .mo{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
+  white-space:nowrap;color:var(--text);font-size:12px}
+.card .mo i{display:block;font-style:normal;font-size:9.5px;color:var(--faint);
+  font-family:var(--sans);margin-top:1px}
+.ab b{color:var(--text);font-weight:620}
+.d{white-space:nowrap;font-size:11.5px;font-weight:620}
+.d.near{color:var(--ok)} .d.mid{color:var(--warn)} .d.far{color:var(--faint)}
+.hot td{background:color-mix(in srgb,var(--ok) 7%,transparent)}
+.rest td{color:var(--faint)} .rest .co{color:var(--faint);font-weight:400;white-space:normal}
 
-/* 排行 */
-.rk{display:grid;grid-template-columns:20px 1fr 132px 46px 62px;gap:9px 11px;align-items:center;
-  font-size:12.5px;padding:5px 0}
-.rk+.rk{border-top:1px solid color-mix(in srgb,var(--border) 55%,transparent)}
-.rk .no{font-family:var(--mono);font-size:10px;color:var(--faint);text-align:right}
-.rk .co{color:var(--text);font-weight:600;white-space:nowrap}
-.rk .co em{font-style:normal;font-weight:400;font-size:11px;color:var(--accent);margin-left:5px}
-.bar{height:7px;border-radius:4px;background:var(--raised);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:4px;background:var(--primary)}
-.rk .mo{font-family:var(--mono);font-size:12px;color:var(--text);text-align:right;
-  font-variant-numeric:tabular-nums}
-.rk .mo small{font-size:9.5px;color:var(--faint);margin-left:2px}
-.rk .tox{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-align:center}
-.rk.tail .co{color:var(--muted)}
-.rk.tail .mo{color:var(--faint);font-size:10.5px}
-.rkh{display:grid;grid-template-columns:20px 1fr 132px 46px 62px;gap:11px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;color:var(--faint);
-  padding-bottom:7px;border-bottom:1px solid var(--border);margin-bottom:3px}
-.rkh span:nth-child(4),.rkh span:nth-child(5){text-align:right}
-.rkh span:nth-child(5){text-align:center}
-
-/* 四段門檻 */
-.gate{padding:11px 0;border-top:1px solid var(--border)}
-.gate:first-of-type{border-top:none;padding-top:0}
-.gate .g1{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-.gate b{font-size:13px;color:var(--text);font-weight:640}
-.gate .h{font-family:var(--mono);font-size:9.5px;padding:1px 6px;border-radius:3px;
-  border:1px solid currentColor;white-space:nowrap}
-.h.hi{color:var(--bad)} .h.md{color:var(--warn)} .h.lo{color:var(--ok)} .h.nn{color:var(--faint)}
-.gate p{margin:4px 0 0;font-size:11.5px;color:var(--faint);line-height:1.55}
-.gate p b{font-size:11.5px;color:var(--muted);font-weight:620}
-
-.ins{padding:14px 16px;background:var(--raised);border-radius:8px;
-  border-left:3px solid var(--primary);margin-top:16px}
+.ins{padding:13px 15px;background:var(--raised);border-radius:8px;
+  border-left:3px solid var(--primary);margin-top:15px}
 .ins .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--primary);
   margin-bottom:6px}
 .ins p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.7}
 .ins p b{color:var(--text);font-weight:620}
-.ins .from{font-size:11px;color:var(--faint)}
 
-.gap{padding:16px 24px;background:var(--surface);border:1px solid var(--border);
+.gap{padding:18px 24px;background:var(--surface);border:1px solid var(--border);
   border-radius:var(--r);box-shadow:var(--sh)}
-.gap h2{font-size:13px;font-weight:640;margin:0 0 9px;color:var(--text)}
+.gap h2{font-size:13px;font-weight:640;margin:0 0 10px;color:var(--text)}
 .gap ul{margin:0;padding-left:0;list-style:none;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:6px 22px}
-.gap li{font-size:11.5px;color:var(--faint);line-height:1.55}
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:9px 24px}
+.gap li{font-size:11.5px;color:var(--faint);line-height:1.6}
 .gap li b{color:var(--muted);font-weight:620}
 
-footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;color:var(--faint)}
-@media (max-width:1000px){.two{grid-template-columns:1fr}
-  .rk,.rkh{grid-template-columns:18px 1fr 46px 56px}
-  .rk .bar,.rkh span:nth-child(3){display:none}}
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:var(--faint)}
+@media (max-width:940px){.share{grid-template-columns:1fr}.rings{max-width:210px;margin:0 auto}
+  .chain{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -131,145 +117,132 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;colo
   <h1>競爭者分析</h1>
 </header>
 
+<div class="claim">
+  <p><b>沒有人走到定位 C。</b>合規這一段的 12 家全在同一個層次 —— 功能或多或少，
+    但都停在「看得見車」。用兩條獨立的推論算市佔，結果<b>收斂在 4–12%</b>，
+    而且<b>分不出誰大誰小</b>。真正有訊號的不是規模，是<b>誰已經開始往單那側走</b>。</p>
+</div>
 
-<div class="axis">
-  <h2>三個定位落在 FMS／TMS 的哪一側</h2>
-  <p class="sub">兩條不同的軸：<b>FMS／TMS</b> 分的是管什麼<b>物件</b>（車 vs 單，第 2 章）；
-    <b>A／B／C</b> 分的是買方從哪個<b>預算</b>掏錢（§14.0）。所以 FMS／TMS 切不開 A 和 B ——
-    它切開的是<b>誰有可能走到 C</b>。</p>
-
-  <div class="grid">
-    <div></div>
-    <div class="zh"><b>FMS 側</b><span>車機硬體 · 資料採集<br>駕駛行為 · 車輛健康</span></div>
-    <div class="zh mid"><b>重疊區</b><span>派遣 · 路線規劃<br>執行面可視化</span></div>
-    <div class="zh"><b>TMS 側</b><span>訂單 · 運價<br>承運商管理 · 結算對帳</span></div>
-
-    <div class="row-k" style="--cl:var(--t1)"><b>定位 A</b><span>車管／總務簽字</span></div>
-    <div class="lane" style="--cl:var(--t1)"><div class="seg">看得見車</div></div>
-    <div class="lane mid"></div>
-    <div class="lane"></div>
-
-    <div class="row-k" style="--cl:var(--t2)"><b>定位 B</b><span>法遵／安全簽字</span></div>
-    <div class="lane" style="--cl:var(--t2)"><div class="seg">法規要的資料回傳</div></div>
-    <div class="lane mid"></div>
-    <div class="lane"></div>
-
-    <div class="row-k" style="--cl:var(--accent)"><b>定位 C</b><span>老闆／營運長簽字</span></div>
-    <div class="lane" style="--cl:var(--accent)"><div class="seg">里程 · 燃料</div></div>
-    <div class="lane mid" style="--cl:var(--accent)"><div class="seg">派車決策</div></div>
-    <div class="lane" style="--cl:var(--accent)"><div class="seg">哪一單 · 載了什麼　<span class="lv e" style="margin-left:6px">外推</span></div></div>
+<div class="share">
+  <div class="rings">
+    <svg viewBox="0 0 220 220" role="img" aria-label="市佔推估：SAM 與 SOM 的面積比例">
+      <circle cx="110" cy="110" r="100" fill="var(--t2)" fill-opacity=".18"
+              stroke="var(--t2)" stroke-width="1.4"/>
+      <circle cx="110" cy="110" r="34.2" fill="none" stroke="var(--accent)"
+              stroke-width="1.4" stroke-dasharray="5 4" opacity=".85"/>
+      <circle cx="110" cy="110" r="20.7" fill="var(--accent)" fill-opacity=".85"
+              stroke="var(--accent)" stroke-width="1.4"/>
+    </svg>
+    <div class="cap">面積成正比　·　虛線＝上界</div>
   </div>
 
-  <div class="foot">
-    <div class="who"><b>誰在這裡</b></div>
-    <div class="who c"><b>現行 12 家車機商　全部</b>＋電信商與後裝品牌，合計 ≥20 家
-      <span class="lv e">外推</span></div>
-    <div class="who c"><b>—</b>FMS 側做派遣但不做訂單與運價</div>
-    <div class="who c"><b>ERP／TMS · 租賃車隊 · 保險 · 油卡</b>不在 FMS 名單上，但握著單與成本
-      <span class="lv n">推定</span></div>
-  </div>
+  <div class="calc">
+    <h2>市佔推估：兩條獨立的鏈</h2>
+    <p class="sub">官方不揭露廠商別輛數，所以不能查，只能推。兩條鏈的輸入沒有共用因子。</p>
 
-  <div class="ins">
-    <div class="k">洞察</div>
-    <p><b>往 C 走的時候，對手會換一批人。</b>C 要算「每趟成本 ＝ 里程 × 載重 × 燃料」
-      （ISO 14083），里程與燃料在 FMS 側，但<b>「跑了哪一單、載了什麼」在 TMS 側</b>。
-      第 2 章已查證：FMS 側做派遣<b>但不做訂單與運價</b> ——
-      Samsara 與 Motive 都設 TMS marketplace，那是「這塊我不做」的宣告。
-      <b>現有 12 家，一個都沒跨過去。</b>
-      <span class="from">（觀察筆記 §13.2 · 第 2 章邊界形狀）</span></p>
+    <div class="chain">
+      <div class="ch-k">鏈 ①<span>年資加權</span></div>
+      <div class="ch-b">
+        <p>假設<b>在市場的時間 ∝ 累積裝機</b>。第八次公告 107/12/01 實施，至 115/06 恰為
+          <b>90 個月</b> —— 所以冠祺鴻的 90 是<b>滿格</b>，代表「從制度開始就在」，不是「比較久」。</p>
+        <p class="r">十家年資合計 766 個月 → <b>4.3% – 11.7%</b>　<span class="lv e">外推</span></p>
+      </div>
+    </div>
+
+    <div class="chain">
+      <div class="ch-k">鏈 ②<span>有效競爭者均分</span></div>
+      <div class="ch-b">
+        <p>妥善率月報標出<b>天眼 &lt;10 輛、紘鈦 0 輛</b> —— 尾端趨近於零，
+          實際在分市場的是<b>十家</b>。</p>
+        <p class="r">10 家均分 → <b>10.0%</b>；含全部 12 家 → 8.3%　<span class="lv e">外推</span></p>
+      </div>
+    </div>
+
+    <div class="ins">
+      <div class="k">兩鏈收斂</div>
+      <p>加權 4.3–11.7% 與均分 8.3–10.0% <b>幾乎重疊</b>。原因是前九家的年資落在 69–90 個月之間，
+        差距只有 <b>1.30 倍</b> —— 年資這個變數<b>區辨不出來</b>。
+        <b>收斂提高了區間的信心，但同時說明：用公開資料分不出誰是龍頭。</b>
+        這與「這一段已經商品化」互相佐證。</p>
+    </div>
+
+    <div class="apply">套到定位 B 的 SAM <b>40,280 – 94,781 輛</b>：
+      單一玩家約 <b>1,732 – 11,089 輛</b>　<span class="lv n">無實測可驗</span></div>
   </div>
 </div>
 
-<div class="two">
+<div class="card">
+  <h2>誰比較可能走到 C</h2>
+  <p class="sub">判準：有沒有跨到<b>單那側</b>（訂單、派車、結算）—— 因為 C 要算
+    「每趟成本 ＝ 里程 × 載重 × 燃料」，里程與燃料在車那側，<b>哪一單、載了什麼在單那側</b>。
+    能力欄位取自各家官網公開頁面，<b>是廠商自述，不是查證</b>。</p>
 
-  <div class="card">
-    <h2>現行有車在跑的 12 家</h2>
-    <p class="sub">依連續達 A+（妥善率 ≥95%）的月數排。
-      這 12 家<b>毒化物與事廢兩段全過</b>（兩份官方名單交叉比對，完全重疊），而且<b>全部是車機硬體＋定位平台 —— 沒有一家做單那側</b>。</p>
+  <table>
+    <thead><tr><th>廠商</th><th class="mo">年資</th><th class="mo">加權<br>市佔</th>
+      <th>對外可見的能力</th><th>到 C 的距離</th></tr></thead>
+    <tbody>
+      <tr class="hot">
+        <td class="co">弋揚<em>衛星犬</em></td><td class="mo">69</td><td class="mo">9.0%</td>
+        <td class="ab"><b>獨立 TMS 產品</b>：派車、訂單、電子簽收、API／ERP 串接。
+          另有 ESG 方案（碳排、油耗、成本）</td>
+        <td class="d near">已跨到單那側</td></tr>
+      <tr>
+        <td class="co">天眼</td><td class="mo">—</td><td class="mo">&lt;10 輛</td>
+        <td class="ab">產品頁含 TMS／ERP；<b>獨立碳盤查系統</b></td>
+        <td class="d mid">有意圖，規模極小</td></tr>
+      <tr>
+        <td class="co">銳俤<em>瞰車大</em></td><td class="mo">69</td><td class="mo">9.0%</td>
+        <td class="ab">油耗、保養、成本；週邊硬體（酒測、胎壓、擷影）。
+          <b>與中華汽車電動商用車合作</b></td>
+        <td class="d mid">有通路，無單側</td></tr>
+      <tr>
+        <td class="co">中興保全<em>中保</em></td><td class="mo">82</td><td class="mo">10.7%</td>
+        <td class="ab">保全本業 ＋ 衛星車隊管理。<b>保全業是一整群</b> ——
+          新光、華信也都做 GPS 車隊</td>
+        <td class="d mid">通路強，單側未見</td></tr>
+      <tr>
+        <td class="co">康訊</td><td class="mo">88</td><td class="mo">11.5%</td>
+        <td class="ab">冷鏈、資產追蹤；有國際展會佈局</td>
+        <td class="d far">公開資訊少</td></tr>
+      <tr>
+        <td class="co">冠祺鴻</td><td class="mo">90<i>滿格</i></td><td class="mo">11.7%</td>
+        <td class="ab"><b>查無官網</b> —— 年資第一，卻沒有對外產品行銷</td>
+        <td class="d far">推測為純硬體</td></tr>
+      <tr class="rest">
+        <td class="co">長輝 89 · 易通 88 · 航釱 84 · 富德爾 74 · 捷世林 33 · 宇暘</td>
+        <td class="mo">—</td><td class="mo">—</td>
+        <td class="ab">網站資訊過薄或查無產品頁</td>
+        <td class="d far">資訊不足</td></tr>
+    </tbody>
+  </table>
 
-    <div class="rkh"><span></span><span>廠商</span><span>連續 A+</span><span>月</span><span>毒化物<br>型號</span></div>
-
-    <div class="rk"><span class="no">1</span><span class="co">冠祺鴻科技行</span>
-      <span class="bar"><i style="width:100%"></i></span><span class="mo">90</span><span class="tox">1</span></div>
-    <div class="rk"><span class="no">2</span><span class="co">長輝資訊科技</span>
-      <span class="bar"><i style="width:98.9%"></i></span><span class="mo">89</span><span class="tox">2</span></div>
-    <div class="rk"><span class="no">3</span><span class="co">康訊科技</span>
-      <span class="bar"><i style="width:97.8%"></i></span><span class="mo">88</span><span class="tox">2</span></div>
-    <div class="rk"><span class="no">3</span><span class="co">易通通訊</span>
-      <span class="bar"><i style="width:97.8%"></i></span><span class="mo">88</span><span class="tox">1</span></div>
-    <div class="rk"><span class="no">5</span><span class="co">航釱科技</span>
-      <span class="bar"><i style="width:93.3%"></i></span><span class="mo">84</span><span class="tox">1</span></div>
-    <div class="rk"><span class="no">6</span><span class="co">中興保全科技<em>中保</em></span>
-      <span class="bar"><i style="width:91.1%"></i></span><span class="mo">82</span><span class="tox">2</span></div>
-    <div class="rk"><span class="no">7</span><span class="co">富德爾科技</span>
-      <span class="bar"><i style="width:82.2%"></i></span><span class="mo">74</span><span class="tox">1</span></div>
-    <div class="rk"><span class="no">8</span><span class="co">銳俤科技<em>瞰車大</em></span>
-      <span class="bar"><i style="width:76.7%"></i></span><span class="mo">69</span><span class="tox">1</span></div>
-    <div class="rk"><span class="no">8</span><span class="co">弋揚科技<em>衛星犬</em></span>
-      <span class="bar"><i style="width:76.7%"></i></span><span class="mo">69</span><span class="tox">2</span></div>
-    <div class="rk"><span class="no">10</span><span class="co">捷世林科技</span>
-      <span class="bar"><i style="width:36.7%"></i></span><span class="mo">33</span><span class="tox">1</span></div>
-    <div class="rk tail"><span class="no">—</span><span class="co">宇暘科技</span>
-      <span class="bar"></span><span class="mo">A 級</span><span class="tox">1</span></div>
-    <div class="rk tail"><span class="no">—</span><span class="co">天眼衛星科技</span>
-      <span class="bar"></span><span class="mo">&lt;10 輛</span><span class="tox">1</span></div>
-
-    <div class="ins">
-      <div class="k">洞察</div>
-      <p><b>審驗擋的是新進者，不是現有競爭。</b>四段法規逐條辦審驗，
-        但通過的是<b>同一批 12 家</b>，而且他們每一條都過了 ——
-        跟「土石方審驗是護城河」的直覺相反。
-        <span class="from">（環境部妥善率月報 2026-07 · 化學物質管理署 2026-08-18）</span></p>
-    </div>
+  <div class="ins">
+    <div class="k">洞察</div>
+    <p><b>年資排第一的沒有官網，跨到單那側的排第八。</b>
+      規模與往 C 走的意願<b>不相關</b> —— 十家都在 69–90 個月的同一個年資帶裡，
+      但只有弋揚做出了 TMS 產品。
+      <b>該追的是誰在動，不是誰比較大。</b></p>
   </div>
-
-  <div class="card">
-    <h2>四段的門檻高低不一樣</h2>
-    <p class="sub">同樣叫「合規」，進入成本差很多。</p>
-
-    <div class="gate">
-      <div class="g1"><b>毒化物</b><span class="h hi">最高</span></div>
-      <p>型號核可 ＋ <b>逐車審驗</b>。法規明文防規避（禁拆裝斷電、通訊不得中斷）。
-        222 家運送業者、1,780 輛核可車</p>
-    </div>
-    <div class="gate">
-      <div class="g1"><b>事廢</b><span class="h md">中</span></div>
-      <p>型式核可 ＋ <b>每月妥善率評比</b>，等級公開。
-        曾登記 23 家，現行有車 12 家 —— <b>汰弱機制是公開的</b></p>
-    </div>
-    <div class="gate">
-      <div class="g1"><b>土石方</b><span class="h nn">名單查無</span></div>
-      <p>國土署未公開合格車機名單。但採<b>雙軌並行</b> ——
-        環保機可訊號拋接介接內政部系統，<b>事廢的車機能直接用</b></p>
-    </div>
-    <div class="gate">
-      <div class="g1"><b>遊覽車</b><span class="h lo">最低</span></div>
-      <p>官方明示<b>不限採用何種型式或設備</b>。既有 GPS 擴充韌體即可，無須加裝。
-        公路局補助 49%、上限 2,000 元／車</p>
-    </div>
-
-    <div class="ins">
-      <div class="k">洞察</div>
-      <p>門檻最高的毒化物<b>只有 1,780 輛</b>；
-        門檻最低的遊覽車有 <b>13,500 輛</b>。
-        <b>難進的地方小，好進的地方大。</b></p>
-    </div>
-  </div>
-
 </div>
 
 <div class="gap">
   <h2>這一頁查不到的</h2>
   <ul>
-    <li><b>各家市佔、裝機數、營收</b> <span class="lv n">查無</span> —— 已查五條官方路徑（妥善率月報、車機商資訊、檔案下載、清運機具查詢、毒化物核可車輛）<b>皆無廠商別輛數</b>。環境部手上有（妥善率算式要用「該月車機車輛總數」），<b>但不揭露</b></li>
-    <li><b>國土署土石方合格車機名單</b> <span class="lv n">查無</span> —— 未公開；流傳的「8 家」追不到官方來源，不採用</li>
-    <li><b>非合規段的完整業者名單</b> <span class="lv e">外推</span> —— 無官方名單，已知遠傳運輸雲等，合計 ≥20 家</li>
-    <li><b>「中華」是否為中華電信</b> <span class="lv n">待確認</span> —— 曾在事廢名單、現已無車。若是，代表電信商進過又退出</li>
+    <li><b>各家市佔、裝機數、營收</b> <span class="lv n">查無</span> —— 已查五條官方路徑
+      （妥善率月報、車機商資訊、檔案下載、清運機具查詢、毒化物核可車輛）<b>皆無廠商別輛數</b>。
+      環境部手上有（妥善率算式要用「該月車機車輛總數」），<b>但不揭露</b></li>
+    <li><b>「長期深度客戶關係」的實證</b> <span class="lv n">查無</span> ——
+      這是目前判斷誰走得到 C 的核心假設，但公開資料查不到客戶名單與合約年限</li>
+    <li><b>國土署土石方合格車機名單</b> <span class="lv n">查無</span> ——
+      未公開；流傳的「8 家」追不到官方來源，不採用</li>
+    <li><b>非合規段的完整業者名單</b> <span class="lv e">外推</span> ——
+      已知遠傳運輸雲、鑫豪美、上德益等，合計 ≥20 家；保全業（中興、新光、華信）亦在其中</li>
   </ul>
 </div>
 
 </div>
-<footer>來源：環境部資源循環署妥善率月報（115 年 6 月）、環境部化學物質管理署（2026-08-18）、內政部國土管理署、交通部公路局。明細見<b>附錄 · 方法與來源</b>與 <code>競爭者分析.md</code>。</footer>
+<footer>來源：環境部資源循環署妥善率月報（115 年 6 月）、環境部化學物質管理署（2026-08-18）、各廠商官網。
+四段法規的審驗門檻對照移至 <code>競爭者分析.md</code>。</footer>
 
 <nav id="deck-nav" aria-label="簡報導覽">
   <a class="dn-btn" href="slide-05-sizing-b.html" aria-label="上一頁：定位 B 的市場規模" data-nav="prev">←</a>
@@ -281,7 +254,7 @@ footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12.5px;colo
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item on" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>合規四段現行有車的 12 家 —— 以及審驗到底擋住了誰</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item on" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>沒有人走到 C —— 市佔推估 4–12%，但真正的訊號是誰在往單那側走</em></span></a>
     <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
