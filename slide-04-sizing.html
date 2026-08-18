@@ -209,7 +209,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
         <div class="grow">× <span id="g-mul">1.60</span> →
           <span id="g-sam">34,723</span> 輛　·　<span id="gm-sam">1.67 – 9.04</span> 億／年</div>
         <div class="s">已有 FMS 訂閱的比例　<span class="lv v">查證</span><span class="lv e">外推</span><br>
-          下界 5.1% 法規強制反推　·　上界 26.7% 歐洲滲透率</div>
+          下界 21.9% 法規強制反推　·　上界 26.7% 歐洲滲透率　<span class="lv n">兩端口徑不同</span></div>
       </div>
       <div class="ins">
         <div class="k">洞察</div>
@@ -246,26 +246,33 @@ footer code{font-family:var(--mono);font-size:11.5px}
   <div class="dial">
     <label><span>SAM　已有 FMS 訂閱的比例</span>
       <span><b id="p-sam">26.7%</b><span class="oob" id="oob-sam" hidden>超出依據範圍</span></span></label>
-    <div class="tw" style="--zg:linear-gradient(to right,transparent 0 3.68%,
-        color-mix(in srgb,var(--ok) 55%,transparent) 3.68% 41.58%,
-        color-mix(in srgb,var(--warn) 42%,transparent) 41.58% 69.82%,
-        transparent 69.82% 100%)">
+    <div class="tw" style="--zg:linear-gradient(to right,
+        color-mix(in srgb,var(--ok) 55%,transparent) 0 12.60%,
+        color-mix(in srgb,var(--warn) 42%,transparent) 12.60% 54.86%,
+        transparent 54.86% 100%)">
       <div class="zones"></div>
-      <input type="range" id="s-sam" min="3" max="60" step="0.1" value="26.7" aria-label="SAM 比例">
+      <input type="range" id="s-sam" min="21.9" max="60" step="0.1" value="26.7" aria-label="SAM 比例">
     </div>
     <div class="tk">
-      <span style="left:3.68%">5.1%<i>法規下界</i></span>
-      <span style="left:41.58%">26.7%<i>歐洲 2024</i></span>
-      <span style="left:69.82%">42.8%<i>歐洲 2029 預測</i></span>
+      <span style="left:0%">21.9%<i>法規下界</i></span>
+      <span style="left:12.60%">26.7%<i>歐洲 2024</i></span>
+      <span style="left:54.86%">42.8%<i>歐洲 2029 預測</i></span>
     </div>
     <dl class="why">
-      <dt class="g">綠段　5.1–26.7%</dt>
-      <dd>下界＝毒化物 1,400 ＋土石方審驗通過 2,742（<b>強制 ⇒ 必然已裝</b>）；
+      <dt class="g">綠段　21.9–26.7%</dt>
+      <dd><b>滑桿拉不到 21.9% 以下</b> —— 那一段是法規強制、必然已裝。下界＝毒化物 <b>1,780</b> ＋土石方 <b>~16,000</b>（<b>強制 ⇒ 必然已裝</b>，官方 2026-07／08）；
         上界＝Berg 公布的歐洲當前滲透率</dd>
       <dt class="y">黃段　26.7–42.8%</dt>
       <dd>Berg 同時預測歐洲 2029 達 42.8% —— <b>台灣走上同樣成熟軌跡</b>的情境</dd>
       <dt>42.8% 以上</dt>
       <dd>沒有依據</dd>
+      <dt class="n">⚠️ 兩端不可比</dt>
+      <dd>下界是<b>台灣營業貨運 81,281</b> 的口徑；上界的 26.7% 分母是
+        <b>歐洲 67.6M</b>，其中 <b>89%</b> 是輕商用車與公司自用小客車 ——
+        <b>台灣這個分母刻意排除的東西</b>。
+        <b>綠段的寬窄不代表台灣離歐洲多遠</b>，只代表兩把尺不一樣。
+        若把事廢 ~9,000 也算進下界會變 <b>32.9%</b>、<b>反而超過上界</b> ——
+        那正是這個比較失效的證據，不是台灣領先</dd>
     </dl>
   </div>
   <div class="dial">
@@ -282,11 +289,12 @@ footer code{font-family:var(--mono);font-size:11.5px}
     </div>
     <dl class="why">
       <dt class="g">綠段　≤ 5.0%</dt>
-      <dd>環境部核可的合規車機商約 <b>15 家</b>，加電信商與後裝品牌 ——
+      <dd>合規段現行有車的 <b>12 家</b>，加電信商與後裝品牌 ——
         已知 <b>≥20 家</b>在搶，均分就是 5%。落在均分以下<b>不需要特別理由</b></dd>
       <dt>超過 5.0%</dt>
       <dd>等於宣稱<b>高於同業平均</b> —— 可能成立，但要有證據。
-        而台灣各家市佔<b>無官方統計、無公會調查</b></dd>
+        而台灣各家市佔<b>無官方統計、無公會調查</b>；
+        已查五條官方路徑<b>皆無廠商別輛數</b>，環境部有但不揭露</dd>
       <dt>實際數字</dt>
       <dd><b>只有內部有</b> —— 填進來這格就從推估變觀測</dd>
     </dl>
