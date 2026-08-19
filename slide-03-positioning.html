@@ -40,8 +40,8 @@ h1{font-size:44px;font-weight:700;margin:0 0 12px;letter-spacing:-.035em;line-he
 .road.A{--ln:var(--a)} .road.B{--ln:var(--b)} .road.C{--ln:var(--c)}
 /* 並列比較要能橫向對讀：六個區塊在三欄之間對齊同一條基線 */
 @supports (grid-template-rows:subgrid){@media (min-width:1001px){
-  .roads{grid-template-rows:repeat(6,auto)}
-  .road{display:grid;grid-row:span 6;grid-template-rows:subgrid}
+  .roads{grid-template-rows:repeat(7,auto)}
+  .road{display:grid;grid-row:span 7;grid-template-rows:subgrid}
   .road .state{margin-top:0}   /* 蓋掉 flex 版的 margin-top:auto，否則會被推到列軌底部 */
 }}
 .rd-top{padding:20px 21px 17px}
@@ -51,6 +51,10 @@ h1{font-size:44px;font-weight:700;margin:0 0 12px;letter-spacing:-.035em;line-he
 .rd-top .one{margin:0;font-size:13.5px;color:var(--muted);line-height:1.5}
 
 .blk{padding:15px 21px;border-top:1px solid var(--border)}
+.blk.sign p{margin:0;font-size:13.5px;color:var(--text);font-weight:640}
+.blk.sign .bud{font-size:11.5px;color:var(--faint);font-weight:400}
+.blk.sign .ta{margin-top:6px;font-size:11.5px;color:var(--muted);font-weight:400;line-height:1.55}
+.blk.sign .ta b{color:var(--text)}
 .blk .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
   margin-bottom:6px}
 .blk p{margin:0;font-size:13.5px;line-height:1.62;color:var(--muted)}
@@ -103,7 +107,9 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>車隊管理系統供應商</h2>
       <p class="one">讓車隊<b>看得見、管得住</b>。</p>
     </div>
-    <div class="blk">
+    <div class="blk sign"><div class="k">誰簽字</div>
+        <p><b>車管／總務</b>　<span class="bud">IT／總務預算</span></p></div>
+      <div class="blk">
       <div class="k">痛什麼</div>
       <p>車現在在哪，講不出來。貨主打電話問「到哪了」，只能回「我問一下」。</p>
       <p>司機有沒有繞路、油有沒有少，全靠猜。車被開走了，找不回來。</p>
@@ -139,7 +145,9 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>合規解決方案供應商</h2>
       <p class="one">讓車隊<b>通過稽查、拿得出證據</b>。</p>
     </div>
-    <div class="blk">
+    <div class="blk sign"><div class="k">誰簽字</div>
+        <p><b>法遵／安全</b>　<span class="bud">合規預算</span></p></div>
+      <div class="blk">
       <div class="k">痛什麼</div>
       <p>沒裝就不能載，法規直接決定車能不能出去。</p>
           <p>土石方新制 2026-01-01 生效，半年內<b>雙軌車機裝了超過 1.6 萬輛</b> ——
@@ -178,7 +186,10 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>車隊營運成本的優化者</h2>
       <p class="one">讓車隊的<b>營運成本確實下降</b>。</p>
     </div>
-    <div class="blk">
+    <div class="blk sign"><div class="k">誰簽字</div>
+        <p><b>老闆／營運長</b>　<span class="bud">省下來的錢</span></p>
+        <p class="ta">車隊規模<b>約 6–50 台</b> —— 大到營運複雜、小到養不起 IT</p></div>
+      <div class="blk">
       <div class="k">痛什麼</div>
       <p>錢花到哪去了，說不出精確的。最大的幾塊成本是<b>人、燃料、車輛持有</b>，
         而現有系統對這幾塊多半只做到記錄。</p>
