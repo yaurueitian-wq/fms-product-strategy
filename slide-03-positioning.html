@@ -40,8 +40,8 @@ h1{font-size:44px;font-weight:700;margin:0 0 12px;letter-spacing:-.035em;line-he
 .road.A{--ln:var(--a)} .road.B{--ln:var(--b)} .road.C{--ln:var(--c)}
 /* 並列比較要能橫向對讀：六個區塊在三欄之間對齊同一條基線 */
 @supports (grid-template-rows:subgrid){@media (min-width:1001px){
-  .roads{grid-template-rows:repeat(7,auto)}
-  .road{display:grid;grid-row:span 7;grid-template-rows:subgrid}
+  .roads{grid-template-rows:repeat(6,auto)}
+  .road{display:grid;grid-row:span 6;grid-template-rows:subgrid}
   .road .state{margin-top:0}   /* 蓋掉 flex 版的 margin-top:auto，否則會被推到列軌底部 */
 }}
 .rd-top{padding:20px 21px 17px}
@@ -107,17 +107,13 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>車隊管理系統供應商</h2>
       <p class="one">讓車隊<b>看得見、管得住</b>。</p>
     </div>
-    <div class="blk sign"><div class="k">誰簽字</div>
-        <p><b>車管／總務</b>　<span class="bud">IT／總務預算</span></p></div>
+    <div class="blk sign"><div class="k">什麼時候會換</div>
+        <p><b>車輛汰換或系統換約時</b></p>
+        <p class="ta">但此段已商品化，換誰差異不大，<b>價格為主要變數</b>。</p></div>
       <div class="blk">
-      <div class="k">痛什麼</div>
-      <p>車現在在哪，講不出來。貨主打電話問「到哪了」，只能回「我問一下」。</p>
-      <p>司機有沒有繞路、油有沒有少，全靠猜。車被開走了，找不回來。</p>
-    </div>
-    <div class="blk">
-      <div class="k">他現在怎麼忍</div>
-      <p><b>打電話問司機。</b>現場的習慣是「有事自己看一眼」，平常不看。</p>
-      <p>而且<b>不管哪一種車隊，都把「看得到車在哪」當成本來就該有的</b> —— 痛點成立，但不會為此加價。</p>
+      <div class="k">痛點與現行做法</div>
+      <p>車輛位置無法即時掌握；繞路、油耗、失竊皆憑推測。現行做法為<b>電話詢問司機</b>，日常不主動查看。</p>
+      <p>⚠️ 各類車隊皆視「看得到車」為<b>基本配備</b> —— 痛點成立，但不構成加價理由。</p>
     </div>
     <div class="blk">
       <div class="k">具體長什麼樣</div>
@@ -145,20 +141,13 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>合規解決方案供應商</h2>
       <p class="one">讓車隊<b>通過稽查、拿得出證據</b>。</p>
     </div>
-    <div class="blk sign"><div class="k">誰簽字</div>
-        <p><b>法遵／安全</b>　<span class="bud">合規預算</span></p></div>
+    <div class="blk sign"><div class="k">什麼時候會換</div>
+        <p><b>法規生效日之前</b></p>
+        <p class="ta">期限即成交日。未裝機不得營運，無決策空間。</p></div>
       <div class="blk">
-      <div class="k">痛什麼</div>
-      <p>沒裝就不能載，法規直接決定車能不能出去。</p>
-          <p>土石方新制 2026-01-01 生效，半年內<b>雙軌車機裝了超過 1.6 萬輛</b> ——
-            不是有人想裝，是<b>不裝就不能出車</b>。</p>
-    </div>
-    <div class="blk">
-      <div class="k">他現在怎麼忍</div>
-      <p><b>能紙本就紙本。</b>冷鏈的 GHP 只要求每日抽測四次並作成紀錄，
-        <b>紙本電子並行皆可</b> —— 法規本身沒有逼他數位化。</p>
-      <p>非忍不可的時候就轉嫁。遊覽車那條的做法是把月租算在駕駛頭上，
-        結果是<b>工會抬棺抗議、200 輛包圍交通部</b>。</p>
+      <div class="k">痛點與現行做法</div>
+      <p><b>未裝機即不得營運</b>，法規直接決定車輛能否出勤。土石方新制 2026-01-01 生效，半年內雙軌車機逾 <b>1.6 萬輛</b>。</p>
+      <p>法規未強制者維持紙本 —— GHP 僅要求每日抽測四次並作成紀錄，紙本電子並行皆可。成本轉嫁易生抗爭：遊覽車案將月租轉由駕駛負擔，引發<b>工會抬棺抗議、200 輛包圍交通部</b>。</p>
     </div>
     <div class="blk">
       <div class="k">具體長什麼樣</div>
@@ -186,20 +175,13 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <h2>車隊營運成本的優化者</h2>
       <p class="one">讓車隊的<b>營運成本確實下降</b>。</p>
     </div>
-    <div class="blk sign"><div class="k">誰簽字</div>
-        <p><b>老闆／營運長</b>　<span class="bud">省下來的錢</span></p>
-        <p class="ta">車隊規模<b>約 6–50 台</b> —— 大到營運複雜、小到養不起 IT</p></div>
+    <div class="blk sign"><div class="k">什麼時候會換</div>
+        <p><b>汰換之前就得進場</b></p>
+        <p class="ta">需在客戶換車當日，已是<b>能證明節省多少</b>的那一方。</p></div>
       <div class="blk">
-      <div class="k">痛什麼</div>
-      <p>錢花到哪去了，說不出精確的。最大的幾塊成本是<b>人、燃料、車輛持有</b>，
-        而現有系統對這幾塊多半只做到記錄。</p>
-      <p>閒置與空駛<b>看得到，卻改不了</b>。</p>
-    </div>
-    <div class="blk">
-      <div class="k">他現在怎麼忍</div>
-      <p><b>憑經驗抓，看月報表。</b></p>
-      <p>而且他沒有基準 —— 「一台車一年到底花多少」這個數字我們<b>查不到</b>，
-        客戶自己多半也沒量過。<b>沒有基準，就沒有人能證明省了多少。</b></p>
+      <div class="k">痛點與現行做法</div>
+      <p><b>成本去向無法精確歸屬。</b>最大宗為人力、燃料、車輛持有，現行系統多僅止於記錄；閒置與空駛可見，但無從改善。</p>
+      <p>現行做法為憑經驗判斷、月報表事後檢視。⚠️ 且<b>缺乏基準</b> ——「單車年營運成本」外部查無，客戶亦多未自行量測；<b>無基準即無從證明節省</b>。</p>
     </div>
     <div class="blk">
       <div class="k">具體長什麼樣</div>
