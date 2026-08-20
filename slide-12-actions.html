@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="把 TOWS 四個象限拆成九條行動 —— 各自的第一步、前置與時序">
+<title>行動方案</title>
+<style>
+:root{
+  --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
+  --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
+  --primary:#60A5FA; --accent:#FB923C;
+  --t1:#60A5FA; --t2:#818CF8; --t3:#34D399;
+  --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  --r:10px; --sh:0 1px 3px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:5px}
+.deck{max-width:1240px;margin:0 auto;padding:40px 32px 36px}
+header{margin-bottom:20px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:9px}
+h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.15}
+.card{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
+
+/* 行動列 */
+.act{display:grid;grid-template-columns:30px 96px 1fr 1fr 168px;gap:0 16px;
+  align-items:start;padding:15px 0;border-top:1px solid
+  color-mix(in srgb,var(--border) 55%,transparent)}
+.act:first-of-type{border-top:none;padding-top:2px}
+.act:has(.qd.neu){opacity:.82}
+.no{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--faint);padding-top:2px}
+.qd{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+  padding:2px 8px;border-radius:4px;justify-self:start;white-space:nowrap;
+  border:1px solid currentColor}
+.qd.so{color:var(--ok)} .qd.st{color:var(--t3)} .qd.wo{color:var(--t1)} .qd.wt{color:var(--warn)} .qd.base{color:var(--faint)} .qd.neu{color:var(--faint);opacity:.85}
+.dowhat{font-size:13.5px;font-weight:660;color:var(--text);line-height:1.5}
+.dowhat em{display:block;font-style:normal;font-size:11.5px;color:var(--faint);
+  font-weight:400;margin-top:4px;line-height:1.6}
+.step{font-size:12.5px;color:var(--muted);line-height:1.65}
+.step b{color:var(--text);font-weight:620}
+.pre{font-size:11.5px;color:var(--faint);line-height:1.6}
+.pre b{color:var(--warn);font-weight:620}
+.pre code{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.ah{display:grid;grid-template-columns:30px 96px 1fr 1fr 168px;gap:0 16px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
+  padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:4px}
+
+/* 時序 */
+.tl{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.tb{padding:15px 17px;background:var(--raised);border-radius:8px;border-top:3px solid var(--border)}
+.tb.n{border-top-color:var(--ok)} .tb.m{border-top-color:var(--t1)}
+.tb.l{border-top-color:var(--warn)}
+.tk{font-family:var(--mono);font-size:10px;letter-spacing:.12em;margin-bottom:7px}
+.tb.n .tk{color:var(--ok)} .tb.m .tk{color:var(--t1)} .tb.l .tk{color:var(--warn)}
+.tb p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.68}
+.tb p b{color:var(--text);font-weight:620}
+
+.punch{padding:16px 19px;background:var(--raised);border-radius:8px;
+  border-left:3px solid var(--accent);font-size:13.5px;color:var(--muted);line-height:1.75}
+.punch b{color:var(--text);font-weight:660}
+.punch>b:first-child{color:var(--accent);font-size:14.5px}
+
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:var(--faint);
+  line-height:1.7}
+footer code{font-family:var(--mono);font-size:11.5px}
+@media (max-width:1000px){.act,.ah{grid-template-columns:1fr}.ah{display:none}
+  .act{gap:7px 0}.tl{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<header>
+  <div class="eyebrow">第 12 章 · Roadmap</div>
+  <h1>行動方案</h1>
+</header>
+
+<div class="card">
+  <div class="ah">
+    <span>#</span><span>來源象限</span><span>做什麼</span><span>第一步</span><span>前置／卡在哪</span>
+  </div>
+
+  <div class="act">
+    <span class="no">1</span><span class="qd so">SO</span>
+    <div class="dowhat">維持產品穩定，累積客戶信任<em>深度合作的前提，不是宣告出來的</em></div>
+    <div class="step">先把目前產品的<b>功能性與穩定性</b>顧好 —— <b>信任是往下走的入場條件</b>。
+      沒有合作關係，更深度的<b>需求探勘</b>與<b>數據應用</b>（行動 2）不容易展開；
+      而稀有性只從「一起做」長得出來 —— 寫得下來的產業知識 AI 拿得走，
+      <b>一起做才知道的拿不走</b>。</div>
+    <div class="pre">現狀盤點：功能清單、已知 bug 分類<br>
+      <b>這是持續的，不是一次性的</b></div>
+  </div>
+
+  <div class="act">
+    <span class="no">2</span><span class="qd so">SO</span>
+    <div class="dowhat">勾勒既有客戶的運務成本基準<em>用現有資料，先做得出來的部分</em></div>
+    <div class="step">以<b>新竹物流</b>的運務為對象 —— 里程、時間、位置車機已在收，
+      <b>不需新增硬體</b>，可先回推一段基準期。<br>
+      其性質為<b>離開「看得到車」這個品類</b>的第一步，而非新增一張報表。</div>
+    <div class="pre">冷鏈實際台數 <code>A-2.0</code><br>
+      <b>可立即動</b>，資料在自己手上</div>
+  </div>
+
+  <div class="act">
+    <span class="no">3</span><span class="qd so">SO</span>
+    <div class="dowhat">補上成本歸屬<em>行動 2 碰得到的邊界</em></div>
+    <div class="step">行動 2 只能用<b>「車」那側</b>的資料勾出輪廓；
+      要把成本掛到<b>趟次或單</b>上，得拿到<b>「單」那一側</b>（工單／聯單／磅單）。<br>
+      九家中僅 3 家有 ERP 串接，且<b>尚未觀察到業者公開宣稱做歸屬</b> —— 這是<b>從 provider 變優化者的分界</b>。</div>
+    <div class="pre">既有 ERP／聯單介接的可行性<br>
+      <b>焚化爐專案的內容未確認</b></div>
+  </div>
+
+  <div class="act">
+    <span class="no">4</span><span class="qd so">SO</span>
+    <div class="dowhat">重排產品功能優先序<em>投入比重跟著施力點翻轉</em></div>
+    <div class="step">第 8 章已證：省油類作用在 <b>25.0%</b>，路線與調度類作用在 <b>48.1%</b>。
+      第 7 章三組功能中，<b>車輛與能源</b>那五項是既有業者的標準配備，
+      依現有競業資料，<b>調度與路線</b>那五項尚未見明確佔位者。<b>投入比重應跟著翻。</b></div>
+    <div class="pre">模組實際使用率 <code>A-3.7</code><br>
+      <b>這是排序，不是取捨</b> —— 兩組都有用</div>
+  </div>
+
+  <div class="act">
+    <span class="no">5</span><span class="qd wt">WT</span>
+    <div class="dowhat">選定目標客群<em>深化要有對象</em></div>
+    <div class="step">判準<b>不只是規模</b> —— 技術合作要的是<b>意願與配合度</b>。<br>
+      規模太大者<b>能自建</b>（台灣大車隊 24,000 輛）、決策也慢；
+      太小者<b>資料量不足以長出產業深度</b>。<br>
+      ⇒ 要的是<b>願意一起做、且資料量夠</b>的那一段 ——
+      <b>可能比「中間帶」更小，邊界目前無法界定</b>。</div>
+    <div class="pre">現有客戶的規模與集中度 <code>A-2.4</code><br>
+      車隊規模分布已有實測樣本，可擴大 <code>B-1</code>、<code>B-2</code></div>
+  </div>
+
+  <div class="act">
+    <span class="no">6</span><span class="qd st">ST</span>
+    <div class="dowhat">換計價軌道<em>ESCO 第 ③④ 步：固定服務費 ＋ 績效保證</em></div>
+    <div class="step">在行動 2 的基準上談<b>一份保證合約</b>，脫離每月
+      <b>400 – 480 元</b>的比價軌道。<b>不需要「分潤比例」這個參數。</b></div>
+    <div class="pre">現行定價與毛利率 <code>A-2.5</code><br>
+      <b>需行動 2 先完成</b></div>
+  </div>
+
+  <div class="act">
+    <span class="no">7</span><span class="qd wo">WO</span>
+    <div class="dowhat">★ 建立調度與路線的能力<em>唯一能造出優勢的一條</em></div>
+    <div class="step"><b>第一步是建立承接的組織</b> —— 沒有專責團隊，外購或合作亦無從承接
+      （VRIO 的 O 為 ✗）。<br>
+      能力本身則是<b>求解器外購、問題模型自建</b>：VRP 有成熟的開源與商用求解器，
+      <b>門檻不在演算法</b>。真正貴的是<b>建模</b>（時窗、車型、溫層、工時、靠行規則）、
+      <b>資料品質</b>（行程時間、服務時間）、<b>落地</b>（調度員會不會照著做）。</div>
+    <div class="pre">目前做到哪 <code>A-3.8</code>、專責團隊 <code>A-3.9</code><br>
+      台灣中短程配送的<b>行程時間資料品質未確認</b></div>
+  </div>
+
+  <div class="act">
+    <span class="no">8</span><span class="qd wt">WT</span>
+    <div class="dowhat">改掉成長指標<em>不再以新增裝機數衡量</em></div>
+    <div class="step">改以<b>既有客戶的節省金額</b>為 KPI。
+      搶新裝機是把有限的量能投在<b>長期效益最差的地方</b> ——
+      效益止於現金流，不累積為市場位置。</div>
+    <div class="pre">營收結構 <code>A-2.6</code><br>
+      <b>這是一個決定，不是專案</b></div>
+  </div>
+
+  <div class="act">
+    <span class="no">9</span><span class="qd base">基礎</span>
+    <div class="dowhat">補齊內部資料缺口<em>所有推論與行動的共同前置</em></div>
+    <div class="step">內部可提供的 <b>A 類 13 項</b>目前多數未填 ——
+      其中 <code>A-2.0</code>、<code>A-2.6</code>、<code>A-3.8</code>、<code>A-3.9</code>
+      是上列多條的前置。<br>
+      <b>沒有數據支持的推論，不能當成決策依據</b> ——
+      本簡報標為〔查無〕〔假設〕者皆屬此類。</div>
+    <div class="pre">全表見 <code>內部輸入清單.md</code><br>
+      <b>這條先做，其餘才踏實</b></div>
+  </div>
+
+
+  <div class="act">
+    <span class="no">10</span><span class="qd neu">中立</span>
+    <div class="dowhat">取得強制段審驗<em>得失相抵，先問內部再談要不要</em></div>
+    <div class="step"><b>能打開 40,280 輛</b>（TAM 下界），且 12 家都通過過 —— <b>可考取</b>。<br>
+      <b>正面</b>：一旦拿到客戶就綁得住 —— <b>換機成本對競業一樣有效</b>；
+      且能與現有 TMS／FMS <b>疊加護城河深度</b>，是續命的手段。<br>
+      <b>負面</b>：市場已被瓜分，剩下的不易搶；且與<b>行動 7 競爭同一批人力</b>，
+      也稀釋<b>議價權</b>。</div>
+    <div class="pre"><b>先問內部</b>：有無審驗實績、是否具執行能力 <code>A-3.10</code><br>
+      兩者不能同時是第一優先</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="tl">
+    <div class="tb n">
+      <div class="tk">現在就能動</div>
+      <p><b>行動 1</b>（穩定與信任）、<b>行動 8</b>（改指標）、<b>行動 9</b>（補齊資料）——
+        三者都不必等外部條件：一個是<b>持續的日常</b>、一個是<b>一個決定</b>、
+        一個<b>內部就給得出來</b>。</p>
+    </div>
+    <div class="tb m">
+      <div class="tk">接著</div>
+      <p><b>行動 2 至 6</b> —— 建立在信任與資料之上。
+        先有可信的<b>量測</b>（2、3），才談得上<b>收費方式</b>（6）；
+        而<b>優先序</b>（4）與<b>客群</b>（5）決定往哪裡深化。</p>
+    </div>
+    <div class="tb l">
+      <div class="tk">最貴、最慢，也最關鍵</div>
+      <p><b>行動 7</b>（調度與路線的能力）—— 其餘八條就算全部做到，
+        也只是把<b>均勢守得久一點</b>；只有這條會改變結局。</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="punch">
+    <b>九條之中，只有一條會改變結局。</b>
+    行動 1 至 6 是把定位 C 的商業模式跑通 —— 但那些能力第 9 章已判定為<b>均勢</b>，
+    對手學得起來；行動 8 是停損，行動 9 是所有推論的前提。<br><br>
+    <b>行動 7 是目前最可能從「尚未見明確佔位者」走向「我方形成差異化」的路徑</b>，
+    也是唯一需要 build 的一條。而它現在<b>連組織上的位置都還沒有</b> ——
+    <b>這是第一個要決定的事，不是最後一個。</b>
+  </div>
+</div>
+
+</div>
+<footer>
+  行動 1 至 8 由第 10 章 TOWS 的四個象限拆解而來，行動 9 為共同前置；<b>皆為推導的提案，非既定決策</b>。<br>
+  「前置／卡在哪」欄對應 <code>內部輸入清單.md</code> A-2.0、A-2.5、A-2.6、A-3.8 ——
+  四題皆為內部可提供。ESCO 四步驟見第 7 章，48.1% 的施力點見第 8 章。
+</footer>
+
+<nav id="deck-nav" aria-label="簡報導覽">
+  <a class="dn-btn" href="slide-11-moat.html" aria-label="上一頁：護城河正在轉移" data-nav="prev">←</a>
+  <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
+    <span class="dn-ch">Roadmap · 行動方案</span>
+    <span class="dn-pg">12 <i>/</i> 12</span>
+  </button>
+  <span class="dn-btn dn-off" aria-hidden="true">→</span>
+</nav>
+<div id="dn-menu" hidden>
+  <div class="dn-panel" role="dialog" aria-label="頁面目錄">
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a><a class="dn-item" href="slide-07-positioning-c.html"><span class="dn-num">07</span><span><b>定位 C</b><em>策略部分的破題 —— 為什麼只剩深化，以及這一層具體是什麼</em></span></a><a class="dn-item" href="slide-08-cost-leverage.html"><span class="dn-num">08</span><span><b>施力點在哪</b><em>台灣汽車貨運業的成本結構 —— 每 100 元營收有 48 元跟著里程走</em></span></a><a class="dn-item" href="slide-09-vrio.html"><span class="dn-num">09</span><span><b>內部能力盤點</b><em>七項能力過四道問題 —— 三項已答，四項待內部回填</em></span></a><a class="dn-item" href="slide-10-tows.html"><span class="dn-num">10</span><span><b>TOWS</b><em>把 SWOT 交叉起來 —— 四個象限各自對應一種動作</em></span></a><a class="dn-item" href="slide-11-moat.html"><span class="dn-num">11</span><span><b>護城河正在轉移</b><em>車機這道護城河的前提正在失效 —— 深化是在它到期前先建立不依賴硬體的那一道</em></span></a><a class="dn-item on" href="slide-12-actions.html"><span class="dn-num">12</span><span><b>行動方案</b><em>把 TOWS 四個象限拆成可以動手的九條 —— 各自的第一步與前置</em></span></a>
+    <p class="dn-h">附錄</p>
+    <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
+    <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
+  </div>
+</div>
+<style>
+:root{--deck-nav-h:52px;--sh-lg:0 12px 32px rgba(0,0,0,.6)}
+#deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
+  display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
+  box-shadow:var(--sh-lg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#deck-nav a,#deck-nav button{font-family:var(--sans);color:var(--muted);
+  background:none;border:none;cursor:pointer;text-decoration:none;border-radius:8px;
+  transition:background .15s,color .15s}
+.dn-btn{width:42px;display:grid;place-items:center;font-size:16px;line-height:1}
+.dn-btn:hover{background:var(--primary-dim);color:var(--primary)}
+.dn-off{width:42px;display:grid;place-items:center;font-size:16px;color:var(--border);
+  cursor:default}
+#dn-toggle{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px}
+#dn-toggle:hover{background:var(--raised);color:var(--text)}
+.dn-ch{font-size:12.5px;font-weight:620;color:var(--text);line-height:1.25}
+.dn-pg{font-family:var(--mono);font-size:9.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dn-pg i{font-style:normal;opacity:.5}
+#dn-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px}
+#dn-menu[hidden]{display:none}
+.dn-panel{width:min(480px,100%);max-height:80vh;overflow:auto;padding:18px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-lg)}
+.dn-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 8px}
+.dn-h:not(:first-child){margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.dn-item{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--text);
+  transition:background .15s}
+.dn-item:hover{background:var(--raised)}
+.dn-item.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
+.dn-num{font-family:var(--mono);font-size:11px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.dn-item b{display:block;font-size:14px;font-weight:620;line-height:1.35}
+.dn-item em{display:block;font-style:normal;font-size:12px;color:var(--faint);
+  margin-top:2px;line-height:1.5}
+.dn-tool b{color:var(--muted)}
+.dn-k{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--faint)}
+.dn-k code{font-family:var(--mono);font-size:11px;background:var(--raised);
+  padding:1px 5px;border-radius:4px;color:var(--muted)}
+@media (max-width:820px){#deck-nav{left:12px;right:12px;bottom:12px;width:auto}}
+@media print{#deck-nav,#dn-menu{display:none!important}}
+</style>
+<script>
+(()=>{
+  const menu=document.getElementById("dn-menu"),tog=document.getElementById("dn-toggle");
+  const go=d=>{const a=document.querySelector(`#deck-nav [data-nav="${d}"]`);if(a)location.href=a.getAttribute("href");};
+  const open=v=>{menu.hidden=!v;tog.setAttribute("aria-expanded",String(v));};
+  tog.addEventListener("click",()=>open(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target===menu)open(false);});
+  addEventListener("keydown",e=>{
+    if(e.target.matches("input,textarea,select"))return;
+    if(e.key==="ArrowRight")go("next");
+    else if(e.key==="ArrowLeft")go("prev");
+    else if(e.key==="Escape"&&!menu.hidden)open(false);
+  });
+})();
+</script>
+</body>
+</html>

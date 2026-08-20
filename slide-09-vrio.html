@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="VRIO 內部能力盤點 —— 七項能力過四道問題">
+<title>內部能力盤點</title>
+<style>
+:root{
+  --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
+  --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
+  --primary:#60A5FA; --accent:#FB923C;
+  --t1:#60A5FA; --t2:#818CF8; --t3:#34D399;
+  --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  --r:10px; --sh:0 1px 3px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:5px}
+.deck{max-width:1240px;margin:0 auto;padding:40px 32px 36px}
+header{margin-bottom:20px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t2);margin-bottom:9px}
+h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.15}
+h1 span{color:var(--faint);font-weight:400;font-size:19px;letter-spacing:-.01em;
+  display:block;margin-top:7px}
+.lv{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;
+  border:1px solid currentColor;white-space:nowrap;letter-spacing:.02em;display:inline-block;
+  vertical-align:1px}
+.lv.v{color:var(--ok)} .lv.n{color:var(--bad)} .lv.s{color:var(--t2)}
+
+.card{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
+.card h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
+.card .sub{font-size:12px;color:var(--faint);margin:0 0 16px;line-height:1.55}
+.card .sub b{color:var(--muted);font-weight:620}
+
+table.vr{width:100%;border-collapse:collapse;font-size:12.5px}
+.vr th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  color:var(--faint);font-weight:600;padding:0 8px 8px 0;border-bottom:1px solid var(--border);
+  vertical-align:bottom;line-height:1.4}
+.vr th.q{text-align:center;width:56px;padding:0 0 8px}
+.vr th.q i{display:block;font-style:normal;font-family:var(--sans);font-size:9.5px;
+  letter-spacing:0;font-weight:400;color:color-mix(in srgb,var(--faint) 70%,var(--bg));
+  margin-top:2px;white-space:nowrap}
+.vr td{padding:11px 8px 11px 0;border-bottom:1px solid
+  color-mix(in srgb,var(--border) 50%,transparent);color:var(--muted);vertical-align:middle}
+.vr tr:last-child td{border-bottom:none}
+.vr .cap{width:176px;color:var(--text);font-weight:640;line-height:1.4}
+.vr .cap em{display:block;font-style:normal;font-weight:400;font-size:11px;
+  color:var(--faint);margin-top:2px}
+.vr .m{text-align:center;font-family:var(--mono);font-size:15px;font-weight:600;padding:11px 0}
+.vr .y{color:var(--ok)} .vr .n{color:var(--bad)} .vr .u{color:var(--warn)}
+.vr .d{color:color-mix(in srgb,var(--faint) 45%,var(--bg))}
+.vr .res{width:112px;font-size:12px;font-weight:640;white-space:nowrap;padding-left:18px}
+.vr th.res{padding-left:18px}
+.vr .res.par{color:var(--faint)} .vr .res.dis{color:var(--bad)}
+.vr .res.tbd{color:var(--warn)}
+.vr .src{font-size:11.5px;color:var(--faint);line-height:1.55;padding-left:10px}
+.vr .src b{color:var(--muted);font-weight:620}
+.vr tr.tbd-row td{background:color-mix(in srgb,var(--warn) 6%,transparent)}
+.vr tr.gap-row td{background:color-mix(in srgb,var(--bad) 7%,transparent)}
+.vr tr.open-row td{background:color-mix(in srgb,var(--t3) 8%,transparent)}
+.vr .res.open{color:var(--t3)}
+.vr tr.hot-row td{background:color-mix(in srgb,var(--ok) 9%,transparent)}
+.vr .res.hot{color:var(--ok)}
+.vr .res.gap{color:var(--bad)}
+
+.key{margin-top:14px;padding-top:12px;border-top:1px dashed var(--border);
+  display:flex;flex-wrap:wrap;gap:6px 20px;font-size:11.5px;color:var(--faint)}
+.key span b{font-family:var(--mono);font-weight:700}
+.key .y b{color:var(--ok)} .key .n b{color:var(--bad)} .key .u b{color:var(--warn)}
+.ladder{margin-top:9px;font-size:11.5px;color:var(--faint);line-height:1.7}
+.ladder code{font-family:var(--mono);color:var(--muted)}
+.note{margin:11px 0 0;padding-top:10px;border-top:1px dashed
+  color-mix(in srgb,var(--border) 70%,transparent);font-size:11.5px;color:var(--faint);
+  line-height:1.65}
+.note b{color:var(--muted);font-weight:620}
+
+
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:var(--faint);
+  line-height:1.7}
+footer code{font-family:var(--mono);font-size:11.5px}
+@media (max-width:900px){.vr .src{display:none}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<header>
+  <div class="eyebrow">第 9 章 · VRIO</div>
+  <h1>內部能力盤點</h1>
+</header>
+
+<div class="card">
+  <table class="vr">
+    <thead><tr>
+      <th class="cap">能力</th>
+      <th class="q">V<i>有價值</i></th>
+      <th class="q">R<i>稀有</i></th>
+      <th class="q">I<i>難模仿</i></th>
+      <th class="q">O<i>組織可用性</i></th>
+      <th class="res">結論</th>
+      <th class="src">依據</th>
+    </tr></thead>
+    <tbody>
+      <tr>
+        <td class="cap">產品功能覆蓋<em>做得出多少功能</em></td>
+        <td class="m u">▲</td><td class="m n">✗</td><td class="m u">▲</td><td class="m u">▲</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>I 中性</b> —— 車隊資料不是單純儲存：事廢段規定<b>每 30 秒回傳</b>，
+          光該段 9,000 輛就是<b>約 300 筆／秒</b>的持續寫入，軌跡查詢與報表再疊在其上，
+          <b>有實質的工程門檻</b>。<br>
+          <b>惟 R 不成立</b> —— 已有 <b>20 家以上</b>跨過該門檻，且是價格戰（第 4 章）。
+          <b>那是地板，不是護城河</b>；R 一旦不成立，最好也只到均勢。</td>
+      </tr>
+      <tr>
+        <td class="cap">強制段審驗<em>毒化物·土石方·事廢·遊覽車</em></td>
+        <td class="m y">✓</td><td class="m n">✗</td><td class="m n">✗</td><td class="m d">—</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>V 成立</b> —— 進強制段的必要條件。<br>
+          <b>R／I 不成立</b> —— 現行 <b>12 家全數通過</b>，且審驗量能限制已解除，<b>可考取</b>。<br>
+          <b>我方尚未取得</b> —— 這是<b>進入成本</b>（第 5 章的轉換瓶頸），不是能力差距；
+          性質與商業規範的合規能力相近。</td>
+      </tr>
+      <tr>
+        <td class="cap">商業規範的合規能力<em>冷鏈履歷·碳排盤查·工時記錄</em></td>
+        <td class="m y">✓</td><td class="m u">▲</td><td class="m u">▲</td><td class="m u">▲</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>V 成立</b> —— 我方實際涵蓋的就是這一段（第 5 章），客戶得對貨主或主管機關交代。<br>
+          <b>R／I 中性</b> —— 有政府規範與 ISO 要求，門檻存在，但擋不住想做的人。<br>
+          <b>O 未知</b> —— 判準是<b>有沒有專門處理這件事的部門或團隊</b>。</td>
+      </tr>
+      <tr>
+        <td class="cap">換機成本<em>客戶不易移轉</em></td>
+        <td class="m y">✓</td><td class="m n">✗</td><td class="m n">✗</td><td class="m d">—</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src">拆裝 ＋ 重跑審驗 ＋ 資料斷點確實綁得住客戶 ——
+          但<b>12 家全都享有</b>。這是產業層級的屏障，不能算是優勢。</td>
+      </tr>
+      <tr>
+        <td class="cap">既有裝機基數與其資料<em>車上已經在收的東西</em></td>
+        <td class="m u">▲</td><td class="m n">✗</td><td class="m n">✗</td><td class="m u">▲</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>V 中性，且長期遞減</b> —— 第 8 章證明計價所需的里程／時間／位置正是車機在收的；
+          但第 10 章的<b>原廠內建趨勢</b>會讓同樣的資料改從中控電腦來，<b>這項的價值隨時間下降</b>。<br>
+          <b>R／I 不成立</b> —— 車機為外購、介接屬純硬體層，不含專屬技術；
+          <b>同業取得相同資料的成本與我方無異</b>。<br>
+          <b>O 未知</b> —— 判準同前：<b>有無專責團隊</b>。<code>A-2.1</code>、<code>A-3.5</code></td>
+      </tr>
+      <tr>
+        <td class="cap">深度客戶關係<em>誰、多久、多深</em></td>
+        <td class="m y">✓</td><td class="m u">▲</td><td class="m u">▲</td><td class="m u">▲</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>V 成立</b> —— 成交後<b>換機成本綁住客戶</b>（第 6 章），
+          既有關係即是可持續的收入基礎。<br>
+          <b>R／I 未知</b> —— 但無從判斷我方的關係深度是否異於同業。<br>
+          <b>O 未知</b> —— 難以判斷是否能力優於同業。</td>
+      </tr>
+      <tr class="open-row">
+        <td class="cap">★ 調度與路線的演算法能力<em>介入調度決策</em></td>
+        <td class="m y">✓</td><td class="m n">✗</td><td class="m n">✗</td><td class="m n">✗</td>
+        <td class="res open">尚未見明確持有者</td>
+        <td class="src"><b>這是目前最值得驗證的能力之一</b> ——
+          第 8 章證明它作用在 <b>48.1%</b> 的里程軸；現有競業資料尚未顯示明確佔位者。<br>
+          惟<b>我方尚未掌握</b>；在本次研究範圍內，亦未發現本土競業具備完整能力。<br>
+          ⇒ <b>這不是已證實落後於同業，而是一項尚待驗證、可能形成差異化的能力缺口。</b></td>
+      </tr>
+      <tr>
+        <td class="cap">裝機與服務量能<em>年度可導入家數</em></td>
+        <td class="m y">✓</td><td class="m n">✗</td><td class="m n">✗</td><td class="m u">▲</td>
+        <td class="res par">競爭均勢</td>
+        <td class="src"><b>V 成立</b> —— 第 5 章：B 的溢價 100% 來自裝機與代辦。<br>
+          <b>R／I 不成立</b> —— 此為<b>勞務</b>，同業增聘即可跟上，<b>不可複利</b>。<br>
+          <b>O 未知</b> —— 判準同前：<b>有無專責團隊</b>。<code>A-3.3</code>、<code>A-3.4</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="key">
+    <span class="y"><b>✓</b> 強　·　有</span>
+    <span class="u"><b>▲</b> 中　·　不確定</span>
+    <span class="n"><b>✗</b> 弱　·　無</span>
+    <span><b>—</b> 前一道已不通過，不必再問</span>
+  </div>
+  <div class="ladder">
+    <code>V✗</code> → 競爭劣勢　·　<code>R✗</code> → 競爭均勢　·　
+    <code>I✗</code> → 暫時性優勢　·　<code>O✗</code> → 有優勢但未發揮　·　
+    <code>四道全過</code> → 持續競爭優勢
+  </div>
+  <p class="note">VRIO 盤點的是<b>我們有什麼</b>，填不進<b>對手有而我們沒有的</b> ——
+    強制段審驗屬於後者，故另列並標紅。缺口是 TOWS 的 W，不在這張表的邏輯裡。</p>
+</div>
+
+</div>
+<footer>
+  已答的三項出處：<code>觀察筆記.md I-08 · I-30</code>（第 6 章）、<code>§14.2</code>（第 5 章）。<br>
+  待補四項對應 <code>內部輸入清單.md</code> A-2.1 活躍裝機數 · A-2.4 客戶規模與集中度 ·
+  A-3.3 導入量能 · A-3.5 裝機組合分布。<b>調度演算法能力目前無對應項，需新增。</b>
+</footer>
+
+<nav id="deck-nav" aria-label="簡報導覽">
+  <a class="dn-btn" href="slide-08-cost-leverage.html" aria-label="上一頁：施力點在哪" data-nav="prev">←</a>
+  <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
+    <span class="dn-ch">VRIO · 能力盤點</span>
+    <span class="dn-pg">9 <i>/</i> 12</span>
+  </button>
+  <a class="dn-btn" href="slide-10-tows.html" aria-label="下一頁：TOWS" data-nav="next">→</a>
+</nav>
+<div id="dn-menu" hidden>
+  <div class="dn-panel" role="dialog" aria-label="頁面目錄">
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a><a class="dn-item" href="slide-07-positioning-c.html"><span class="dn-num">07</span><span><b>定位 C</b><em>策略部分的破題 —— 為什麼只剩深化，以及這一層具體是什麼</em></span></a><a class="dn-item" href="slide-08-cost-leverage.html"><span class="dn-num">08</span><span><b>施力點在哪</b><em>台灣汽車貨運業的成本結構 —— 每 100 元營收有 48 元跟著里程走</em></span></a><a class="dn-item on" href="slide-09-vrio.html"><span class="dn-num">09</span><span><b>內部能力盤點</b><em>七項能力過四道問題 —— 三項已答，四項待內部回填</em></span></a><a class="dn-item" href="slide-10-tows.html"><span class="dn-num">10</span><span><b>TOWS</b><em>把 SWOT 交叉起來 —— 四個象限各自對應一種動作</em></span></a><a class="dn-item" href="slide-11-moat.html"><span class="dn-num">11</span><span><b>護城河正在轉移</b><em>車機這道護城河的前提正在失效 —— 深化是在它到期前先建立不依賴硬體的那一道</em></span></a><a class="dn-item" href="slide-12-actions.html"><span class="dn-num">12</span><span><b>行動方案</b><em>把 TOWS 四個象限拆成可以動手的九條 —— 各自的第一步與前置</em></span></a>
+    <p class="dn-h">附錄</p>
+    <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
+    <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
+  </div>
+</div>
+<style>
+:root{--deck-nav-h:52px;--sh-lg:0 12px 32px rgba(0,0,0,.6)}
+#deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
+  display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
+  box-shadow:var(--sh-lg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#deck-nav a,#deck-nav button{font-family:var(--sans);color:var(--muted);
+  background:none;border:none;cursor:pointer;text-decoration:none;border-radius:8px;
+  transition:background .15s,color .15s}
+.dn-btn{width:42px;display:grid;place-items:center;font-size:16px;line-height:1}
+.dn-btn:hover{background:var(--primary-dim);color:var(--primary)}
+.dn-off{width:42px;display:grid;place-items:center;font-size:16px;color:var(--border);
+  cursor:default}
+#dn-toggle{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px}
+#dn-toggle:hover{background:var(--raised);color:var(--text)}
+.dn-ch{font-size:12.5px;font-weight:620;color:var(--text);line-height:1.25}
+.dn-pg{font-family:var(--mono);font-size:9.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dn-pg i{font-style:normal;opacity:.5}
+#dn-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px}
+#dn-menu[hidden]{display:none}
+.dn-panel{width:min(480px,100%);max-height:80vh;overflow:auto;padding:18px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-lg)}
+.dn-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 8px}
+.dn-h:not(:first-child){margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.dn-item{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--text);
+  transition:background .15s}
+.dn-item:hover{background:var(--raised)}
+.dn-item.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
+.dn-num{font-family:var(--mono);font-size:11px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.dn-item b{display:block;font-size:14px;font-weight:620;line-height:1.35}
+.dn-item em{display:block;font-style:normal;font-size:12px;color:var(--faint);
+  margin-top:2px;line-height:1.5}
+.dn-tool b{color:var(--muted)}
+.dn-k{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--faint)}
+.dn-k code{font-family:var(--mono);font-size:11px;background:var(--raised);
+  padding:1px 5px;border-radius:4px;color:var(--muted)}
+@media (max-width:820px){#deck-nav{left:12px;right:12px;bottom:12px;width:auto}}
+@media print{#deck-nav,#dn-menu{display:none!important}}
+</style>
+<script>
+(()=>{
+  const menu=document.getElementById("dn-menu"),tog=document.getElementById("dn-toggle");
+  const go=d=>{const a=document.querySelector(`#deck-nav [data-nav="${d}"]`);if(a)location.href=a.getAttribute("href");};
+  const open=v=>{menu.hidden=!v;tog.setAttribute("aria-expanded",String(v));};
+  tog.addEventListener("click",()=>open(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target===menu)open(false);});
+  addEventListener("keydown",e=>{
+    if(e.target.matches("input,textarea,select"))return;
+    if(e.key==="ArrowRight")go("next");
+    else if(e.key==="ArrowLeft")go("prev");
+    else if(e.key==="Escape"&&!menu.hidden)open(false);
+  });
+})();
+</script>
+</body>
+</html>

@@ -58,8 +58,6 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
 .rings{position:relative}
 .rings svg{display:block;width:100%;height:auto}
 .rings .ring{transition:r .18s}
-.rings .cap{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
-  font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.08em}
 .stage{display:grid;grid-template-columns:92px 1fr 296px;gap:16px 20px;align-items:start;
   padding:15px 0;border-top:1px solid var(--border)}
 .stage:first-of-type{border-top:none;padding-top:0}
@@ -77,6 +75,8 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
 .st-r .grow span{color:var(--text);font-weight:600}
 .st-r .s{font-size:12px;color:var(--faint);margin-top:6px;line-height:1.7}
 .st-r .s b{color:var(--muted);font-weight:620}
+.st-r .s .pp{color:var(--accent);font-weight:640;font-family:var(--mono);
+  font-size:12px;display:inline-block;margin-top:3px}
 .st-r .s .warn{color:var(--warn)}
 .st-r .s .px{display:block;margin-top:7px;padding-top:7px;border-top:1px solid var(--border)}
 .st-r .s .px>span{display:block;font-family:var(--mono);font-size:11px;line-height:1.9}
@@ -157,7 +157,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
   <div class="which">
     <span class="on">A　車隊管理系統供應商</span>
     <a href="slide-05-sizing-b.html">B　合規解決方案供應商</a>
-    <span>C　車隊營運成本的優化者<i>未估算</i></span>
+    <a href="slide-07-positioning-c.html">C　車隊營運成本的優化者<i>第 7 章</i></a>
   </div>
 </header>
 
@@ -173,8 +173,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
       <circle id="c-som" class="ring" cx="130" cy="130" r="13.6" fill="var(--accent)"
               fill-opacity=".9" stroke="var(--accent)" stroke-width="1.5"/>
     </svg>
-    <div class="cap">面積成正比　·　虛線＝成長後</div>
-  </div>
+      </div>
 
   <div>
     <div class="stage" style="--cl:var(--t1)">
@@ -183,14 +182,11 @@ footer code{font-family:var(--mono);font-size:11.5px}
         <div class="big"><span class="veh">81,281</span><small>輛</small>
           <span class="sep">·</span><span class="m" id="m-tam">3.90 – 21.17</span><small>億／年</small></div>
         <div class="s">全台營業貨車　<span class="lv v">查證</span>　交通部 111 年交通年鑑<br>
-          <span class="warn">⚠️</span> <b>僅營業貨運，不含自用</b> ——
-          這是<b>下界</b>，口徑見<a href="appendix-vehicle-base.html">附錄 · 車輛基準</a>
+          <span class="warn"></span> <b>僅營業貨運，不含自用</b> ——
+          這是<b>下界</b>，口徑見 <code>參考資料來源.md §4A.1</code>
           <span class="px">
             <span><i>下界</i>NT$400／月 × 12 <span class="lv e">外推</span>　遠傳運輸雲公告價</span>
             <span><i>上界</i>NT$480／月 × 12 <span class="lv e">外推</span>　遊覽車合規車機月租</span>
-            <em><span class="warn">⚠️</span> 兩端都是<b>台灣實際報價</b>。
-              國際 ARPU 上緣約為此 <b>4.5 倍</b>，但那是美國、高階方案、再乘未查證匯率 ——
-              <b>台灣有無高階方案</b> <span class="lv n">查無</span></em>
           </span></div>
       </div>
       <div class="ins">
@@ -208,8 +204,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
           <span class="sep">·</span><span class="m" id="m-sam">1.04 – 5.65</span><small>億／年</small></div>
         <div class="grow">× <span id="g-mul">1.60</span> →
           <span id="g-sam">34,723</span> 輛　·　<span id="gm-sam">1.67 – 9.04</span> 億／年</div>
-        <div class="s">已有 FMS 訂閱的比例　<span class="lv v">查證</span><span class="lv e">外推</span><br>
-          下界 21.9% 法規強制反推　·　上界 26.7% 歐洲滲透率　<span class="lv n">兩端口徑不同</span></div>
+        <div class="s">已有 FMS 訂閱的比例　<span class="lv v">查證</span><span class="lv e">外推</span></div>
       </div>
       <div class="ins">
         <div class="k">洞察</div>
@@ -228,8 +223,8 @@ footer code{font-family:var(--mono);font-size:11.5px}
           <span class="sep">·</span><span class="m" id="m-som">0.05 – 0.28</span><small>億／年</small></div>
         <div class="grow">× <span id="g-mul2">1.60</span> →
           <span id="g-som">1,736</span> 輛　·　<span id="gm-som">0.08 – 0.45</span> 億／年</div>
-        <div class="s">我們在 SAM 裡吃到幾成　<span class="lv n">查無</span><br>
-          台灣市佔無官方統計　·　唯一參考點：已知 ≥20 家，<b>均分是 5%</b></div>
+        <div class="s"><b class="pp">每 1 個百分點 ＝ <span id="pp-veh">217</span> 輛 ·
+            <span id="pp-m">104 – 125</span> 萬／年</b></div>
       </div>
       <div class="ins">
         <div class="k">洞察</div>
@@ -261,20 +256,18 @@ footer code{font-family:var(--mono);font-size:11.5px}
     </div>
     <dl class="why">
       <dt class="g">綠段　21.9–26.7%</dt>
-      <dd><b>滑桿拉不到 21.9% 以下</b> —— 那一段是法規強制、必然已裝。下界＝毒化物 <b>1,780</b> ＋土石方 <b>~16,000</b>（<b>強制 ⇒ 必然已裝</b>，官方 2026-07／08）；
-        上界＝Berg 公布的歐洲當前滲透率</dd>
+      <dd>下界＝<b>法規強制、必然已裝</b>（毒化物 1,780 ＋ 土石方 ~16,000）；上界＝歐洲當前滲透率</dd>
       <dt class="y">黃段　26.7–42.8%</dt>
-      <dd>Berg 同時預測歐洲 2029 達 42.8% —— <b>台灣走上同樣成熟軌跡</b>的情境</dd>
+      <dd>Berg 預測歐洲 2029 達 42.8% —— <b>台灣走上同樣軌跡</b>的情境</dd>
       <dt>42.8% 以上</dt>
       <dd>沒有依據</dd>
-      <dt class="n">⚠️ 上界的成因</dt>
-      <dd>歐洲滲透率高，除了<b>法規監管項目較多</b>（工時），
-        還有「<b>自願採用</b>」的比例 —— <b>這點目前不了解</b>
+      <dt class="n">歐洲為何較高</dt>
+      <dd>法規監管項目較多（工時），加上<b>自願採用</b> —— 後者<b>目前不了解</b>
         <span class="lv n">查無</span></dd>
     </dl>
   </div>
   <div class="dial">
-    <label><span>SOM　我們在 SAM 裡吃到幾成</span>
+    <label><span>SOM　假設的市佔率 —— 每提升 1 個百分點換得多少</span>
       <span><b id="p-som">5.0%</b><span class="lv n" style="margin-left:8px">查無</span></span></label>
     <div class="tw" style="--zg:linear-gradient(to right,
         color-mix(in srgb,var(--ok) 55%,transparent) 0 15.25%,
@@ -287,14 +280,8 @@ footer code{font-family:var(--mono);font-size:11.5px}
     </div>
     <dl class="why">
       <dt class="g">綠段　≤ 5.0%</dt>
-      <dd>合規段現行有車的 <b>12 家</b>，加電信商與後裝品牌 ——
-        已知 <b>≥20 家</b>在搶，均分就是 5%。落在均分以下<b>不需要特別理由</b></dd>
-      <dt>超過 5.0%</dt>
-      <dd>等於宣稱<b>高於同業平均</b> —— 可能成立，但要有證據。
-        而台灣各家市佔<b>無官方統計、無公會調查</b>；
-        已查五條官方路徑<b>皆無廠商別輛數</b>，環境部有但不揭露</dd>
-      <dt>實際數字</dt>
-      <dd><b>只有內部有</b> —— 填進來這格就從推估變觀測</dd>
+      <dd>已知 <b>≥20 家</b>在搶，均分即 5%</dd>
+
     </dl>
   </div>
 </div>
@@ -315,12 +302,11 @@ footer code{font-family:var(--mono);font-size:11.5px}
     </div>
     <dl class="why">
       <dt class="g">綠段　1.00–1.60×</dt>
-      <dd>Berg：歐洲滲透率 26.7%（2024）→ 42.8%（2029），換算即 <b>1.60×</b>。
-        此為<b>倍數本身</b>的錨點，與台灣起跳點無關，不與滲透率滑桿重複計算</dd>
-      <dt>為什麼只乘滲透率</dt>
-      <dd><b>台灣的車輛數成長已經停滯</b> —— 近三年 +0.37%／年，推五年僅 ×1.019。
-        分母不動，<b>唯一的變數是滲透率</b>。
-        逐年序列見<a href="appendix-vehicle-base.html">附錄 · 車輛基準</a></dd>
+      <dd>Berg：歐洲滲透率 26.7%（2024）→ 42.8%（2029），即 <b>1.60×</b>。
+        此為<b>倍數本身</b>的錨點，不與滲透率滑桿重複計算</dd>
+      <dt>只乘滲透率</dt>
+      <dd>車輛數五年僅 ×1.019 ——<b>分母不動，唯一的變數是滲透率</b>。
+        逐年序列見 <code>參考資料來源.md §4A.1a</code></dd>
     </dl>
   </div>
 
@@ -331,7 +317,7 @@ footer code{font-family:var(--mono);font-size:11.5px}
 
 <footer>
   三個定位是什麼見 <a href="slide-03-positioning.html">第 3 章</a>　·
-  方法、來源等級、每個數字的出處見 <a href="appendix-method.html">附錄</a><br>
+  方法與來源等級 <code>設計原則.md §8</code>　·　每個數字的出處 <code>參考資料來源.md</code><br>
   可重跑的推論 <code>視覺化/scripts/fermi_a.py</code>　·　內部待補 <code>內部輸入清單.md</code>
 </footer>
 <script>
@@ -350,6 +336,9 @@ function render(){
   const vs=+$("s-sam").value, vo=+$("s-som").value;
   $("p-sam").textContent=vs.toFixed(1)+"%";
   $("p-som").textContent=vo.toFixed(1)+"%";
+  const pp=V*sam*0.01;                                   // 每 1 個百分點的輛數
+  $("pp-veh").textContent=Math.round(pp).toLocaleString();
+  $("pp-m").textContent=`${Math.round(pp*LO/1e4)} – ${Math.round(pp*HI/1e4)}`;
   // 越出「有依據」範圍就標紅，避免推估值被當成事實（設計原則 §8.1）
   $("oob-sam").hidden = vs<=42.8;  $("p-sam").classList.toggle("over", vs>42.8);
 
@@ -384,20 +373,20 @@ render();
   <a class="dn-btn" href="slide-03-positioning.html" aria-label="上一頁：產品定位" data-nav="prev">←</a>
   <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
     <span class="dn-ch">定位 A · 規模</span>
-    <span class="dn-pg">4 <i>/</i> 6</span>
+    <span class="dn-pg">4 <i>/</i> 12</span>
   </button>
   <a class="dn-btn" href="slide-05-sizing-b.html" aria-label="下一頁：定位 B 的市場規模" data-nav="next">→</a>
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item on" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a>
-    <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item on" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a><a class="dn-item" href="slide-07-positioning-c.html"><span class="dn-num">07</span><span><b>定位 C</b><em>策略部分的破題 —— 為什麼只剩深化，以及這一層具體是什麼</em></span></a><a class="dn-item" href="slide-08-cost-leverage.html"><span class="dn-num">08</span><span><b>施力點在哪</b><em>台灣汽車貨運業的成本結構 —— 每 100 元營收有 48 元跟著里程走</em></span></a><a class="dn-item" href="slide-09-vrio.html"><span class="dn-num">09</span><span><b>內部能力盤點</b><em>七項能力過四道問題 —— 三項已答，四項待內部回填</em></span></a><a class="dn-item" href="slide-10-tows.html"><span class="dn-num">10</span><span><b>TOWS</b><em>把 SWOT 交叉起來 —— 四個象限各自對應一種動作</em></span></a><a class="dn-item" href="slide-11-moat.html"><span class="dn-num">11</span><span><b>護城河正在轉移</b><em>車機這道護城河的前提正在失效 —— 深化是在它到期前先建立不依賴硬體的那一道</em></span></a><a class="dn-item" href="slide-12-actions.html"><span class="dn-num">12</span><span><b>行動方案</b><em>把 TOWS 四個象限拆成可以動手的九條 —— 各自的第一步與前置</em></span></a>
+    <p class="dn-h">附錄</p>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
   </div>
 </div>
 <style>
-:root{--deck-nav-h:52px}
+:root{--deck-nav-h:52px;--sh-lg:0 12px 32px rgba(0,0,0,.6)}
 #deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
   display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
   background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);

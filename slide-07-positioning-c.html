@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="定位 C —— 為什麼只剩深化，以及這一層具體是什麼">
+<title>定位 C</title>
+<style>
+:root{
+  --bg:#080D17; --surface:#111A29; --raised:#19243A; --border:#26344A;
+  --text:#F1F5F9; --muted:#A3B2C7; --faint:#7C8DA6;
+  --primary:#60A5FA; --accent:#FB923C;
+  --t1:#60A5FA; --t2:#818CF8; --t3:#34D399;
+  --ok:#34D399; --warn:#FBBF24; --bad:#F87171;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"PingFang TC",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  --r:10px; --sh:0 1px 3px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--primary);outline-offset:3px;border-radius:5px}
+.deck{max-width:1240px;margin:0 auto;padding:40px 32px 36px}
+header{margin-bottom:20px}
+.eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--t3);margin-bottom:9px}
+h1{font-size:38px;font-weight:700;margin:0;letter-spacing:-.035em;line-height:1.15}
+h1 span{color:var(--faint);font-weight:400;font-size:19px;letter-spacing:-.01em;
+  display:block;margin-top:7px}
+
+.lv{font-family:var(--mono);font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;
+  border:1px solid currentColor;white-space:nowrap;letter-spacing:.02em;display:inline-block;
+  vertical-align:1px}
+.lv.v{color:var(--ok)} .lv.e{color:var(--warn)} .lv.n{color:var(--bad)}
+.lv.a{color:var(--accent)}
+
+.card{padding:22px 24px 20px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--sh);margin-bottom:13px}
+.card h2{font-size:14px;font-weight:640;margin:0 0 4px;color:var(--text)}
+.card h2+.spec{margin-top:15px}
+.card h2 em{font-style:normal;font-weight:400;font-size:12.5px;
+  color:var(--faint);margin-left:7px;letter-spacing:0}
+.card .sub{font-size:12px;color:var(--faint);margin:0 0 15px;line-height:1.55}
+.card .sub b{color:var(--muted);font-weight:620}
+
+/* 這一層是什麼（自第 3 章移入） */
+.spec{display:grid;grid-template-columns:118px 1fr;gap:0 18px}
+.spec>.sk{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
+  padding:13px 0;border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent)}
+.spec>.sv{padding:13px 0;border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);
+  font-size:12.5px;color:var(--muted);line-height:1.62}
+.spec>.sk:first-of-type,.spec>.sv:first-of-type{border-top:none;padding-top:0}
+.spec .sv b{color:var(--text);font-weight:620}
+.spec .sv p{margin:0} .spec .sv p+p{margin-top:6px}
+.spec .sv .cj{margin-top:11px;padding-top:10px;font-size:12px;
+  border-top:1px dashed color-mix(in srgb,var(--border) 70%,transparent);color:var(--faint)}
+.spec .sv .cj b{color:var(--muted)}
+.spec .hd{font-size:13.5px;color:var(--text);font-weight:640;margin-bottom:5px}
+.tgrp{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px;align-items:start}
+.tgrp .gk{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--faint);
+  white-space:nowrap;padding-top:5px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tags span{font-size:12px;padding:4px 9px;background:var(--raised);border-radius:5px;
+  color:var(--muted);line-height:1.4}
+.steps{display:grid;grid-template-columns:max-content 1fr;gap:7px 14px;
+  margin:10px 0 0;align-items:baseline}
+.steps .n{font-family:var(--mono);font-size:11.5px;color:var(--t3);font-weight:600;
+  white-space:nowrap;letter-spacing:.02em}
+.steps .d{font-size:12.5px;color:var(--muted);line-height:1.55}
+.steps .d b{color:var(--text);font-weight:620}
+
+/* 為什麼只剩深化 */
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.why div{padding:0 20px;border-left:1px solid var(--border)}
+.why div:first-child{padding-left:0;border-left:none}
+.why .wk{font-size:15px;font-weight:680;color:var(--text);letter-spacing:-.015em;
+  line-height:1.35;margin-bottom:10px}
+.why .wk::before{content:"";display:block;width:22px;height:2px;border-radius:1px;
+  background:color-mix(in srgb,var(--t3) 80%,transparent);margin-bottom:10px}
+.why p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.68}
+.why p b{color:var(--text);font-weight:620}
+.why .src{display:block;margin-top:6px;font-size:10.5px;color:var(--faint)}
+.why-end{margin:16px 0 0;padding-top:14px;border-top:1px dashed var(--border);
+  font-size:13px;color:var(--muted);line-height:1.65}
+.why-end b{color:var(--t3);font-weight:660}
+
+/* 成本結構 */
+.bk{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--faint);
+  margin:0 0 7px}
+.bar{display:flex;height:40px;border-radius:6px;overflow:hidden}
+.bar.big{height:54px}
+.bar div{display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+  font-size:11.5px;font-weight:600;color:#0A0F1A;letter-spacing:-.01em;overflow:hidden;
+  white-space:nowrap}
+.bar.big div{font-size:14px}
+.s1{background:var(--t1)}                                        /* 燃料 */
+.s2{background:var(--accent)}                                    /* 自有人力 */
+.s3{background:color-mix(in srgb,var(--accent) 52%,var(--bg));color:var(--text)}  /* 外包 */
+.s4{background:color-mix(in srgb,var(--faint) 52%,var(--bg));color:var(--text)}
+.s5{background:var(--t2)}
+.s6{background:color-mix(in srgb,var(--t1) 42%,var(--bg));color:var(--text)}
+.s7{background:color-mix(in srgb,var(--faint) 26%,var(--bg));color:var(--muted)}
+.lgd{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:9px}
+.lgd span{font-size:10.5px;color:var(--faint);display:flex;align-items:center;gap:5px;
+  white-space:nowrap}
+.lgd i{width:8px;height:8px;border-radius:2px;display:inline-block;flex:none}
+
+.pivot{margin:17px 0 13px;padding-top:14px;border-top:1px dashed var(--border);
+  font-size:12.5px;color:var(--faint)}
+.pivot b{color:var(--muted);font-weight:620}
+
+.dm{background:var(--t3)}
+.dt{background:var(--accent)}
+.dv{background:color-mix(in srgb,var(--t1) 55%,var(--bg));color:var(--text)}
+.dx{background:color-mix(in srgb,var(--faint) 34%,var(--bg));color:var(--muted)}
+.dlab{display:flex;margin-top:9px;gap:0}
+.dlab div{padding-right:12px;font-size:10.5px;color:var(--faint);line-height:1.5}
+.dlab b{display:block;color:var(--text);font-size:12px;font-weight:640;margin-bottom:2px}
+
+.punch{margin-top:16px;padding:14px 17px;background:var(--raised);border-radius:8px;
+  border-left:3px solid var(--t3);font-size:13px;color:var(--muted);line-height:1.7}
+.punch b{color:var(--text);font-weight:660}
+.punch>b:first-child{color:var(--t3);font-size:14px}
+
+.intl{margin-top:13px;padding-top:13px;border-top:1px solid
+  color-mix(in srgb,var(--border) 60%,transparent);display:grid;
+  grid-template-columns:76px 1fr;gap:14px}
+.intl .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--t1);
+  padding-top:2px}
+.intl p{margin:0;font-size:12px;color:var(--faint);line-height:1.68}
+.intl p b{color:var(--muted);font-weight:620}
+
+/* 降法表 */
+.lev{width:100%;border-collapse:collapse;font-size:12.5px}
+.lev th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  color:var(--faint);font-weight:600;padding:0 12px 7px 0;border-bottom:1px solid var(--border);
+  vertical-align:bottom;line-height:1.4}
+.lev th i{display:block;font-style:normal;font-family:var(--sans);letter-spacing:0;
+  font-size:9.5px;margin-top:2px;font-weight:400}
+.lev th.num{text-align:right;padding-right:14px}
+.lev td{padding:11px 12px 11px 0;border-bottom:1px solid
+  color-mix(in srgb,var(--border) 50%,transparent);color:var(--muted);vertical-align:middle;
+  line-height:1.5}
+.lev tr:last-child td{border-bottom:none}
+.lev .nm{width:150px;color:var(--text);font-weight:640;white-space:nowrap}
+.lev .face{width:118px;text-align:right;padding-right:14px;font-family:var(--mono);
+  font-size:13.5px;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lev .face i{display:block;font-style:normal;font-family:var(--sans);font-size:10px;
+  color:var(--faint);margin-top:2px}
+.lev .clm{width:126px;text-align:right;padding-right:14px;font-family:var(--mono);
+  font-size:12.5px;color:var(--faint);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lev .mech{font-size:11.5px;color:var(--faint);line-height:1.55}
+.lev .mech b{color:var(--muted);font-weight:620}
+.lev tr.hot td{background:color-mix(in srgb,var(--t3) 8%,transparent)}
+.lev tr.hot .face{color:var(--t3)}
+
+/* 洞察 */
+.ins{padding:13px 15px;background:var(--raised);border-radius:8px;
+  border-left:3px solid var(--primary);margin-top:15px}
+.ins:first-child{margin-top:0}
+.ins .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--primary);
+  margin-bottom:6px}
+.ins p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.7}
+.ins p b{color:var(--text);font-weight:620}
+.ins .from{font-size:11px;color:var(--faint);white-space:nowrap}
+
+footer{max-width:1240px;margin:0 auto;padding:0 32px 120px;font-size:12px;color:var(--faint);
+  line-height:1.7}
+footer b{color:var(--muted);font-weight:620}
+@media (max-width:940px){.why{grid-template-columns:1fr;gap:16px}
+  .why div{padding:0;border-left:none}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<header>
+  <div class="eyebrow">第 7 章 · 策略破題</div>
+  <h1>定位 C<span>車隊營運成本的優化者 —— 透過數據應用和 AI</span></h1>
+</header>
+
+<div class="card">
+  <h2>以深化取代水平擴張<em>（目前證據支持度最高的方向）</em></h2>
+  <p class="sub">前六章可以合成一句：<b>在目前可觀察的台灣市場中，水平擴張空間有限；多做功能也未顯示能取得份額。</b></p>
+  <div class="why">
+    <div>
+      <div class="wk">分母不動</div>
+      <p>近三年車輛數 <b>+0.37%／年</b>，成長的九成來自滲透率而非新車。
+        而台灣的訂閱滲透幾乎等於<b>法規涵蓋率</b> —— 也就是
+        在本次觀察範圍內，<b>法規未要求的自願採用有限</b>；法規要求的，<b>大致都已裝設</b>。
+        <span class="src">第 4 章</span></p>
+    </div>
+    <div>
+      <div class="wk">供給長期過剩</div>
+      <p><b>10 家</b>在分同一個分母，2026 年四家合計量能為市場的 <b>2.5 – 6 倍</b>。
+        每車月費自 2003 年的 1,000 元以下降至 <b>400 – 480 元</b>。
+        <span class="src">第 6 章</span></p>
+    </div>
+    <div>
+      <div class="wk">既有客戶不易移轉</div>
+      <p>換機成本＝拆裝 ＋ 重跑審驗 ＋ 資料斷點。現有資料顯示，份額移動主要發生在
+        <b>法規開新段</b>與<b>車輛汰換</b>兩個時點，皆為外生。
+        <span class="src">第 6 章</span></p>
+    </div>
+  </div>
+  <p class="why-end">在分母不動、供給過剩、客戶黏著三者同時成立的市場裡，
+    <b>可爭取的價值來自既有客戶的營運成本與工作流程，而非新增裝機數</b>。
+    這是定位 C 的前提 —— 也是它與 A、B 的分野：A、B 賣的是<b>車上有沒有裝</b>，C 賣的是<b>裝了以後省下多少</b>。</p>
+</div>
+
+
+<div class="card">
+  <h2>這一層是什麼</h2>
+
+  <div class="spec">
+    <div class="sk">目標</div>
+    <div class="sv"><p class="hd">讓車隊的<b>營運成本確實下降</b>、<b>優化工作流程</b>（介入調度決策）。</p></div>
+
+    <div class="sk">痛點與現行做法</div>
+    <div class="sv">
+      <p><b>成本去向無法精確歸屬。</b>最大宗為人力、燃料、車輛持有，現行系統多僅止於記錄；
+        閒置與空駛可見，但無從改善。現行做法為憑經驗判斷、月報表事後檢視。</p>
+      <p>且<b>缺乏基準</b> ——「單車年營運成本」無公開統計<span class="lv n">查無</span>，
+        客戶亦多未自行量測；<b>無基準即無從證明節省</b>。</p>
+      <p class="cj"><b>推測：既有的 ERP／API 串接，處理的正是這個歸屬問題</b><span class="lv e">假設</span>
+        —— 但方式是把資料<b>交給客戶的 ERP</b> 去歸。九家中僅 3 家提供此串接，
+        對外說法皆停在「資料串接」，尚未觀察到業者宣稱自己做成本歸屬。<br>
+        若成立，車機商在這件事上只是<b>資料的 provider</b> ——
+        <b>而我們要做的，是從 provider 變成優化者</b>。</p>
+    </div>
+
+    <div class="sk">具體長什麼樣</div>
+    <div class="sv"><div class="tgrp">
+      <span class="gk">調度與路線</span>
+      <div class="tags"><span>路線規劃與最佳化</span><span>動態派車與調度</span><span>空駛與繞路偵測</span><span>併單與順路撮合</span><span>自有 ／ 外包的派工決策</span></div>
+      <span class="gk">車輛與能源</span>
+      <div class="tags"><span>預測性維護</span><span>輪胎管理</span><span>殘值模型</span><span>充電排程</span><span>續航預測</span></div>
+      <span class="gk">量測與計價</span>
+      <div class="tags"><span>里程基準線與節省認列</span><span>車隊數位分身</span></div>
+    </div></div>
+
+    <div class="sk">怎麼收錢</div>
+    <div class="sv">
+      <p>原定<b>分潤（gain-share）</b> ——
+        惟材料中未觀察到任何業者採此模式<span class="lv n">查無</span>。
+        <b>或可嘗試 ESCO 績效保證型</b><span class="lv e">假設</span> ——
+        節能服務業行之有年的合約模式，四個步驟：</p>
+      <div class="steps">
+        <span class="n">① 設定基準</span><span class="d">以導入前的實際成本作為<b>基準線</b> ——
+          沒有基準線，就沒有可談的節省</span>
+        <span class="n">② 認列節省</span><span class="d">導入後與基準線的<b>差額</b>，即為節省金額</span>
+        <span class="n">③ 收費</span><span class="d"><b>客戶自行出資</b>，我方收<b>固定服務費</b></span>
+        <span class="n">④ 保證</span><span class="d">未達承諾的節省，<b>由我方補足差額</b>；超額則全歸客戶</span>
+      </div>
+      <p class="cj" style="margin-top:11px"><b>此為推測方向，非既定作法。</b>
+        真正的難處在第 ①、② 步 —— 見下方洞察二。</p>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+<footer>
+  前六章的三項依據分見第 4、6 章。成本結構與施力點見 <a href="slide-08-cost-leverage.html">下一頁</a>。<br>
+  C 的完整推論鏈與收費模式比較見 <code>觀察筆記.md §14.4</code>、<code>策略方向.md §3</code>。
+</footer>
+
+<nav id="deck-nav" aria-label="簡報導覽">
+  <a class="dn-btn" href="slide-06-competitors.html" aria-label="上一頁：競爭者分析" data-nav="prev">←</a>
+  <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
+    <span class="dn-ch">定位 C · 策略破題</span>
+    <span class="dn-pg">7 <i>/</i> 12</span>
+  </button>
+  <a class="dn-btn" href="slide-08-cost-leverage.html" aria-label="下一頁：施力點在哪" data-nav="next">→</a>
+</nav>
+<div id="dn-menu" hidden>
+  <div class="dn-panel" role="dialog" aria-label="頁面目錄">
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a><a class="dn-item on" href="slide-07-positioning-c.html"><span class="dn-num">07</span><span><b>定位 C</b><em>策略部分的破題 —— 為什麼只剩深化，以及這一層具體是什麼</em></span></a><a class="dn-item" href="slide-08-cost-leverage.html"><span class="dn-num">08</span><span><b>施力點在哪</b><em>台灣汽車貨運業的成本結構 —— 每 100 元營收有 48 元跟著里程走</em></span></a><a class="dn-item" href="slide-09-vrio.html"><span class="dn-num">09</span><span><b>內部能力盤點</b><em>七項能力過四道問題 —— 三項已答，四項待內部回填</em></span></a><a class="dn-item" href="slide-10-tows.html"><span class="dn-num">10</span><span><b>TOWS</b><em>把 SWOT 交叉起來 —— 四個象限各自對應一種動作</em></span></a><a class="dn-item" href="slide-11-moat.html"><span class="dn-num">11</span><span><b>護城河正在轉移</b><em>車機這道護城河的前提正在失效 —— 深化是在它到期前先建立不依賴硬體的那一道</em></span></a><a class="dn-item" href="slide-12-actions.html"><span class="dn-num">12</span><span><b>行動方案</b><em>把 TOWS 四個象限拆成可以動手的九條 —— 各自的第一步與前置</em></span></a>
+    <p class="dn-h">附錄</p>
+    <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
+    <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
+  </div>
+</div>
+<style>
+:root{--deck-nav-h:52px;--sh-lg:0 12px 32px rgba(0,0,0,.6)}
+#deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
+  display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
+  box-shadow:var(--sh-lg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#deck-nav a,#deck-nav button{font-family:var(--sans);color:var(--muted);
+  background:none;border:none;cursor:pointer;text-decoration:none;border-radius:8px;
+  transition:background .15s,color .15s}
+.dn-btn{width:42px;display:grid;place-items:center;font-size:16px;line-height:1}
+.dn-btn:hover{background:var(--primary-dim);color:var(--primary)}
+.dn-off{width:42px;display:grid;place-items:center;font-size:16px;color:var(--border);
+  cursor:default}
+#dn-toggle{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 12px}
+#dn-toggle:hover{background:var(--raised);color:var(--text)}
+.dn-ch{font-size:12.5px;font-weight:620;color:var(--text);line-height:1.25}
+.dn-pg{font-family:var(--mono);font-size:9.5px;color:var(--faint);
+  font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dn-pg i{font-style:normal;opacity:.5}
+#dn-menu{position:fixed;inset:0;z-index:80;background:color-mix(in srgb,var(--bg) 72%,transparent);
+  backdrop-filter:blur(4px);display:grid;place-items:center;padding:24px}
+#dn-menu[hidden]{display:none}
+.dn-panel{width:min(480px,100%);max-height:80vh;overflow:auto;padding:18px;border-radius:12px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-lg)}
+.dn-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 8px}
+.dn-h:not(:first-child){margin-top:16px;padding-top:14px;border-top:1px solid var(--border)}
+.dn-item{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:baseline;
+  padding:9px 10px;border-radius:8px;text-decoration:none;color:var(--text);
+  transition:background .15s}
+.dn-item:hover{background:var(--raised)}
+.dn-item.on{background:var(--primary-dim);box-shadow:inset 2px 0 0 var(--primary)}
+.dn-num{font-family:var(--mono);font-size:11px;color:var(--faint);
+  font-variant-numeric:tabular-nums}
+.dn-item b{display:block;font-size:14px;font-weight:620;line-height:1.35}
+.dn-item em{display:block;font-style:normal;font-size:12px;color:var(--faint);
+  margin-top:2px;line-height:1.5}
+.dn-tool b{color:var(--muted)}
+.dn-k{margin:16px 0 0;padding-top:13px;border-top:1px solid var(--border);
+  font-size:11.5px;color:var(--faint)}
+.dn-k code{font-family:var(--mono);font-size:11px;background:var(--raised);
+  padding:1px 5px;border-radius:4px;color:var(--muted)}
+@media (max-width:820px){#deck-nav{left:12px;right:12px;bottom:12px;width:auto}}
+@media print{#deck-nav,#dn-menu{display:none!important}}
+</style>
+<script>
+(()=>{
+  const menu=document.getElementById("dn-menu"),tog=document.getElementById("dn-toggle");
+  const go=d=>{const a=document.querySelector(`#deck-nav [data-nav="${d}"]`);if(a)location.href=a.getAttribute("href");};
+  const open=v=>{menu.hidden=!v;tog.setAttribute("aria-expanded",String(v));};
+  tog.addEventListener("click",()=>open(menu.hidden));
+  menu.addEventListener("click",e=>{if(e.target===menu)open(false);});
+  addEventListener("keydown",e=>{
+    if(e.target.matches("input,textarea,select"))return;
+    if(e.key==="ArrowRight")go("next");
+    else if(e.key==="ArrowLeft")go("prev");
+    else if(e.key==="Escape"&&!menu.hidden)open(false);
+  });
+})();
+</script>
+</body>
+</html>

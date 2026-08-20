@@ -57,8 +57,7 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
   display:grid;grid-template-columns:262px 1fr;gap:34px;align-items:center}
 .rings{position:relative}
 .rings svg{display:block;width:100%;height:auto}
-.rings .cap{position:absolute;left:0;right:0;bottom:-2px;text-align:center;
-  font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.08em}
+.rings .ring{transition:r .18s}
 .stage{display:grid;grid-template-columns:92px 1fr 296px;gap:16px 20px;align-items:start;
   padding:15px 0;border-top:1px solid var(--border)}
 .stage:first-of-type{border-top:none;padding-top:0}
@@ -73,6 +72,12 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
 .st-r .big small{font-size:11.5px;font-weight:500;color:var(--muted);margin-left:3px}
 .st-r .s{font-size:12px;color:var(--faint);margin-top:6px;line-height:1.7}
 .st-r .s b{color:var(--muted);font-weight:620}
+.st-r .s .pp{color:var(--accent);font-weight:640;font-family:var(--mono);
+  font-size:12px}
+.st-r .s .note{display:block;margin-top:10px;padding:11px 13px;background:var(--raised);
+  border-radius:7px;border-left:2px solid var(--accent);font-size:11.5px;line-height:1.75;
+  color:var(--faint)}
+.st-r .s .note b{color:var(--muted);font-weight:620}
 .ins{padding:13px 15px;background:var(--raised);border-radius:8px;
   border-left:3px solid var(--primary)}
 .ins .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;color:var(--primary);
@@ -97,6 +102,10 @@ h1 .pos{font-family:var(--mono);font-size:15px;font-weight:700;letter-spacing:.0
   text-align:right;white-space:nowrap;padding-right:22px}
 .regs .law b{color:var(--text);font-weight:600}
 .regs .law em{font-style:normal;display:block;font-size:11.5px;color:var(--faint);margin-top:2px}
+.regs .rlist{display:grid;grid-template-columns:max-content 1fr;gap:5px 14px;align-items:baseline}
+.regs .rlist .rk{color:var(--text);font-weight:600;white-space:nowrap;font-size:12.5px}
+.regs .rlist .rv{color:var(--faint);font-size:11.5px;line-height:1.5}
+.regs .rlist .rv b{color:var(--muted);font-weight:620}
 .regs .org,.regs .eff{white-space:nowrap;font-size:12px}
 .regs .eff{font-family:var(--mono);font-size:11px}
 .regs .qty i{display:block;font-style:normal;font-family:var(--sans);font-size:11px;
@@ -167,25 +176,21 @@ footer code{font-family:var(--mono);font-size:11.5px}
   <div class="which">
     <a href="slide-04-sizing.html">A　車隊管理系統供應商</a>
     <span class="on">B　合規解決方案供應商</span>
-    <span>C　車隊營運成本的優化者<i>未估算</i></span>
+    <a href="slide-07-positioning-c.html">C　車隊營運成本的優化者<i>第 7 章</i></a>
   </div>
 </header>
 
 
 <div class="funnel">
   <div class="rings">
-    <svg viewBox="0 0 260 260" role="img" aria-label="定位 B 的 TAM、SAM、SOM 同心圓">
-      <circle cx="130" cy="130" r="118" fill="var(--t1)" fill-opacity=".22"
-              stroke="var(--t1)" stroke-width="1.5"/>
-      <circle id="c-samhi" cx="130" cy="130" r="118" fill="none"
-              stroke="var(--t2)" stroke-width="1.6" stroke-dasharray="5 4" opacity=".8"/>
-      <circle id="c-sam" cx="130" cy="130" r="64.1" fill="var(--t2)" fill-opacity=".38"
-              stroke="var(--t2)" stroke-width="1.5"/>
-      <circle id="c-som" cx="130" cy="130" r="21.5" fill="var(--accent)"
-              fill-opacity=".9" stroke="var(--accent)" stroke-width="1.5"/>
+    <svg viewBox="0 0 260 260" role="img"
+         aria-label="規模示意：外圈為 TAM 與 SAM（兩者相等），內圈為 SOM">
+      <circle cx="130" cy="130" r="118" fill="var(--t1)" fill-opacity=".30"
+              stroke="var(--t2)" stroke-width="1.8"/>
+      <circle id="c-som" class="ring" cx="130" cy="130" r="8.3" fill="var(--accent)"
+              fill-opacity=".95" stroke="var(--accent)" stroke-width="1.5"/>
     </svg>
-    <div class="cap">面積成正比　·　虛線＝上界</div>
-  </div>
+      </div>
 
   <div>
     <div class="stage" style="--cl:var(--t1)">
@@ -206,9 +211,12 @@ footer code{font-family:var(--mono);font-size:11.5px}
     <div class="stage" style="--cl:var(--t2)">
       <div class="st-k">SAM<small>可服務</small></div>
       <div class="st-r">
-        <div class="big"><span class="veh" id="v-sam">18,820 – 63,761</span><small>輛</small><span class="sep">·</span><span class="m" id="m-sam">1.30 – 10.56</span><small>億／年</small></div>
+        <div class="big"><span class="veh" id="v-sam">40,280 – 94,781</span><small>輛</small><span class="sep">·</span><span class="m" id="m-sam">2.78 – 15.70</span><small>億／年</small></div>
         <div class="s">＝ <b>TAM</b>　<span class="lv v">查證</span><br>
-          <b>SAM 只受審驗限制，沒有其他限制條件</b> —— 而審驗已解除</div>
+          <b>SAM 只受審驗限制，沒有其他限制條件 —— 而審驗量能已解除</b>。<br>
+          <span style="color:var(--faint)">惟這是<b>市場層級</b>的陳述 ——
+          市場可被「某人」全部服務，<b>不代表由我方服務</b>。
+          我方要進強制段還有一道門檻，<b>那道門檻由 SOM 承擔</b>，見下方。</span></div>
       </div>
       <div class="ins-none"></div>
     </div>
@@ -216,9 +224,9 @@ footer code{font-family:var(--mono);font-size:11.5px}
     <div class="stage" style="--cl:var(--accent)">
       <div class="st-k">SOM<small>可獲得</small></div>
       <div class="st-r">
-        <div class="big"><span class="veh" id="v-som">1,255 – 4,251</span><small>輛</small><span class="sep">·</span><span class="m" id="m-som">0.09 – 0.71</span><small>億／年</small></div>
-        <div class="s">我們在 SAM 裡吃到幾成　<span class="lv n">查無</span><br>
-          參考點：現行有車在跑的 <b>12 家</b>，均分 8.3%</div>
+        <div class="big"><span class="veh" id="v-som">3,343 – 7,867</span><small>輛</small><span class="sep">·</span><span class="m" id="m-som">0.23 – 1.30</span><small>億／年</small></div>
+        <div class="s"><b class="pp">每 1 個百分點 ＝ 403 – 948 輛 · 278 – 1,570 萬／年</b><br>
+          錨點＝<b>新竹物流冷鏈</b>（已知逾 200 台）</div>
       </div>
       <div class="ins-none"></div>
     </div>
@@ -227,19 +235,25 @@ footer code{font-family:var(--mono);font-size:11.5px}
 
 <div class="dials">
   <div class="dial">
-    <label><span>SOM　我們在 SAM 裡吃到幾成</span>
+    <label><span>SOM　假設的市佔率 —— 每提升 1 個百分點換得多少</span>
       <span><b id="p-som">8.3%</b><span class="lv n" style="margin-left:8px">查無</span></span></label>
     <div class="tw" style="--zg:linear-gradient(to right,
-        color-mix(in srgb,var(--ok) 55%,transparent) 0 26.5%,
-        transparent 26.5% 100%)">
+        color-mix(in srgb,var(--ok) 55%,transparent) 0 0.67%,
+        transparent 0.67% 100%)">
       <div class="zones"></div>
-      <input type="range" id="s-som" min="0.5" max="30" step="0.1" value="8.3" aria-label="SOM 比例">
+      <input type="range" id="s-som" min="0.1" max="60" step="0.1" value="0.5" aria-label="SOM 比例">
     </div>
-    <div class="tk"><span style="left:26.5%">8.3%<i>12 家均分</i></span></div>
+    <div class="tk">
+      <span style="left:0.67%">0.5%<i>新竹物流冷鏈</i></span>
+      <span style="left:13.69%">8.3%<i>12 家均分（參考）</i></span>
+    </div>
     <dl class="why">
-      <dt class="g">綠段　≤ 8.3%</dt>
-      <dd>合規這一段的競爭者是<b>可列舉的</b> —— 現行有車在跑的 <b>12 家</b>，均分 8.3%。
-        但<b>不會是均分</b>：前段班是 6 家連續 A+ <b>超過 80 個月</b>的老廠</dd>
+      <dt class="g">綠段　≤ 0.5%　目前實績</dt>
+      <dd>我方在這一段的客戶目前為<b>新竹物流的冷鏈車隊</b></dd>
+      <dt class="n">滑桿到 60% 為止</dt>
+      <dd><b>TAM 的下界那 40,280 輛就是強制段</b>（約當上界的四成）—— 四段法規相加。
+        該段<b>須通過型式審驗，我方未持有</b>（第 9 章），車上也已有別家車機、換機成本擋著
+        ——<b>那四成是轉換瓶頸</b>，故滑桿只拉到 60%。</dd>
     </dl>
   </div>
 </div>
@@ -288,11 +302,18 @@ footer code{font-family:var(--mono);font-size:11.5px}
       </tr>
       <tr class="rest">
         <td class="seg">其餘商業<br>規範需求</td><td class="qty"><i>不另計</i></td>
-        <td class="law"><b>冷鏈</b> GHP 2025-06-04（強制紀錄、不強制設備）　·　
-          <b>碳排／ESG</b> CSRD 2026、金管會 2029　·　<b>貨車側工時</b>
-          <span class="note">都<b>還沒強制裝機</b>，而且從「車」的角度<b>幾乎是同一群</b> ——
-            工時管駕駛、碳排跟貨主，都不挑車種，冷鏈 9,680 只是其中子集。
-            所以不相加，取<b>聯集</b>：上界 94,781 ＝ 營業貨車 81,281 ＋ 遊覽車 13,500</span></td>
+        <td class="law">
+          <div class="rlist">
+            <span class="rk">冷鏈</span>
+            <span class="rv">GHP 2025-06-04 —— 強制紀錄，<b>不強制設備</b></span>
+            <span class="rk">碳排／ESG</span>
+            <span class="rv">CSRD 2026、金管會 2029</span>
+            <span class="rk">貨車側工時</span>
+            <span class="rv">未見立法時程 <span class="lv n">查無</span></span>
+          </div>
+          <span class="note">三者<b>都還沒強制裝機</b>，且從「車」的角度<b>幾乎是同一群</b> ——
+            工時管駕駛、碳排跟貨主，都不挑車種，冷鏈 9,680 只是其中子集。<br>
+            <b>故不相加，取聯集</b>：上界 94,781 ＝ 營業貨車 81,281 ＋ 遊覽車 13,500</span></td>
         <td class="org">衛福部 · 金管會<br>交通部</td>
         <td class="eff">有規範<br>未強制裝機</td>
       </tr>
@@ -304,8 +325,8 @@ footer code{font-family:var(--mono);font-size:11.5px}
 <footer>
   定位 A 的規模見 <a href="slide-04-sizing.html">第 4 章</a>　·
   三個定位是什麼見 <a href="slide-03-positioning.html">第 3 章</a>　·
-  分母口徑見 <a href="appendix-vehicle-base.html">附錄 · 車輛基準</a><br>
-  冷鏈為何不計入強制 <code>觀察筆記.md §14.2</code>　·　方法與來源 <a href="appendix-method.html">附錄</a>
+  分母口徑見 <code>參考資料來源.md §4A.1</code><br>
+  冷鏈為何不計入強制 <code>觀察筆記.md §14.2</code>　·　方法與來源 <code>設計原則.md §8</code>
 </footer>
 <script>
 (()=>{
@@ -327,10 +348,8 @@ function render(){
   const money=(a,b,r)=>`${億(a*r[0]).toFixed(2)} – ${億(b*r[1]).toFixed(2)}`;  // 單位由 HTML 的 <small> 提供
   $("m-sam").textContent=money(sl,sh,REC);
   $("m-som").textContent=money(ol,oh,REC);
-  // 面積正比：實線＝下界、虛線＝上界
-  $("c-sam").setAttribute("r",(R*Math.sqrt(sl/HI)).toFixed(1));
-  $("c-samhi").setAttribute("r",(R*Math.sqrt(sh/HI)).toFixed(1));
-  $("c-som").setAttribute("r",Math.max(R*Math.sqrt(oh/HI),3).toFixed(1));
+  // SOM／TAM ＝ 市佔率本身，與上下界無關 —— 故只需一顆圓
+  $("c-som").setAttribute("r",Math.max(R*Math.sqrt(som),5).toFixed(1));
 }
 $("s-som").addEventListener("input",render);
 render();
@@ -341,20 +360,20 @@ render();
   <a class="dn-btn" href="slide-04-sizing.html" aria-label="上一頁：定位 A 的市場規模" data-nav="prev">←</a>
   <button type="button" id="dn-toggle" aria-expanded="false" aria-controls="dn-menu">
     <span class="dn-ch">定位 B · 規模</span>
-    <span class="dn-pg">5 <i>/</i> 6</span>
+    <span class="dn-pg">5 <i>/</i> 12</span>
   </button>
   <a class="dn-btn" href="slide-06-competitors.html" aria-label="下一頁：競爭者分析" data-nav="next">→</a>
 </nav>
 <div id="dn-menu" hidden>
   <div class="dn-panel" role="dialog" aria-label="頁面目錄">
-    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item on" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a>
-    <p class="dn-h">附錄</p><a class="dn-item" href="appendix-vehicle-base.html"><span class="dn-num">附</span><span><b>附錄 · 車輛基準</b><em>81,281 涵蓋什麼、排除什麼 —— 三層全部乘在這個分母上</em></span></a><a class="dn-item" href="appendix-method.html"><span class="dn-num">附</span><span><b>附錄 · 方法與來源</b><em>多鏈費米怎麼做、來源等級六級、以及這份簡報用到的每一個數字的出處</em></span></a>
+    <p class="dn-h">簡報</p><a class="dn-item" href="slide-01-map.html"><span class="dn-num">01</span><span><b>FMS 連著 40 個東西，TMS 連著 4 個</b><em>分四階段揭露兩套系統的鄰域 —— 46 個節點、52 條連線、21 股應力</em></span></a><a class="dn-item" href="slide-02-fms-tms.html"><span class="dn-num">02</span><span><b>一個管車，一個管單</b><em>FMS 與 TMS 的異與同 —— 以及現在到底揉在一起了沒</em></span></a><a class="dn-item" href="slide-03-positioning.html"><span class="dn-num">03</span><span><b>產品定位</b><em>三條可以走的路 —— 各自解決誰的什麼痛，以及現在有沒有人走成</em></span></a><a class="dn-item" href="slide-04-sizing.html"><span class="dn-num">04</span><span><b>定位 A 的市場規模</b><em>車隊管理系統供應商這一條的 TAM／SAM／SOM</em></span></a><a class="dn-item on" href="slide-05-sizing-b.html"><span class="dn-num">05</span><span><b>定位 B 的市場規模</b><em>法規畫的分母，以及唯一有出處的漏斗收縮率 —— C 尚未估算</em></span></a><a class="dn-item" href="slide-06-competitors.html"><span class="dn-num">06</span><span><b>競爭者分析</b><em>市佔率算不出來，能算的只有家數 —— 而功能覆蓋顯示：車那側人人都有，單那側只有一家</em></span></a><a class="dn-item" href="slide-07-positioning-c.html"><span class="dn-num">07</span><span><b>定位 C</b><em>策略部分的破題 —— 為什麼只剩深化，以及這一層具體是什麼</em></span></a><a class="dn-item" href="slide-08-cost-leverage.html"><span class="dn-num">08</span><span><b>施力點在哪</b><em>台灣汽車貨運業的成本結構 —— 每 100 元營收有 48 元跟著里程走</em></span></a><a class="dn-item" href="slide-09-vrio.html"><span class="dn-num">09</span><span><b>內部能力盤點</b><em>七項能力過四道問題 —— 三項已答，四項待內部回填</em></span></a><a class="dn-item" href="slide-10-tows.html"><span class="dn-num">10</span><span><b>TOWS</b><em>把 SWOT 交叉起來 —— 四個象限各自對應一種動作</em></span></a><a class="dn-item" href="slide-11-moat.html"><span class="dn-num">11</span><span><b>護城河正在轉移</b><em>車機這道護城河的前提正在失效 —— 深化是在它到期前先建立不依賴硬體的那一道</em></span></a><a class="dn-item" href="slide-12-actions.html"><span class="dn-num">12</span><span><b>行動方案</b><em>把 TOWS 四個象限拆成可以動手的九條 —— 各自的第一步與前置</em></span></a>
+    <p class="dn-h">附錄</p>
     <p class="dn-h">研究工具　<span style="text-transform:none;letter-spacing:0">↗ 開新分頁</span></p><a class="dn-item dn-tool" href="market-map.html" target="_blank" rel="noopener"><span class="dn-num">↗</span><span><b>市場地圖後台</b><em>完整 206 節點：縮放層級、搜尋、篩族群，附鄰接表</em></span></a>
     <p class="dn-k">鍵盤　<code>←</code> <code>→</code> 翻頁　<code>Esc</code> 關閉</p>
   </div>
 </div>
 <style>
-:root{--deck-nav-h:52px}
+:root{--deck-nav-h:52px;--sh-lg:0 12px 32px rgba(0,0,0,.6)}
 #deck-nav{position:fixed;left:26px;bottom:26px;z-index:70;width:314px;
   display:flex;align-items:stretch;gap:2px;padding:3px;border-radius:11px;
   background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--border);
